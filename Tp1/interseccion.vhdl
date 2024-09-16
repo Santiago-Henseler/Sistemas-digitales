@@ -25,11 +25,11 @@ architecture interseccion_arq of interseccion is
 
 begin
 
-    rojo_1 <= '1' when current_state = ra0 or current_state = ra1 else '0';
+    rojo_1 <= '1' when current_state = ra0 or current_state = ra1 or current_state = rv else '0';
     amarillo_1 <= '1' when current_state = ar0 or current_state = ar1 else '0';
     verde_1 <= '1' when current_state = vr else '0';
 
-    rojo_2 <= '1' when current_state = ar0 or current_state = ar1 else '0';
+    rojo_2 <= '1' when current_state = ar0 or current_state = ar1 or current_state = vr else '0';
     amarillo_2 <= '1'when current_state = ra0 or current_state = ra1 else '0';
     verde_2 <= '1' when current_state = rv else '0';
     
