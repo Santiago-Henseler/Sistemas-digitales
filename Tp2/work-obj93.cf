@@ -1,7 +1,0 @@
-v 4
-file . "tb.vhdl" "369a405833378d5e39a2d219e849765e0ca5308e" "20241004183659.132":
-  entity tb at 1( 0) + 0 on 21;
-  architecture arq_tb of tb at 7( 66) + 0 on 22;
-file . "multiplicador_float.vhdl" "dc22f67fc8a94f8d953a088d2c4ac43ac66905a8" "20241004183659.059":
-  entity multiplicador_float at 1( 0) + 0 on 19;
-  architecture multiplicador_float_arch of multiplicador_float at 20( 478) + 0 on 20;
