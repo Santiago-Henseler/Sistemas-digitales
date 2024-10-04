@@ -21,6 +21,7 @@ architecture multiplicador_float_arch of multiplicador_float is
 
     constant SIZE: natural := Ne+Nf;
     signal bias: integer := 2**(Ne-1)-1;
+    signal desp: integer := 1;
     
     signal significant_mult: unsigned(2*Nf-1 downto 0);
     signal exp, expA, expB: unsigned(Ne-1 downto 0);
@@ -37,16 +38,15 @@ begin
     significantB <= '1' & unsigned(operandoB(Nf-2 downto 0));
     significant_mult <= significantA * significantB;
 
-    process(significant_mult)
+    process (significant_mult)
     begin
-        if significant_mult(2*Nf-1) = '0' then 
-            --while significant_mult(2*Nf-1) = '0' then
-            --  Desplazo un a posicion significant_mult 
-            --end while;
-        else
-            exp <= expA + expB - to_unsigned(bias, Ne-1) + to_unsigned(1, Ne-1);
-        end if;
+        while significant_mult(2*Nf-1) = '0' loop
+            --significant_mult <= significant_mult(2*Nf-2 downto 0) & '0'; ---aca no anda -- logico porque le estoy asignando varias  veces la señal a lo mismo
+            desp <= desp+1;
+        end loop;
     end process; 
+
+    exp <= expA + expB - to_unsigned(bias, Ne-1) + to_unsigned(desp, Ne-1);
 
     resultado <= signo & std_logic_vector(exp & significant_mult(2*Nf-2 downto Nf));
 
