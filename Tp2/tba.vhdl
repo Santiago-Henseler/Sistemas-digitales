@@ -17,12 +17,12 @@ begin
     reset_tb <= '1', '0' after 10 ns;
     enable_tb <= '1';
     operandoA_tb <= "11111101111111111111111";
-    operandoB_tb <= "00111101010001110011001";
+    operandoB_tb <= "00111101010001110011001","00000000000000000000000" after 15 ns;
 
     mult: entity work.multiplicador_float(multiplicador_float_arch) 
     generic map(
         Ne => 6,
-        Nf => 17
+        Nf => 16
     )
     port map(
         enable => enable_tb,
