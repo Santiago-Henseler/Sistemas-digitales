@@ -1,8 +1,6 @@
 # Sistemas Digitales
 Trabajo práctico N°1: Implementación de un Sistema Secuencial
-
-
-# Introducción
+----
 El objetivo del trabajo práctico fue implementar un circuito secuencial con la finalidad de controlar un cruce de calles con dos semáforos. Para lograr este objetivo se planteó 6 estados posibles:
 
 ```vhdl
