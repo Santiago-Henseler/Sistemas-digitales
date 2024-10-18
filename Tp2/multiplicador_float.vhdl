@@ -23,6 +23,8 @@ architecture multiplicador_float_arch of multiplicador_float is
     constant CERO: integer := 0;
     constant CEROVECTOR: std_logic_vector(Nf-1 downto 0) := (others => '0');
 
+    constant A: unsigned(Ne-2 downto 0):= (others => '1');
+
     signal bias: integer := 2**(Ne-1)-1;
     signal desp: integer := 0;
 
@@ -48,19 +50,19 @@ begin
 
     desp <= UNO when significant_mult(2*Nf+1) = '1' else CERO;
     exp_exc <= ("00" & expA) + ("00" & expB) + ("00" & to_unsigned(desp, 2)) - to_unsigned(bias, Ne+2);
-    exp <= (others => '0') when exp_exc(Ne) = '1' else 
-        (others => '1') when exp_exc(Ne+1) = '1' else
-        exp_exc(Ne-1 downto 0);
+    exp <=  A & '0' when (exp_exc(Ne) = '1' and exp_exc(Ne+1) = '0') else 
+            (others => '0') when exp_exc(Ne+1) = '1' else
+            exp_exc(Ne-1 downto 0);
 
     -- Defino como va a ser la mantisa
     significantA <= '1' & unsigned(operandoA(Nf-1 downto 0));
     significantB <= '1' & unsigned(operandoB(Nf-1 downto 0));
     significant_mult <= std_logic_vector(significantA * significantB);
 
-    mantisa <= (others => '1') when exp_exc(Ne+1) = '1' else  -- menor número representable
-            (others => '0') when exp_exc(Ne) = '1' else -- mayor número a representar
-            significant_mult(2*Nf downto Nf+1) when significant_mult(2*Nf+1) = '1' else
-            significant_mult(2*Nf-1 downto Nf);
+    mantisa <=  (others => '1') when (exp_exc(Ne) = '1' and exp_exc(Ne+1) = '0') else 
+                (others => '0') when exp_exc(Ne+1) = '1' else 
+                significant_mult(2*Nf downto Nf+1) when significant_mult(2*Nf+1) = '1' else
+                significant_mult(2*Nf-1 downto Nf);
 
     -- Empaqueto el resultado teniendo en cuenta el caso de los 0
     opA_cero <= '1' when (to_integer(expA) = CERO and (operandoA(Nf-1 downto 0) = CEROVECTOR)) else '0';
