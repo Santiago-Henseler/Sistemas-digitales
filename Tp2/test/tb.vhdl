@@ -8,12 +8,12 @@ end entity tb;
 
 architecture simulacion of tb is
 	constant TCK: time:= 20 ns; -- periodo de reloj
-	constant DELAY: natural:= 2; -- retardo de procesamiento del DUT
+	constant DELAY: natural:= 0; -- retardo de procesamiento del DUT
 	constant N: natural:= 22;	-- tamano de datos
 	
 	signal clk: std_logic:= '0';
-	signal operadorA_file: unsigned(N-1 downto 0):= (others => '0');
-	signal operadorB_file: unsigned(N-1 downto 0):= (others => '0');
+	signal operadorA_file: unsigned(N-1 downto 0):= (others => '1');
+	signal operadorB_file: unsigned(N-1 downto 0):= (others => '1');
 	signal cin_file, cout_file: std_logic:= '0';
 	signal z_file: unsigned(N-1 downto 0):= (others => '0');
 	signal z_del: unsigned(N-1 downto 0):= (others => '0');
@@ -53,6 +53,9 @@ begin
 			read(l, ch); 					-- se lee un caracter (es el espacio)
 			read(l, aux); 					-- se lee otro entero de la linea
 			operadorB_file <= to_unsigned(aux, N); 	-- se carga el valor del operando B
+			read(l, ch); 					-- se lee un caracter (es el espacio)
+			read(l, aux); 					-- se lee otro entero de la linea
+			z_file <= to_unsigned(aux, N); 	-- se carga el valor del operando B
 		end loop;
 		
 		file_close(datos); -- cierra el archivo
@@ -84,12 +87,11 @@ begin
 	verificacion: process(clk)
 	begin
 		if rising_edge(clk) then
---			report integer'image(to_integer(a_file)) & " " & integer'image(to_integer(b_file)) & " " & integer'image(to_integer(z_file));
 			assert to_integer(z_del)=to_integer(z_dut) report
 				"Error: Salida del DUT no coincide con referencia (salida del dut = " & 
 				integer'image(to_integer(z_dut)) &
 				", salida del archivo = " &
-				integer'image(to_integer(z_del)) & ")"
+				integer'image(to_integer(z_del)) & ") " & integer'image(to_integer(operadorA_file)) & " "  & integer'image(to_integer(operadorB_file))
 				severity warning;
 		end if;
 	end process;

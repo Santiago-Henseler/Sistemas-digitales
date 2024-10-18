@@ -17,8 +17,7 @@ make:
 	@$(GHDL_CMD) -a test/tb.vhdl
 	echo --Codigo compilado--
 	@$(GHDL_CMD) -e tb
-	@$(GHDL_CMD) -r tb --wave="tb.ghw" $(GHDL_SIM_OPT)
-
+	@$(GHDL_CMD) -r tb --wave="tb.ghw"
 view:
 	@$(WAVEFORM_VIEWER) tb.ghw
 
