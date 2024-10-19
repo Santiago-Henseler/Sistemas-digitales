@@ -23,8 +23,6 @@ architecture multiplicador_float_arch of multiplicador_float is
     constant CERO: integer := 0;
     constant CEROVECTOR: std_logic_vector(Nf-1 downto 0) := (others => '0');
 
-    constant A: unsigned(Ne-2 downto 0):= (others => '1');
-
     signal bias: integer := 2**(Ne-1)-1;
     signal desp: integer := 0;
 
@@ -50,7 +48,7 @@ begin
 
     desp <= UNO when significant_mult(2*Nf+1) = '1' else CERO;
     exp_exc <= ("00" & expA) + ("00" & expB) + ("00" & to_unsigned(desp, 2)) - to_unsigned(bias, Ne+2);
-    exp <=  A & '0' when (exp_exc(Ne) = '1' and exp_exc(Ne+1) = '0') else 
+    exp <= (others => '1') when (exp_exc(Ne) = '1' and exp_exc(Ne+1) = '0') else 
             (others => '0') when exp_exc(Ne+1) = '1' else
             exp_exc(Ne-1 downto 0);
 

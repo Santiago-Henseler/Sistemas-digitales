@@ -13,4 +13,14 @@ Para el pasaje entre los distintos estados se utilizaron 2 contadores. Uno que c
 y el diagrama de estados es el siguiente: [diagrama](https://www.canva.com/design/DAGS_wTfiOU/q404G--gAez69Ve8bOcunA/edit?utm_content=DAGS_wTfiOU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 
+Trabajo práctico N°2: Aritmética de Punto Flotante
+----
+
+
+- Multiplicador: En los test del multiplicador hay algunos casos que mi código no los pasa. Luego de debuguear que era lo que estaba sucediendo me di cuenta que en los tests se toman 2 consideraciones, el exponente máximo a representar va a ser el ```vhdl (others => ‘1’) & ‘0’ ``` y cuando haya que saturar un número ese va a ser su exponente. En cambio en mi código determine ( por lo visto en clase) que el exponente máximo y de saturación si se da el caso sea ```vhdl (others => ‘1’)``` . Adjunto una captura de lo que sucede:
+
+<div align="center">
+    <img width="70%" src="img/multiplicador_test_problema.png">
+</div> 
+ 
 
