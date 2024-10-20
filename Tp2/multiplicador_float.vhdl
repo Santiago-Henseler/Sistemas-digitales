@@ -8,8 +8,6 @@ entity multiplicador_float is
         Nf: natural := 23
     );
     port (
-        clock: in std_logic;
-        enable: in std_logic;
         operandoA: in std_logic_vector(Ne+Nf downto 0);
         operandoB: in std_logic_vector(Ne+Nf downto 0);
         resultado: out std_logic_vector(Ne+Nf downto 0)
