@@ -71,8 +71,6 @@ begin
         Nf => 15
     )
     port map(
-        enable => '1',
-        clock => clk,
         operandoA => std_logic_vector(operadorA_file),
         operandoB => std_logic_vector(operadorB_file),
         unsigned(resultado) => z_dut

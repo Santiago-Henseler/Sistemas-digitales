@@ -29,7 +29,10 @@ architecture sumador_float_arch of sumador_float is
     -- Definiciones de mantisas
     signal significantA, significantB: unsigned(Nf downto 0);
     signal mantisa_mayor, mantisa_menor: unsigned(Nf downto 0);
-    signal mantisa_mayor_aling, mantisa_menor_aling, mantisa_menor_cmp, mantisa_mayor_cmp, suma: unsigned(ALINGSIZE downto 0);
+    signal mantisa_mayor_aling, mantisa_menor_aling, mantisa_menor_cmp, mantisa_mayor_cmp: unsigned(ALINGSIZE downto 0);
+    signal suma, suma_cmp: unsigned(ALINGSIZE+1 downto 0);
+    signal mantisa: unsigned(Nf-1 downto 0);
+    signal indice: integer;
 
     -- Definiciones para complementar
     signal swap: std_logic;
@@ -54,13 +57,30 @@ architecture sumador_float_arch of sumador_float is
     end function hay_q_complementar;
 
     -- Complementa a 2 el numero pasado por parametro
-    function complemento_a_2(num: unsigned) return std_logic_vector is
-        variable resultado: unsigned(num'range);
+    function complemento_a_2(num: unsigned) return unsigned is
+        variable rta: unsigned(num'range);
     begin
-        resultado := not num;
-        resultado := resultado + '1';
-        return resultado; 
+        rta := not num;
+        rta := rta + "1";
+        return rta; 
     end function complemento_a_2;
+
+    -- Busco el primer 1 a la izquierda
+    procedure desp_hasta_uno(num: unsigned; signal indexO: out integer; signal result_vec:out unsigned) is
+        variable index: integer :=-1;
+    begin
+
+        for i in num'range loop
+            if num(i) = '1' then
+                index := i; 
+                exit;
+            end if;
+        end loop;
+
+        indexO <= index;
+        result_vec <= num(ALINGSIZE-index-1 downto ALINGSIZE-Nf-index);
+
+    end procedure desp_hasta_uno;
     
 begin
 
@@ -93,6 +113,15 @@ begin
     -- Complemento las mantisas si es necesario
     mantisa_menor_cmp <= mantisa_menor_aling when complementar(0) = '0' else complemento_a_2(mantisa_menor_aling);
     mantisa_mayor_cmp <= mantisa_mayor_aling when complementar(1) = '0' else complemento_a_2(mantisa_mayor_aling);
+
+    -- Efectuo la suma
+    suma <= ('0' & mantisa_mayor_cmp) + ('0' & mantisa_menor_cmp);
+
+    -- Complemento el resultado de la suma si es necesario
+    suma_cmp <= suma when  suma(ALINGSIZE+1) = '1' else complemento_a_2(suma);
+
+    -- Desplazo hasta el primer uno
+    desp_hasta_uno(suma_cmp, indice, mantisa);
 
     
 

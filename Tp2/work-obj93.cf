@@ -1,19 +1,19 @@
 v 4
-file . "tb_suma.vhdl" "a44a9e743e27a3dc7bb6683728e3c065956b9451" "20241020200753.481":
-  entity tb_suma at 1( 0) + 0 on 847;
-  architecture arq_tb of tb_suma at 7( 76) + 0 on 848;
-file . "test_sumador/delay.vhdl" "97867cf4ae20c6da406dc5bae979dcdd94545e9b" "20241019143329.963":
-  entity delay_gen at 1( 0) + 0 on 723;
-  architecture del of delay_gen at 17( 277) + 0 on 724;
-file . "sumador_float.vhdl" "c5abcb5839871a300f03a442e8ee72d884b4627f" "20241020200753.359":
-  entity sumador_float at 1( 0) + 0 on 845;
-  architecture sumador_float_arch of sumador_float at 18( 456) + 0 on 846;
-file . "multiplicador_float.vhdl" "5c5dbf878d9beed76ca05393519ac0a01f659339" "20241019142039.961":
-  entity multiplicador_float at 1( 0) + 0 on 711;
-  architecture multiplicador_float_arch of multiplicador_float at 19( 443) + 0 on 712;
-file . "test_multiplicador/tb.vhdl" "cc237d851e2fc90a7743817f838e679fd23cf9b8" "20241019142040.238":
-  entity tb_multiplicador at 1( 0) + 0 on 717;
-  architecture simulacion of tb_multiplicador at 9( 147) + 0 on 718;
-file . "test_sumador/ffd.vhdl" "bf7d8570bc29ffdd947930b9a74611e25d9c2feb" "20241019143329.918":
-  entity ffd at 1( 0) + 0 on 721;
-  architecture pp of ffd at 14( 247) + 0 on 722;
+file . "test_multiplicador/ffd.vhdl" "bf7d8570bc29ffdd947930b9a74611e25d9c2feb" "20241020203758.634":
+  entity ffd at 1( 0) + 0 on 875;
+  architecture pp of ffd at 14( 247) + 0 on 876;
+file . "tb_suma.vhdl" "a44a9e743e27a3dc7bb6683728e3c065956b9451" "20241020213440.490":
+  entity tb_suma at 1( 0) + 0 on 911;
+  architecture arq_tb of tb_suma at 7( 76) + 0 on 912;
+file . "sumador_float.vhdl" "ec2e36c934ca31b711fd00df73f3d86ae172597e" "20241020213440.369":
+  entity sumador_float at 1( 0) + 0 on 909;
+  architecture sumador_float_arch of sumador_float at 18( 456) + 0 on 910;
+file . "multiplicador_float.vhdl" "8fe2561156a77a269c5bb810554ce124375067b4" "20241020203758.514":
+  entity multiplicador_float at 1( 0) + 0 on 873;
+  architecture multiplicador_float_arch of multiplicador_float at 17( 384) + 0 on 874;
+file . "test_multiplicador/tb.vhdl" "3f0e9b94208573f160135d39c5365e44f0285be0" "20241020203758.704":
+  entity tb_multiplicador at 1( 0) + 0 on 879;
+  architecture simulacion of tb_multiplicador at 9( 147) + 0 on 880;
+file . "test_multiplicador/delay.vhdl" "97867cf4ae20c6da406dc5bae979dcdd94545e9b" "20241020203758.658":
+  entity delay_gen at 1( 0) + 0 on 877;
+  architecture del of delay_gen at 17( 277) + 0 on 878;
