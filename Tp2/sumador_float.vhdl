@@ -17,35 +17,51 @@ end sumador_float;
 
 architecture sumador_float_arch of sumador_float is
 
+    -- Constantes varias
     constant ALINGSIZE: natural := 2**Ne-1;
     constant ALINGCEROMINOR: unsigned(ALINGSIZE downto Nf+1):= (others => '0'); 
     constant SIZE: natural := Ne+Nf+1;
     
+    -- Definiciones de exponentes
     signal exp_a, exp_b: unsigned(Ne-1 downto 0);
     signal exp_dif: unsigned(Ne downto 0);
-
+    
     -- Definiciones de mantisas
     signal significantA, significantB: unsigned(Nf downto 0);
     signal mantisa_mayor, mantisa_menor: unsigned(Nf downto 0);
-    signal mantisa_mayor_aling, mantisa_menor_aling: unsigned(ALINGSIZE downto 0);
+    signal mantisa_mayor_aling, mantisa_menor_aling, mantisa_menor_cmp, mantisa_mayor_cmp, suma: unsigned(ALINGSIZE downto 0);
 
-    -- Funcion para alinear la mayor mantisa
-    function aling(x: unsigned(Nf downto 0); dif: natural) return unsigned is
-        variable menor: unsigned(dif-1 downto 0) := (others => '0');
-        variable mayor1: unsigned(ALINGSIZE-dif downto Nf + dif) := (others => '0');
-        variable mayor2: unsigned(ALINGSIZE-dif downto Nf + 1) := (others => '0');
-    
-        variable result: unsigned(ALINGSIZE downto 0);
+    -- Definiciones para complementar
+    signal swap: std_logic;
+    signal complementar: std_logic_vector(1 downto 0);
+
+    -- Determina cual de las 2 mantizas hay que complementar el bit de la derecha es para la mantiza mayor
+    function hay_q_complementar(signoA: std_logic; signoB: std_logic; swp: std_logic; op: std_logic) return std_logic_vector is
     begin
-        if dif /= 0 then  
-            result := mayor1 & x & menor;
-        else
-            result := mayor2 & x;
+        if (((signoA = '1' and signoB = '1' and swp = '0') or (signoB = '1' and swp = '1' and signoA = '1')) and op = '0') then
+            return "11";
+        elsif (((signoA = '1' and signoB = '0' and swp = '0') or (signoB = '1' and swp = '1' and signoA = '0')) and op = '1') then 
+            return "11";
+        elsif (signoA = '1' and swp = '0') or (signoB = '1' and swp = '1') then
+            return "10";
+        elsif (((signoA = '1' and swp = '1') or (signoB = '1' and swp = '0')) and op = '0') then
+            return "01";
+        elsif (((signoA = '0' and swp = '1') or (signoB = '0' and swp = '0')) and op = '1') then
+            return "01";
+        else 
+            return "00";
         end if;
-    
-        return result;
-    end aling;
+    end function hay_q_complementar;
 
+    -- Complementa a 2 el numero pasado por parametro
+    function complemento_a_2(num: unsigned) return std_logic_vector is
+        variable resultado: unsigned(num'range);
+    begin
+        resultado := not num;
+        resultado := resultado + '1';
+        return resultado; 
+    end function complemento_a_2;
+    
 begin
 
     -- Desempaqueto el exponente
@@ -56,21 +72,28 @@ begin
     significantA <= '1' & unsigned(operandoA(Nf-1 downto 0));
     significantB <= '1' & unsigned(operandoB(Nf-1 downto 0));
 
-    -- Determino la operación y si hay que complementar
-
-    
     -- Determino el exp mayor 
     exp_dif <= ('0' & exp_a) - ('0' & exp_b);
+    swap <= exp_dif(Ne);
 
+    -- Determino la operación y si hay que complementar
+    complementar <= hay_q_complementar(operandoA(SIZE-1), operandoB(SIZE-1), swap, operacion);
+    
     -- Invierto o no la ubicación de las mantisas
-    mantisa_mayor <= significantA when exp_dif(Ne) = '0' else significantB; 
-    mantisa_menor <= significantA when exp_dif(Ne) = '1' else significantB;
+    mantisa_mayor <= significantA when swap = '0' else significantB; 
+    mantisa_menor <= significantA when swap = '1' else significantB;
 
     -- Alineo 'trivialmente' la mantisa menor 
     mantisa_menor_aling <= ALINGCEROMINOR & mantisa_menor;
 
     -- Alineo la mantisa mayor
-    mantisa_mayor_aling <= aling(mantisa_mayor, to_integer(exp_dif));
+    -- mantisa_mayor_aling <= (ALINGSIZE - Nf - to_integer(exp_dif) => '0') & mantisa_mayor & ( to_integer(exp_dif) => '0') when to_integer(exp_dif) /= 0 else
+    --                        (ALINGSIZE - Nf => '0') & mantisa_mayor; 
 
+    -- Complemento las mantisas si es necesario
+    mantisa_menor_cmp <= mantisa_menor_aling when complementar(0) = '0' else complemento_a_2(mantisa_menor_aling);
+    mantisa_mayor_cmp <= mantisa_mayor_aling when complementar(1) = '0' else complemento_a_2(mantisa_mayor_aling);
+
+    
 
 end sumador_float_arch;
