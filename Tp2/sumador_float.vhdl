@@ -19,7 +19,7 @@ architecture sumador_float_arch of sumador_float is
 
     -- Constantes varias
     constant ALINGSIZE: natural := 2**Ne-1;
-    constant ALINGCEROMINOR: unsigned(ALINGSIZE downto Nf+1):= (others => '0'); 
+    constant ALINGCEROMENOR: unsigned(ALINGSIZE downto Nf+1):= (others => '0');
     constant SIZE: natural := Ne+Nf+1;
     
     -- Definiciones de exponentes
@@ -33,6 +33,16 @@ architecture sumador_float_arch of sumador_float is
     signal suma, suma_cmp: unsigned(ALINGSIZE+1 downto 0);
     signal mantisa: unsigned(Nf-1 downto 0);
     signal indice: integer;
+
+    -- Alinea la mayor mantisa segun el desplazamiento
+    function alineo_mayor(mayor: unsigned; dif: integer) return unsigned is
+        variable rta: unsigned(ALINGSIZE downto 0) := (others => '0');
+    begin
+        if(dif > 0) then
+            --rta(Nf+dif downto dif) := mayor; --no me quiere andar  :(
+        end if;
+    return rta;
+   end function alineo_mayor;
 
     -- Definiciones para complementar
     signal swap: std_logic;
@@ -69,7 +79,6 @@ architecture sumador_float_arch of sumador_float is
     procedure desp_hasta_uno(num: unsigned; signal indexO: out integer; signal result_vec:out unsigned) is
         variable index: integer :=-1;
     begin
-
         for i in num'range loop
             if num(i) = '1' then
                 index := i; 
@@ -77,9 +86,13 @@ architecture sumador_float_arch of sumador_float is
             end if;
         end loop;
 
-        indexO <= index;
-        result_vec <= num(ALINGSIZE-index-1 downto ALINGSIZE-Nf-index);
-
+        if index > 0 then
+            indexO <= index;
+            result_vec <= num(index downto index-Nf+1);
+        else 
+            indexO <= 0;
+            result_vec <= (others => '0');
+        end if;
     end procedure desp_hasta_uno;
     
 begin
@@ -104,11 +117,10 @@ begin
     mantisa_menor <= significantA when swap = '1' else significantB;
 
     -- Alineo 'trivialmente' la mantisa menor 
-    mantisa_menor_aling <= ALINGCEROMINOR & mantisa_menor;
+    mantisa_menor_aling <= ALINGCEROMENOR & mantisa_menor;
 
     -- Alineo la mantisa mayor
-    -- mantisa_mayor_aling <= (ALINGSIZE - Nf - to_integer(exp_dif) => '0') & mantisa_mayor & ( to_integer(exp_dif) => '0') when to_integer(exp_dif) /= 0 else
-    --                        (ALINGSIZE - Nf => '0') & mantisa_mayor; 
+    mantisa_mayor_aling <= alineo_mayor(mantisa_mayor, to_integer(exp_dif));
 
     -- Complemento las mantisas si es necesario
     mantisa_menor_cmp <= mantisa_menor_aling when complementar(0) = '0' else complemento_a_2(mantisa_menor_aling);
