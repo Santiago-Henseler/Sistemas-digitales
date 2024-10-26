@@ -33,25 +33,24 @@ begin
     amarillo_2 <= '1'when current_state = ra0 or current_state = ra1 else '0';
     verde_2 <= '1' when current_state = rv else '0';
     
-    process(clock) is
+    process(clock, reset) is
     begin
         if reset = '1' then 
             current_state <= vr;
-        else if rising_edge(clock) then
+        elsif rising_edge(clock) then
             if current_state = vr and sig_30seg = '1' then
                 current_state <= ar0;
-            else if current_state = ar0 and sig_3seg = '1' then
+            elsif current_state = ar0 and sig_3seg = '1' then
                 current_state <= ra0;
-            else if current_state = ra0 and sig_3seg = '1' then
+            elsif current_state = ra0 and sig_3seg = '1' then
                 current_state <= rv;
-            else if current_state = rv and sig_30seg = '1' then
+            elsif current_state = rv and sig_30seg = '1' then
                 current_state <= ra1;
-            else if current_state = ra1 and sig_3seg = '1' then
+            elsif current_state = ra1 and sig_3seg = '1' then
                 current_state <= ar1;
-            else if current_state = ar1 and sig_3seg = '1' then
+            elsif current_state = ar1 and sig_3seg = '1' then
                 current_state <= vr;
-            end if;end if;end if;end if;end if;end if;
-        end if;
+            end if;
         end if;
     end process;
     
