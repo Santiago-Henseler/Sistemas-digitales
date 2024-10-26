@@ -30,7 +30,7 @@ begin
         if reset = '1' then
             current_time <= (others => '0');
             count <= (others => '0');
-        else if rising_edge(clock) then
+        elsif rising_edge(clock) then
             if current_time = TRES_SEGUNDOS then
                 current_time <= (others => '0');
             else
@@ -38,11 +38,9 @@ begin
             end if;
             if count = DIEZ or rst_sincrono = '1' then 
                 count <= (others => '0');
-            else if current_time = TRES_SEGUNDOS then
+            elsif current_time = TRES_SEGUNDOS then
                 count <= count + 1;
             end if;
-            end if;
-        end if;
         end if;
     end process;
 
