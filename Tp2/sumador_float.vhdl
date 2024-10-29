@@ -91,7 +91,7 @@ architecture sumador_float_arch of sumador_float is
         end loop;
 
         if index > 0 then
-            indexO <= to_unsigned(num'LENGTH-index-1, Ne);
+            indexO <= to_unsigned(num'LENGTH-index, Ne);
             result_vec <= num(index-1 downto index-Nf);
         else 
             indexO <= (others => '0');
