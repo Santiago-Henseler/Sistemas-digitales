@@ -18,29 +18,33 @@ end sumador_float;
 architecture sumador_float_arch of sumador_float is
 
     -- Constantes varias
-    constant ALINGSIZE: natural := 2**Ne-1;
+    constant ALINGSIZE: natural := (2**Ne)+Nf;
     constant ALINGCEROMENOR: unsigned(ALINGSIZE downto Nf+1):= (others => '0');
     constant SIZE: natural := Ne+Nf+1;
+
+    -- Definiciones para casos de cero
+    constant CERO: integer := 0;
+    constant CEROVECTOR: std_logic_vector(Nf-1 downto 0) := (others => '0');
+    signal opA_cero, opB_cero: std_logic;
     
     -- Definiciones de exponentes
-    signal exp_a, exp_b: unsigned(Ne-1 downto 0);
-    signal exp_dif: unsigned(Ne downto 0);
-    
+    signal exp_a, exp_b,indice: unsigned(Ne-1 downto 0);
+    signal exp_dif, exp_final_exc: unsigned(Ne downto 0);
+
     -- Definiciones de mantisas
     signal significantA, significantB: unsigned(Nf downto 0);
     signal mantisa_mayor, mantisa_menor: unsigned(Nf downto 0);
     signal mantisa_mayor_aling, mantisa_menor_aling, mantisa_menor_cmp, mantisa_mayor_cmp: unsigned(ALINGSIZE downto 0);
     signal suma, suma_cmp: unsigned(ALINGSIZE+1 downto 0);
     signal mantisa: unsigned(Nf-1 downto 0);
-    signal indice: integer;
 
     -- Alinea la mayor mantisa segun el desplazamiento
     function alineo_mayor(mayor: unsigned; dif: integer) return unsigned is
         variable rta: unsigned(ALINGSIZE downto 0) := (others => '0');
     begin
-        if(dif > 0) then
-            --rta(Nf+dif downto dif) := mayor; --no me quiere andar  :(
-        end if;
+        for i in mayor'range loop
+            rta(i+dif) := mayor(i);
+        end loop;
     return rta;
    end function alineo_mayor;
 
@@ -76,8 +80,8 @@ architecture sumador_float_arch of sumador_float is
     end function complemento_a_2;
 
     -- Busco el primer 1 a la izquierda
-    procedure desp_hasta_uno(num: unsigned; signal indexO: out integer; signal result_vec:out unsigned) is
-        variable index: integer :=-1;
+    procedure desp_hasta_uno(num: unsigned; signal indexO: out unsigned; signal result_vec:out unsigned) is
+        variable index: integer:= 0;
     begin
         for i in num'range loop
             if num(i) = '1' then
@@ -87,10 +91,10 @@ architecture sumador_float_arch of sumador_float is
         end loop;
 
         if index > 0 then
-            indexO <= index;
-            result_vec <= num(index downto index-Nf+1);
+            indexO <= to_unsigned(num'LENGTH-index-1, Ne);
+            result_vec <= num(index-1 downto index-Nf);
         else 
-            indexO <= 0;
+            indexO <= (others => '0');
             result_vec <= (others => '0');
         end if;
     end procedure desp_hasta_uno;
@@ -120,7 +124,7 @@ begin
     mantisa_menor_aling <= ALINGCEROMENOR & mantisa_menor;
 
     -- Alineo la mantisa mayor
-    mantisa_mayor_aling <= alineo_mayor(mantisa_mayor, to_integer(exp_dif));
+    mantisa_mayor_aling <= alineo_mayor(mantisa_mayor, abs(to_integer(exp_dif)));
 
     -- Complemento las mantisas si es necesario
     mantisa_menor_cmp <= mantisa_menor_aling when complementar(0) = '0' else complemento_a_2(mantisa_menor_aling);
@@ -130,11 +134,23 @@ begin
     suma <= ('0' & mantisa_mayor_cmp) + ('0' & mantisa_menor_cmp);
 
     -- Complemento el resultado de la suma si es necesario
-    suma_cmp <= suma when  suma(ALINGSIZE+1) = '1' else complemento_a_2(suma);
+    suma_cmp <= suma when suma(ALINGSIZE+1) = '0' else complemento_a_2(suma);
 
     -- Desplazo hasta el primer uno
     desp_hasta_uno(suma_cmp, indice, mantisa);
 
+    -- Empaqueto el exponente
+    exp_final_exc <= '0' & exp_a - indice when swap = '0' else
+                     '0' & exp_b - indice;
+
+    -- Empaqueto el resultado teniendo en cuenta el caso de los 0
+    opA_cero <= '1' when (to_integer(exp_a) = CERO and (operandoA(Nf-1 downto 0) = CEROVECTOR)) else '0';
+    opB_cero <= '1' when (to_integer(exp_b) = CERO and (operandoB(Nf-1 downto 0) = CEROVECTOR)) else '0';
     
+    resultado <= operandoA when opB_cero = '1' else
+                operandoB when opA_cero = '1' else
+                (others => '1') when exp_final_exc(Ne) = '1' else
+            '0' & std_logic_vector(exp_final_exc(Ne-1 downto 0)) & std_logic_vector(mantisa);
+
 
 end sumador_float_arch;

@@ -21,10 +21,12 @@ multiplicador:
 
 sumador:
 	@$(GHDL_CMD) -a sumador_float.vhdl
-	@$(GHDL_CMD) -a tb_suma.vhdl
+	@$(GHDL_CMD) -a test_sumador/ffd.vhdl
+	@$(GHDL_CMD) -a test_sumador/delay.vhdl
+	@$(GHDL_CMD) -a test_sumador/tb.vhdl
 	echo --Codigo compilado--
-	@$(GHDL_CMD) -e tb_suma
-	@$(GHDL_CMD) -r tb_suma --wave="tb_sumador.ghw"
+	@$(GHDL_CMD) -e tb_sumador
+	@$(GHDL_CMD) -r tb_sumador --wave="tb_sumador.ghw"
 
 viewm:
 	@$(WAVEFORM_VIEWER) tb_multiplicador.ghw

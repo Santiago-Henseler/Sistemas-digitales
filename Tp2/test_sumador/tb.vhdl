@@ -3,10 +3,10 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use std.textio.all;
 
-entity tb is
-end entity tb;
+entity tb_sumador is
+end entity tb_sumador;
 
-architecture simulacion of tb is
+architecture simulacion of tb_sumador is
 	constant TCK: time:= 20 ns; -- periodo de reloj
 	constant DELAY: natural:= 0; -- retardo de procesamiento del DUT
 	constant N: natural:= 22;	-- tamano de datos
@@ -22,7 +22,7 @@ architecture simulacion of tb is
 	-- z_del_aux se define por un problema de conversión
 	signal z_del_aux: std_logic_vector(N-1 downto 0):= (others => '0');
 	
-	file datos: text open read_mode is "test/fmul_15_6.txt";
+	file datos: text open read_mode is "test_sumador/fadd_15_6.txt";
 	
 	component delay_gen is
 		generic(
@@ -65,14 +65,13 @@ begin
 	end process Test_Sequence;
 	
 	-- instanciacion del DUT (sumador)
-	DUT:entity work.multiplicador_float(multiplicador_float_arch) 
+	DUT:entity work.sumador_float(sumador_float_arch) 
     generic map(
         Ne => 6,
         Nf => 15
     )
     port map(
-        enable => '1',
-        clock => clk,
+		operacion => '0',
         operandoA => std_logic_vector(operadorA_file),
         operandoB => std_logic_vector(operadorB_file),
         unsigned(resultado) => z_dut

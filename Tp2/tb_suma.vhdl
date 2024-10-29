@@ -18,7 +18,7 @@ begin
     mult: entity work.sumador_float(sumador_float_arch) 
     generic map(
         Ne => 6,
-        Nf => 16
+        Nf => 15
     )
     port map(
         operacion => '1',

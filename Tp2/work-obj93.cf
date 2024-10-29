@@ -1,19 +1,22 @@
 v 4
-file . "test_multiplicador/ffd.vhdl" "bf7d8570bc29ffdd947930b9a74611e25d9c2feb" "20241024160256.680":
-  entity ffd at 1( 0) + 0 on 947;
-  architecture pp of ffd at 14( 247) + 0 on 948;
-file . "tb_suma.vhdl" "a44a9e743e27a3dc7bb6683728e3c065956b9451" "20241024221333.556":
-  entity tb_suma at 1( 0) + 0 on 1151;
-  architecture arq_tb of tb_suma at 7( 76) + 0 on 1152;
-file . "sumador_float.vhdl" "ba1ad080448b6f3a69bd2ad39fb0211f364502f7" "20241024221333.425":
-  entity sumador_float at 1( 0) + 0 on 1149;
-  architecture sumador_float_arch of sumador_float at 18( 456) + 0 on 1150;
-file . "multiplicador_float.vhdl" "8fe2561156a77a269c5bb810554ce124375067b4" "20241024160256.565":
-  entity multiplicador_float at 1( 0) + 0 on 945;
-  architecture multiplicador_float_arch of multiplicador_float at 17( 384) + 0 on 946;
+file . "test_sumador/tb.vhdl" "44249c747b713106a5d1db7125a783228a3f183d" "20241029165549.370":
+  entity tb_sumador at 1( 0) + 0 on 1369;
+  architecture simulacion of tb_sumador at 9( 135) + 0 on 1370;
+file . "test_sumador/delay.vhdl" "97867cf4ae20c6da406dc5bae979dcdd94545e9b" "20241029165549.295":
+  entity delay_gen at 1( 0) + 0 on 1367;
+  architecture del of delay_gen at 17( 277) + 0 on 1368;
 file . "test_multiplicador/tb.vhdl" "3f0e9b94208573f160135d39c5365e44f0285be0" "20241024160256.751":
   entity tb_multiplicador at 1( 0) + 0 on 951;
   architecture simulacion of tb_multiplicador at 9( 147) + 0 on 952;
-file . "test_multiplicador/delay.vhdl" "97867cf4ae20c6da406dc5bae979dcdd94545e9b" "20241024160256.705":
-  entity delay_gen at 1( 0) + 0 on 949;
-  architecture del of delay_gen at 17( 277) + 0 on 950;
+file . "multiplicador_float.vhdl" "8fe2561156a77a269c5bb810554ce124375067b4" "20241024160256.565":
+  entity multiplicador_float at 1( 0) + 0 on 945;
+  architecture multiplicador_float_arch of multiplicador_float at 17( 384) + 0 on 946;
+file . "sumador_float.vhdl" "17e9249eb2f45bf2779d9141c4f2a6a435fd0187" "20241029165549.035":
+  entity sumador_float at 1( 0) + 0 on 1363;
+  architecture sumador_float_arch of sumador_float at 18( 456) + 0 on 1364;
+file . "tb_suma.vhdl" "a44a9e743e27a3dc7bb6683728e3c065956b9451" "20241027130713.597":
+  entity tb_suma at 1( 0) + 0 on 1251;
+  architecture arq_tb of tb_suma at 7( 76) + 0 on 1252;
+file . "test_sumador/ffd.vhdl" "bf7d8570bc29ffdd947930b9a74611e25d9c2feb" "20241029165549.243":
+  entity ffd at 1( 0) + 0 on 1365;
+  architecture pp of ffd at 14( 247) + 0 on 1366;
