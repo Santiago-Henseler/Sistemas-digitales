@@ -15,6 +15,7 @@ y el diagrama de estados es el siguiente: [diagrama](https://www.canva.com/desig
 
 Trabajo práctico N°2: Aritmética de Punto Flotante
 ----
+El objetivo del trabajo práctico fue implementar un circuito que pueda operar con sumas, restas y multiplicaciones respetando la aritmética de punto flotante.
 
 - Multiplicador: En los test del multiplicador hay algunos casos que mi código no los pasa. Luego de debuguear que era lo que estaba sucediendo me di cuenta que en los tests se toman 2 consideraciones, el exponente máximo a representar va a ser el ```vhdl (others => ‘1’) & ‘0’ ``` y cuando haya que saturar un número ese va a ser su exponente. En cambio en mi código determine ( por lo visto en clase) que el exponente máximo y de saturación si se da el caso sea ```vhdl (others => ‘1’)``` . Adjunto una captura de lo que sucede:
 
@@ -33,12 +34,15 @@ Para compilar visualizar el gtkwave:
 make viewm
 ```
 
-- Sumador: 
+- Sumador: Para poder determinar el tipo de operación a hacer (suma/resta) se indica seteando un bit de entrada al circuito, '1' indica resta y '0' indica suma.
+
 Para compilar el codigo:
 </br>
+
 ```bash
 make sumador
 ```
+
 Para compilar visualizar el gtkwave:
 </br>
 ```bash
