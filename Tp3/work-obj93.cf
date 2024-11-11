@@ -1,0 +1,7 @@
+v 4
+file . "tb.vhdl" "e7eef123b687d1d26868f05134da970e25ac282c" "20241111191805.171":
+  entity tb_cordic at 1( 0) + 0 on 137;
+  architecture arq_tb of tb_cordic at 7( 80) + 0 on 138;
+file . "cordic.vhdl" "f46a745a5c79971cbd62bc55063268db14a00224" "20241111191805.062":
+  entity cordic at 1( 0) + 0 on 135;
+  architecture cordic_arch of cordic at 21( 562) + 0 on 136;
