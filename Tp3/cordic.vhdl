@@ -33,6 +33,8 @@ architecture cordic_arch of cordic is
 
         return rta;
     end function shift;
+
+    signal y_shift, x_shift : unsigned(SIZE+1 downto 0);
 begin
 
     logic: process(clock)
@@ -44,10 +46,13 @@ begin
                 y_i <= unsigned("00" & y0);
                 z_i <= unsigned("00" & z0);
             elsif n_iter < SIZE then
-                aux <= x_i - (d_i * shift(y_i, n_iter));
-                y_i <= y_i + (d_i * shift(x_i, n_iter));
-                x_i <= aux;
-
+                if z_i(SIZE) = '0' then
+                    x_i <= (x_i - shift(y_i, n_iter));
+                    y_i <= (y_i + shift(x_i, n_iter));
+                else
+                    x_i <= (x_i + shift(y_i, n_iter));
+                    y_i <= (y_i - shift(x_i, n_iter));
+                end if;
                 n_iter <= n_iter + 1;
             else 
                 n_iter <= 0;
@@ -57,8 +62,7 @@ begin
             end if;
         end if;
     end process;
-
-
+            
     x_out <= (others => '0') when n_iter /= SIZE else std_logic_vector(x_i(SIZE-1 downto 0)); 
     y_out <= (others => '0') when n_iter /= SIZE else std_logic_vector(y_i(SIZE-1 downto 0)); 
     z_out <= (others => '0') when n_iter /= SIZE else std_logic_vector(z_i(SIZE-1 downto 0)); 
