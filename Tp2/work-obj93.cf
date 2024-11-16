@@ -1,22 +1,22 @@
 v 4
-file . "test_sumador/tb.vhdl" "44249c747b713106a5d1db7125a783228a3f183d" "20241102140032.077":
-  entity tb_sumador at 1( 0) + 0 on 1689;
-  architecture simulacion of tb_sumador at 9( 135) + 0 on 1690;
-file . "test_sumador/delay.vhdl" "97867cf4ae20c6da406dc5bae979dcdd94545e9b" "20241102140032.029":
-  entity delay_gen at 1( 0) + 0 on 1687;
-  architecture del of delay_gen at 17( 277) + 0 on 1688;
+file . "test_sumador/tb.vhdl" "44249c747b713106a5d1db7125a783228a3f183d" "20241116131910.899":
+  entity tb_sumador at 1( 0) + 0 on 1705;
+  architecture simulacion of tb_sumador at 9( 135) + 0 on 1706;
+file . "test_sumador/delay.vhdl" "97867cf4ae20c6da406dc5bae979dcdd94545e9b" "20241116131910.823":
+  entity delay_gen at 1( 0) + 0 on 1703;
+  architecture del of delay_gen at 17( 277) + 0 on 1704;
 file . "test_multiplicador/tb.vhdl" "3f0e9b94208573f160135d39c5365e44f0285be0" "20241024160256.751":
   entity tb_multiplicador at 1( 0) + 0 on 951;
   architecture simulacion of tb_multiplicador at 9( 147) + 0 on 952;
 file . "multiplicador_float.vhdl" "8fe2561156a77a269c5bb810554ce124375067b4" "20241024160256.565":
   entity multiplicador_float at 1( 0) + 0 on 945;
   architecture multiplicador_float_arch of multiplicador_float at 17( 384) + 0 on 946;
-file . "sumador_float.vhdl" "7083b10d89ce4ea36cfe25c465172c21afe5156c" "20241102140031.818":
-  entity sumador_float at 1( 0) + 0 on 1683;
-  architecture sumador_float_arch of sumador_float at 18( 456) + 0 on 1684;
+file . "sumador_float.vhdl" "7083b10d89ce4ea36cfe25c465172c21afe5156c" "20241116131910.496":
+  entity sumador_float at 1( 0) + 0 on 1699;
+  architecture sumador_float_arch of sumador_float at 18( 456) + 0 on 1700;
 file . "tb_suma.vhdl" "a44a9e743e27a3dc7bb6683728e3c065956b9451" "20241027130713.597":
   entity tb_suma at 1( 0) + 0 on 1251;
   architecture arq_tb of tb_suma at 7( 76) + 0 on 1252;
-file . "test_sumador/ffd.vhdl" "bf7d8570bc29ffdd947930b9a74611e25d9c2feb" "20241102140032.003":
-  entity ffd at 1( 0) + 0 on 1685;
-  architecture pp of ffd at 14( 247) + 0 on 1686;
+file . "test_sumador/ffd.vhdl" "bf7d8570bc29ffdd947930b9a74611e25d9c2feb" "20241116131910.796":
+  entity ffd at 1( 0) + 0 on 1701;
+  architecture pp of ffd at 14( 247) + 0 on 1702;
