@@ -23,6 +23,7 @@ architecture cordic_iter_arch of cordic_iter is
     signal x_i, y_i, z_i: signed(SIZE+1 downto 0);
     signal x_i_reg, y_i_reg, z_i_reg: signed(SIZE+1 downto 0);
     signal n_iter: unsigned(SIZE+1 downto 0);
+    signal x_i_aux, y_i_aux, z_i_aux: signed(SIZE+1 downto 0);
 begin
 
     cord: entity work.cordic
@@ -35,9 +36,9 @@ begin
         y0 => y_i,
         z0 => z_i,
         n_iter => n_iter,
-        x_out => x_i_reg,
-        y_out => y_i_reg,
-        z_out => z_i_reg
+        x_out => x_i_aux,
+        y_out => y_i_aux,
+        z_out => z_i_aux
     );
 
     logic: process(clock)
@@ -48,13 +49,19 @@ begin
                 x_i <= x0;
                 y_i <= y0;
                 z_i <= z0;
+                x_i_reg <= x0;
+                y_i_reg <= y0;
+                z_i_reg <= z0;
             elsif n_iter < SIZE then
-                x_i <= x_i_reg;
-                y_i <= y_i_reg;
-                z_i <= z_i_reg;
+                x_i <= x_i_aux;
+                y_i <= y_i_aux;
+                z_i <= z_i_aux;
                 n_iter <= n_iter +1;
             else 
                 n_iter <= (others => '0');
+                x_i_reg <= x_i_aux;
+                y_i_reg <= y_i_aux;
+                z_i_reg <= z_i_aux;
                 x_i <= x0;
                 y_i <= y0;
                 z_i <= z0;
@@ -62,8 +69,8 @@ begin
         end if;
     end process;
 
-    x_out <= (others => '0') when n_iter /= SIZE else x_i; 
-    y_out <= (others => '0') when n_iter /= SIZE else y_i; 
-    z_out <= (others => '0') when n_iter /= SIZE else z_i; 
+    x_out <= x_i_reg; 
+    y_out <= y_i_reg; 
+    z_out <= z_i_reg; 
 
 end cordic_iter_arch;
