@@ -40,7 +40,7 @@ begin
     y_aux <= y0 when change = '0' else complemento_a_2(y0);
     z_aux <= z0 when change = '0' else ((not z0(SIZE+1)) & z0(SIZE downto 0));
 
-    cor_type: entity work.cordic_iter
+    cor_type: entity work.cordic_des
     generic map(SIZE => SIZE)
     port map(
         clock => clock,
