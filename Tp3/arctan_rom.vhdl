@@ -9,7 +9,6 @@ entity arctan_rom is
 		DATA_W: natural:= 9
     );
 	port(
-
 		addr: in std_logic_vector(ADD_W-1 downto 0);
 		data: out std_logic_vector(DATA_W-1 downto 0)
     );
@@ -41,7 +40,6 @@ architecture arctan_rom_arq of arctan_rom is
 	constant ROM : rom_type(0 to 2**(ADD_W)-1) := arctan_tabla(0, 2**(ADD_W)-1, 2**ADD_W);
 	signal addr1_r : std_logic_vector(ADD_W-1 downto 0):=(others => '0');
 begin
-
 
 	data <= ROM(to_integer(unsigned(addr)));
 

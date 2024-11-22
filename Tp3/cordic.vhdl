@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+USE ieee.math_real.all;
 
 entity cordic is
     generic(
@@ -22,6 +23,8 @@ end cordic;
 
 architecture cordic_arch of cordic is
 
+    CONSTANT add_size: integer := integer(ceil(log2(real(SIZE))));
+
     -- funcion para shiftear i veces a la derecha manteniendo el signo
     function shift(x :signed; i: integer) return signed is
         variable rta: signed(x'range) := x;
@@ -34,14 +37,14 @@ architecture cordic_arch of cordic is
     end function shift;
 
     signal data_rom: std_logic_vector(SIZE+1 downto 0);
-    signal addr: std_logic_vector(SIZE+1 downto 0);
+    signal addr: std_logic_vector(add_size-1 downto 0);
 begin
 
-    addr <= std_logic_vector(n_iter);
+    addr <= std_logic_vector(n_iter(add_size-1 downto 0));
 
     ROM: entity work.arctan_rom
     generic map(
-        ADD_W => SIZE+2, -- Deberia hacer log2(SIZE)
+        ADD_W => add_size,
         DATA_W => SIZE+2
     )
     port map(
