@@ -27,10 +27,6 @@ begin
     x_i(0) <= x0;
     y_i(0) <= y0;
     z_i(0) <= z0;
-
-    x_out <= x_i(SIZE);
-    y_out <= y_i(SIZE);
-    z_out <= z_i(SIZE);
     
     cords: for i in 0 to SIZE-1 generate
         cords_inst: entity work.cordic
@@ -48,7 +44,12 @@ begin
             x_out => x_i(i+1),
             y_out => y_i(i+1),
             z_out => z_i(i+1)
-            );
+        );
     end generate cords;
+
+    -- Devuelve el ultimo valor luego de la operación
+    x_out <= x_i(SIZE);
+    y_out <= y_i(SIZE);
+    z_out <= z_i(SIZE);
 
 end cordic_des_arch;

@@ -18,26 +18,25 @@ architecture arctan_rom_arq of arctan_rom is
 
 	type rom_type is array (natural range <>) of std_logic_vector(DATA_W-1 downto 0);
 
-	function arctan ( constant i : natural; constant n : natural) return std_logic_vector is
+	function arctan ( constant i : natural) return std_logic_vector is
 		constant ph : real := 2.0**(-real(i)); 
     begin
-		return std_logic_vector(to_unsigned(integer(round(arctan(ph)*real((2**DATA_W)-1))), DATA_W));
+		return std_logic_vector(to_unsigned(integer(round(arctan(ph)*real(2**(DATA_W-1))/MATH_PI)), DATA_W));
 	end;
 
 	function arctan_tabla (
 		constant start : natural;
-		constant stop  : natural;
-		constant n     : natural)
+		constant stop  : natural)
 		return rom_type is
 		variable retval : rom_type(start to stop);
 	begin
 		for i in start to stop loop
-			retval(i) := arctan(i,n);
+			retval(i) := arctan(i);
 		end loop;
 		return retval;
 	end;
 
-	constant ROM : rom_type(0 to 2**(ADD_W)-1) := arctan_tabla(0, 2**(ADD_W)-1, 2**ADD_W);
+	constant ROM : rom_type(0 to 2**(ADD_W)-1) := arctan_tabla(0, 2**(ADD_W)-1);
 	signal addr1_r : std_logic_vector(ADD_W-1 downto 0):=(others => '0');
 begin
 

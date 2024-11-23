@@ -1,6 +1,6 @@
 GHDL_CMD = ghdl
 
-STOP_TIME = 500us
+STOP_TIME = 5000us
 
 GHDL_SIM_OPT = --stop-time=$(STOP_TIME)
 
