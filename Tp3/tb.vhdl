@@ -12,12 +12,9 @@ architecture arq_tb of tb_cordic is
     signal z0:  signed(SIZE+1 downto 0) := (others => '0');
     signal y0:  signed(SIZE+1 downto 0) := (others => '0');
     signal x0:  signed(SIZE+1 downto 0) := "001111111111";
-    signal clock: std_logic:= '0';
+    signal clock: std_logic := '0';
     signal reset: std_logic := '1';
-
     signal req, ack: std_logic;
-    
-    signal i:integer:= 0;
 begin
     reset <= '0' after 20 ns;
     clock <= not clock after 10 ns;

@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+USE ieee.math_real.all;
 
 entity cordic_des is
     generic(
@@ -9,13 +10,15 @@ entity cordic_des is
     port (
         clock: in std_logic;
         reset: in std_logic;
+        req: in std_logic;
         method: in std_logic; -- 0 para utilizar el modo rotación 1 para el modo vector
         x0: in signed(SIZE+1 downto 0);
         y0: in signed(SIZE+1 downto 0);
         z0: in signed(SIZE+1 downto 0);
         x_out: out signed(SIZE+1 downto 0);
         y_out: out signed(SIZE+1 downto 0);
-        z_out: out signed(SIZE+1 downto 0)
+        z_out: out signed(SIZE+1 downto 0);
+        ack: out std_logic
     );
 end cordic_des;
 
@@ -27,6 +30,8 @@ begin
     x_i(0) <= x0;
     y_i(0) <= y0;
     z_i(0) <= z0;
+
+    ack <= '1';
     
     cords: for i in 0 to SIZE-1 generate
         cords_inst: entity work.cordic
@@ -34,10 +39,8 @@ begin
             SIZE => SIZE
         )
         port map (
-            clock => clock,
-            reset => reset,
             method => method,
-            n_iter => to_unsigned(i, SIZE+2),
+            n_iter => to_unsigned(i, natural(ceil(log2(real(SIZE))))+2),
             x0 => x_i(i),
             y0 => y_i(i),
             z0 => z_i(i),

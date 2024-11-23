@@ -10,6 +10,17 @@ WAVEFORM_VIEWER = gtkwave
 
 all: clean
 
+pipe:
+	@$(GHDL_CMD) -a arctan_rom.vhdl
+	@$(GHDL_CMD) -a cordic.vhdl
+	@$(GHDL_CMD) -a cordic_pipe.vhdl
+	@$(GHDL_CMD) -a pre_cordic.vhdl
+	@$(GHDL_CMD) -a tb.vhdl
+	echo --Codigo compilado--
+	@$(GHDL_CMD) -e tb_cordic
+	@$(GHDL_CMD) -r tb_cordic --wave="tb_cordic.ghw"  $(GHDL_SIM_OPT)
+	@$(WAVEFORM_VIEWER) tb_cordic.ghw
+
 desenrollado:
 	@$(GHDL_CMD) -a arctan_rom.vhdl
 	@$(GHDL_CMD) -a cordic.vhdl
