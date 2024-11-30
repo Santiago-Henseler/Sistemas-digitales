@@ -34,6 +34,7 @@ architecture pre_cordic_arch of pre_cordic is
         return rta; 
     end function complemento_a_2;
 
+    constant arch:std_logic_vector(1 downto 0):= "10"; -- 00 pipe 01 desenrollada 10 enrollada
 begin
 
     -- Determina si hay que hacer el cambio de cuadrante
@@ -43,21 +44,50 @@ begin
     y_aux <= y0 when change = '0' else complemento_a_2(y0);
     z_aux <= z0 when change = '0' else ((not z0(SIZE+1)) & z0(SIZE downto 0));
 
-    cor_type: entity work.cordic_pipe
-    generic map(SIZE => SIZE)
-    port map(
-        clock => clock,
-        reset => reset,
-        req => req,
-        method => method,
-        x0 => x_aux,
-        y0 => y_aux,
-        z0 => z_aux,
-        x_out => x_out,
-        y_out => y_out,
-        z_out => z_out,
-        ack => ack
-    );
-
+    gen: if arch = "00" generate
+        cor_pipe: entity work.cordic_pipe
+        generic map(SIZE => SIZE)
+        port map(
+            clock => clock,
+            reset => reset,
+            method => method,
+            x0 => x_aux,
+            y0 => y_aux,
+            z0 => z_aux,
+            x_out => x_out,
+            y_out => y_out,
+            z_out => z_out
+        );
+        ack <= '1';
+    elsif arch = "01" generate
+        cor_des: entity work.cordic_des
+        generic map(SIZE => SIZE)
+        port map(
+            method => method,
+            x0 => x_aux,
+            y0 => y_aux,
+            z0 => z_aux,
+            x_out => x_out,
+            y_out => y_out,
+            z_out => z_out
+        );
+        ack <= '1';
+    elsif arch = "10" generate
+        cor_iter: entity work.cordic_iter
+        generic map(SIZE => SIZE)
+        port map(
+            clock => clock,
+            reset => reset,
+            req => req,
+            method => method,
+            x0 => x_aux,
+            y0 => y_aux,
+            z0 => z_aux,
+            x_out => x_out,
+            y_out => y_out,
+            z_out => z_out,
+            ack => ack
+        );
+    end generate;
 
 end pre_cordic_arch;

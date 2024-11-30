@@ -8,17 +8,13 @@ entity cordic_des is
         SIZE: natural := 8  -- Cantidad de iteraciones
     );
     port (
-        clock: in std_logic;
-        reset: in std_logic;
-        req: in std_logic;
         method: in std_logic; -- 0 para utilizar el modo rotación 1 para el modo vector
         x0: in signed(SIZE+1 downto 0);
         y0: in signed(SIZE+1 downto 0);
         z0: in signed(SIZE+1 downto 0);
         x_out: out signed(SIZE+1 downto 0);
         y_out: out signed(SIZE+1 downto 0);
-        z_out: out signed(SIZE+1 downto 0);
-        ack: out std_logic
+        z_out: out signed(SIZE+1 downto 0)
     );
 end cordic_des;
 
@@ -31,7 +27,6 @@ begin
     y_i(0) <= y0;
     z_i(0) <= z0;
 
-    ack <= '1';
     
     cords: for i in 0 to SIZE-1 generate
         cords_inst: entity work.cordic
