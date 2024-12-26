@@ -1,0 +1,7 @@
+v 4
+file . "dp_ram.vhdl" "648b2b4a57b2b2af829794dfea4a40330c8a3a26" "20241226214449.699":
+  entity dual_ram at 1( 0) + 0 on 39;
+  architecture dual_ram_arch of dual_ram at 21( 516) + 0 on 40;
+file . "tb_dp_ram.vhdl" "9edbaeb4c182e8bcfd9107efd9f36e8b8d579214" "20241226214449.737":
+  entity tb_dp_ram at 1( 0) + 0 on 41;
+  architecture arq_tb of tb_dp_ram at 8( 106) + 0 on 42;
