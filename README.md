@@ -17,7 +17,7 @@ Trabajo práctico N°2: Aritmética de Punto Flotante
 ----
 El objetivo del trabajo práctico fue implementar un circuito que pueda operar con sumas, restas y multiplicaciones respetando la aritmética de punto flotante.
 
-- Multiplicador: En los test del multiplicador hay algunos casos que mi código no los pasa. Luego de debuguear que era lo que estaba sucediendo me di cuenta que en los tests se toman 2 consideraciones, el exponente máximo a representar va a ser el ```vhdl (others => ‘1’) & ‘0’ ``` y cuando haya que saturar un número ese va a ser su exponente. En cambio en mi código determine ( por lo visto en clase) que el exponente máximo y de saturación si se da el caso sea ```vhdl (others => ‘1’)``` . Adjunto una captura de lo que sucede:
+- Multiplicador: En los test del multiplicador hay algunos casos que mi código no los pasa. Luego de debuguear que era lo que estaba sucediendo me di cuenta que en los tests se toman 2 consideraciones, el exponente máximo a representar va a ser el ``` (others => ‘1’) & ‘0’ ``` y cuando haya que saturar un número ese va a ser su exponente. En cambio en mi código determine ( por lo visto en clase) que el exponente máximo y de saturación si se da el caso sea ``` (others => ‘1’)``` . Adjunto una captura de lo que sucede:
 
 <div align="center">
     <img width="70%" src="img/multiplicador_test_problema.png">
@@ -47,4 +47,30 @@ Para compilar visualizar el gtkwave:
 </br>
 ```bash
 make views
+```
+
+Trabajo práctico N°3: Cordic
+----
+El objetivo del trabajo práctico fue implementar un circuito que pueda rotar vectores siguiendo el algoritmo cordic visto en clase. Se describieron 3 diseños distintos del cordic, de manera iterativa, de manera desenrollada y desenrollada pipeline. La señal ```vhdl ack='1'``` indica que el dato esta disponible a la salida del cordic.
+
+- Diseño iterativo: Cada etapa del cordic se ejecuta en un ciclo del reloj. Si se busca hacer el algoritmo cordic en n etapas, se va a requerir n ciclos del clock para obtener el resultado.
+</br>
+
+- Diseño desenrollado:  El cordic esta implementado de forma asíncronica, por lo que luego de un transitorio la respuesta va a estar disponible a la salida del cordic.
+Para compilar y visualizar el codigo:
+</br>
+
+- Diseño desenrollado-pipe:  En este caso mezclamos ambas cosas, el primer resultado se va a obtener luego de n clocks y luego los siguientes resultados van a ser entregados cada flanco del clock.
+
+Para compilar y visualizar el codigo:
+</br>
+
+```vhdl
+-- En el archivo pre_cordic linea 37
+    constant arch:std_logic_vector(1 downto 0):= "00"; -- 00 pipe 01 desenrollada 10 enrollada
+``` 
+
+```bash
+# Por consola
+make
 ```
