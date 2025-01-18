@@ -78,14 +78,11 @@ begin
 						Rx_Reg <= Rx & Rx_Reg (Rx_Reg'high downto 1);
 						RxFSM <= Edge_Rx;
 					end if;
-				when Stop_Rx =>
+				when Stop_Rx => -- Termina la recepcion de datos y lo almacena en Dout
 					if TopRx = '1' then
 						Dout <= Rx_reg;
 						Sig_RxRdy <='1';
 						RxFSM <= Idle;
-						report "Character received in decimal is : "
-						& integer'image(to_integer(unsigned(Rx_Reg)))
-						severity note;
 					end if;
 				when Rx_OVF => -- Error
 					RxErr <= '1';

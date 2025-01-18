@@ -1,0 +1,22 @@
+v 4
+file . "rotador_controler.vhdl" "97fd843a9dbc522da5f904069bd99133c4d2c1f7" "20250118174912.825":
+  entity rotador_controler at 1( 0) + 0 on 163;
+  architecture rotador_controler_arch of rotador_controler at 28( 1006) + 0 on 164;
+file . "rotador_equ.vhdl" "e18c373f487097f858b669d67841a9f4def19130" "20250118174912.679":
+  entity rotador_equ at 1( 0) + 0 on 159;
+  architecture rotador_equ_arq of rotador_equ at 26( 691) + 0 on 160;
+file . "cordic/cordic_iter.vhdl" "6761908bf911186879d4c0388b6fee14e15a54d1" "20250118174912.556":
+  entity cordic_iter at 1( 0) + 0 on 155;
+  architecture cordic_iter_arch of cordic_iter at 25( 680) + 0 on 156;
+file . "cordic/arctan_rom.vhdl" "af5fc3d669a8069df80aa2e08b8e9a1fd98008d7" "20250118174912.450":
+  entity arctan_rom at 1( 0) + 0 on 151;
+  architecture arctan_rom_arq of arctan_rom at 17( 310) + 0 on 152;
+file . "cordic/cordic.vhdl" "adbd624b4d9f6e38c3c2888d7cc828ac1a7b09f0" "20250118174912.489":
+  entity cordic at 1( 0) + 0 on 153;
+  architecture cordic_arch of cordic at 22( 627) + 0 on 154;
+file . "cordic/pre_cordic.vhdl" "7b70fd6c4c924ea496757592e7549da79369be30" "20250118174912.621":
+  entity pre_cordic at 1( 0) + 0 on 157;
+  architecture pre_cordic_arch of pre_cordic at 24( 654) + 0 on 158;
+file . "rotador.vhdl" "64d8c3082cdc04840db5f7d46fb6c6b5eb2bf6db" "20250118174912.750":
+  entity rotador at 1( 0) + 0 on 161;
+  architecture rotador_arq of rotador at 26( 1029) + 0 on 162;

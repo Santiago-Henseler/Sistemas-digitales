@@ -2,9 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-library work;
-use work.uart_comps.all;
-
 entity uart is
 	generic (
 		F : natural := 50000;	-- Device clock frequency [KHz].
@@ -12,17 +9,13 @@ entity uart is
 		num_data_bits : natural := 8
 	);
 	port (
-		Rx	: in std_logic;
-		Tx	: out std_logic;
-		Din	: in std_logic_vector(7 downto 0);
-		StartTx	: in std_logic;
-		TxBusy	: out std_logic;
-		Dout	: out std_logic_vector(7 downto 0);
-		RxRdy	: out std_logic;
-		RxErr	: out std_logic;
-		Divisor	: in std_logic_vector;
 		clk	: in std_logic;
-		rst	: in std_logic
+		rst	: in std_logic;
+		Rx	: in std_logic; -- Bit entrante
+		Divisor	: in std_logic_vector; -- 
+		Dout	: out std_logic_vector(7 downto 0);
+		RxRdy	: out std_logic; 
+		RxErr	: out std_logic
 	);
 end;
 
@@ -32,7 +25,7 @@ architecture arch of uart is
 	signal toptx		: std_logic;
 	signal Sig_ClrDiv	: std_logic;
 begin
-	reception_unit: receive
+	reception_unit: entity work.receive
 		generic map(NDBits=>num_data_bits)
 		port map (
 			CLK 	=> clk,
@@ -45,20 +38,7 @@ begin
 			Top16	=> top16,
 			TopRx	=> toprx
 		);
-	
-	transmission_unit: transmit
-		generic map (NDBits	=> num_data_bits)
-		port map ( 
-			CLK	=> clk,
-			RST	=> rst,
-			Tx	=> Tx,
-			Din	=> Din,
-			TxBusy	=> TxBusy,
-			TopTx	=> toptx,
-			StartTx	=> StartTx
-		);
-
-	timings_unit: timing
+	timings_unit: entity work.timing
 		generic map (F => F,	min_baud => min_baud)
 		port map (
   			CLK	=> clk,

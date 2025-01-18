@@ -1,0 +1,13 @@
+v 4
+file . "uart_controler.vhdl" "91937fd8c5173634a8613f359b46afb6d898c6a9" "20250118182903.486":
+  entity uart_controler at 1( 0) + 0 on 61;
+  architecture arch of uart_controler at 21( 456) + 0 on 62;
+file . "uart.vhdl" "283bbc63790984cc2fa7e592837bca9caaf582b7" "20250118182903.458":
+  entity uart at 1( 0) + 0 on 59;
+  architecture arch of uart at 22( 447) + 0 on 60;
+file . "receive.vhdl" "a3ee8d4de3a2e4bd32ff7613095c0b96c46a1193" "20250118182903.376":
+  entity receive at 1( 0) + 0 on 55;
+  architecture arch of receive at 22( 382) + 0 on 56;
+file . "timing.vhdl" "5c4e3fcb0ee5ab4f7df80f744b2f38589c9f9ff3" "20250118182903.422":
+  entity timing at 1( 0) + 0 on 57;
+  architecture timing of timing at 21( 363) + 0 on 58;

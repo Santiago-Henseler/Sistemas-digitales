@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity gen_pixels is
 	generic(
-		ADD_W: natural := 8;
+		ADD_W: natural := 8
 	);
 	port(
 		clk, reset: in std_logic;

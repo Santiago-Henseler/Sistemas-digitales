@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity vga_ctrl is
 	generic(
-		ADD_W: natural := 8;
+		ADD_W: natural := 8
 	);
 	port(
 		clk, rst: in std_logic;
@@ -48,16 +48,4 @@ begin
 			rgb		=> rgb
 		);
 		
-	-- -- rgb buffer
-	-- process(clk, rst)
-	-- begin
-		-- if rst = '1' then
-			-- rgb_reg <= (others => '0');
-		-- elsif rising_edge(clk) then
-			-- rgb_reg <= sw;
-		-- end if;
-	-- end process;
-
-	-- rgb <= rgb_reg when video_on = '1' else "000";
-
 end vga_ctrl_arch;

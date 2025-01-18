@@ -1,7 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use ieee.std_logic_unsigned.all;
 
 Entity timing is
 generic (
@@ -34,7 +33,7 @@ begin
                Div16 <= 0;
             elsif rising_edge(CLK) then
                Top16 <= '0';
-               if Div16 = conv_integer(divisor) then
+               if Div16 = to_integer(unsigned(divisor)) then
                	  Div16 <= 0;
                   Top16 <= '1';
                else
