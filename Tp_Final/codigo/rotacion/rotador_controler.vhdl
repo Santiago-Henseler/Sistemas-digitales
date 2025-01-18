@@ -11,12 +11,9 @@ entity rotador_controler is
 	port(
 		clock: in std_logic;
         reset: in std_logic;
-		btn_x0: in std_logic; -- el btn_x0 rota un delta de angulo positivo
-		btn_x1: in std_logic; -- el btn_x1 rota un delta de angulo negativo
-		btn_y0: in std_logic;
-		btn_y1: in std_logic;
-		btn_z0: in std_logic;
-		btn_z1: in std_logic;
+		btn_x0, btn_x1: in std_logic; -- el btn_x0 rota un delta de angulo positivo, el btn_x1 rota un delta de angulo negativo
+		btn_y0, btn_y1: in std_logic;
+		btn_z0, btn_z1: in std_logic;
 		ram_read_data: in std_logic_vector(COORD_WIDTH-1 downto 0); -- Datos desde RAM de lectura
         ram_read_addr: out std_logic_vector(ADDR_W-1 downto 0); -- Dirección de lectura
         ram_write_addr: out std_logic_vector(ADDR_W-1 downto 0); -- Dirección de escritura en VRAM

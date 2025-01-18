@@ -1,0 +1,49 @@
+v 4
+file . "driver.vhdl" "63abb830a201afb83bb988a48fc52449e0e2de8e" "20250118190124.071":
+  entity driver at 1( 0) + 0 on 71;
+  architecture driver_arch of driver at 17( 354) + 0 on 72;
+file . "uart/uart_controler.vhdl" "91937fd8c5173634a8613f359b46afb6d898c6a9" "20250118190124.036":
+  entity uart_controler at 1( 0) + 0 on 69;
+  architecture arch of uart_controler at 21( 456) + 0 on 70;
+file . "uart/timing.vhdl" "5c4e3fcb0ee5ab4f7df80f744b2f38589c9f9ff3" "20250118190123.967":
+  entity timing at 1( 0) + 0 on 65;
+  architecture timing of timing at 21( 363) + 0 on 66;
+file . "vga/vga_ctrl.vhdl" "1ebc6875e10131bd2c2d96bef5741384031711eb" "20250118190123.882":
+  entity vga_ctrl at 1( 0) + 0 on 61;
+  architecture vga_ctrl_arch of vga_ctrl at 19( 362) + 0 on 62;
+file . "vga/gen_pixels.vhdl" "3b4542996de41cee42c11a20ce67b0a76e268af7" "20250118190123.796":
+  entity gen_pixels at 1( 0) + 0 on 57;
+  architecture gen_pixels_arch of gen_pixels at 21( 448) + 0 on 58;
+file . "rotacion/rotador.vhdl" "64d8c3082cdc04840db5f7d46fb6c6b5eb2bf6db" "20250118190123.671":
+  entity rotador at 1( 0) + 0 on 53;
+  architecture rotador_arq of rotador at 26( 1029) + 0 on 54;
+file . "rotacion/cordic/pre_cordic.vhdl" "7b70fd6c4c924ea496757592e7549da79369be30" "20250118190123.541":
+  entity pre_cordic at 1( 0) + 0 on 49;
+  architecture pre_cordic_arch of pre_cordic at 24( 654) + 0 on 50;
+file . "rotacion/cordic/cordic.vhdl" "adbd624b4d9f6e38c3c2888d7cc828ac1a7b09f0" "20250118190123.409":
+  entity cordic at 1( 0) + 0 on 45;
+  architecture cordic_arch of cordic at 22( 627) + 0 on 46;
+file . "dp_ram/dp_ram.vhdl" "7e681c8e2da404b2f6b92574e1d6cad0ce845120" "20250118190123.334":
+  entity dual_ram at 1( 0) + 0 on 41;
+  architecture dual_ram_arch of dual_ram at 20( 481) + 0 on 42;
+file . "rotacion/cordic/arctan_rom.vhdl" "af5fc3d669a8069df80aa2e08b8e9a1fd98008d7" "20250118190123.369":
+  entity arctan_rom at 1( 0) + 0 on 43;
+  architecture arctan_rom_arq of arctan_rom at 17( 310) + 0 on 44;
+file . "rotacion/cordic/cordic_iter.vhdl" "6761908bf911186879d4c0388b6fee14e15a54d1" "20250118190123.476":
+  entity cordic_iter at 1( 0) + 0 on 47;
+  architecture cordic_iter_arch of cordic_iter at 25( 680) + 0 on 48;
+file . "rotacion/rotador_equ.vhdl" "e18c373f487097f858b669d67841a9f4def19130" "20250118190123.599":
+  entity rotador_equ at 1( 0) + 0 on 51;
+  architecture rotador_equ_arq of rotador_equ at 26( 691) + 0 on 52;
+file . "rotacion/rotador_controler.vhdl" "2073d5492915c72ca1b39bd34c727ad5dd36e8fc" "20250118190123.744":
+  entity rotador_controler at 1( 0) + 0 on 55;
+  architecture rotador_controler_arch of rotador_controler at 25( 953) + 0 on 56;
+file . "vga/vga_sync.vhdl" "e2f132e969f864e8de3d3853f36ff9d2ee4690a5" "20250118190123.832":
+  entity vga_sync at 1( 0) + 0 on 59;
+  architecture vga_sync_arq of vga_sync at 18( 602) + 0 on 60;
+file . "uart/receive.vhdl" "a3ee8d4de3a2e4bd32ff7613095c0b96c46a1193" "20250118190123.914":
+  entity receive at 1( 0) + 0 on 63;
+  architecture arch of receive at 22( 382) + 0 on 64;
+file . "uart/uart.vhdl" "283bbc63790984cc2fa7e592837bca9caaf582b7" "20250118190124.005":
+  entity uart at 1( 0) + 0 on 67;
+  architecture arch of uart at 22( 447) + 0 on 68;

@@ -8,7 +8,7 @@ entity vga_ctrl is
 	);
 	port(
 		clk, rst: in std_logic;
-		data: in std_logic;
+		data: in std_logic_vector(0 downto 0);
 		addrR: out std_logic_vector (ADD_W-1 downto 0);
 		hsync , vsync : out std_logic;
 		rgb : out std_logic_vector(2 downto 0)
