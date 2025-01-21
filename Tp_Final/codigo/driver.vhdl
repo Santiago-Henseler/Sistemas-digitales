@@ -16,22 +16,21 @@ end driver;
 
 architecture driver_arch of driver is
 	constant ADD_W : natural := 19; -- tamaño de las ram
-	constant SIZE : natural := 10; -- cantidad de operaciones del cordic
-	constant N_DATA_BITS : natural := 8; -- tamaño (en bits) de las coordenadas
+	constant SIZE : natural := 8; -- tamaño (en bits) de las coordenadas
 	
 	signal addrW_Vram, addrR_Vram, addrW_ram, addrR_ram: std_logic_vector(ADD_W-1 downto 0);
 	signal data_Vram_i, data_Vram_o: std_logic_vector(0 downto 0);
 	signal data_ram_i, data_ram_o: std_logic_vector(7 downto 0);
 
-	signal dout_uart: std_logic_vector(N_DATA_BITS-1 downto 0);
+	signal dout_uart: std_logic_vector(SIZE-1 downto 0);
 begin
 	
 	uart_inst: entity work.uart_controler
 	generic map (
-		F 	=> 50000, -- clock frequency
+		F 	=> 50000, 
 		min_baud => 1200,
 		ADD_W => ADD_W,
-		num_data_bits => N_DATA_BITS
+		num_data_bits => SIZE
 	)
 	port map (
 		clk	=> clock,
@@ -44,9 +43,10 @@ begin
 	ram_instance: entity work.dual_ram
 	generic map(
 		ADD_W => ADD_W,
-		DATA_SIZE => 8
+		DATA_SIZE => SIZE
     )
     port map(
+		clock => clock,
 		write => '1',
         read => '1',
         addrW => addrW_ram,
@@ -57,7 +57,8 @@ begin
 
 	rot_controler: entity work.rotador_controler
 	generic map(
-		SIZE => SIZE
+		SIZE => SIZE,
+		ADDR_W => ADD_W
 	)
 	port map(
 		clock => clock,
@@ -81,6 +82,7 @@ begin
 		DATA_SIZE => 1
     )
     port map(
+		clock => clock,
 		write => '1',
         read => '1',
         addrW => addrW_Vram,

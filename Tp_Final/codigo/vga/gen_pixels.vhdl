@@ -10,7 +10,7 @@ entity gen_pixels is
 		clk, reset: in std_logic;
 		ena: in std_logic;
 		pixel_x: in std_logic_vector (9 downto 0);
-		pixel_y: in std_logic_vector(8 downto 0); 
+		pixel_y: in std_logic_vector(9 downto 0); 
 		data: in std_logic_vector(0 downto 0);
 		addrR: out std_logic_vector (ADD_W-1 downto 0);
 		rgb : out std_logic_vector(2 downto 0)
@@ -25,11 +25,13 @@ architecture gen_pixels_arch of gen_pixels is
 begin
 
 	process(clk, reset)
+	   variable tmp_addres : std_logic_vector(ADD_W downto 0);
 	begin
 		if reset = '1' then
 			rgb_reg <= (others => '0');
 		elsif rising_edge(clk) then
-			addrR <= std_logic_vector(unsigned(pixel_x) + (640 * unsigned(pixel_y)));
+		    tmp_addres := std_logic_vector(unsigned(pixel_x) + (640 * unsigned(pixel_y)));
+			addrR <= tmp_addres(ADD_W-1 downto 0);
 			if data = "1" then 
 				rgb_reg <= (others => '1');
 			else 

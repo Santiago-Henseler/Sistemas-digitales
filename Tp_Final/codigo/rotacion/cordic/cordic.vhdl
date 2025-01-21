@@ -24,13 +24,14 @@ architecture cordic_arch of cordic is
     CONSTANT add_size: integer := integer(ceil(log2(real(SIZE))));
 
     -- funcion para shiftear i veces a la derecha manteniendo el signo
-    function shift(x :signed; i: integer) return signed is
+    function shift(x : signed; i : integer) return signed is
         variable rta: signed(x'range) := x;
+        variable count: integer := 0; -- Contador para iterar
     begin
-        for j in 1 to i loop
-            rta := rta(SIZE+1) & rta(rta'high downto 1);
+        while count < i loop
+            rta := rta(x'high) & rta(rta'high downto 1); -- Desplazamiento con signo
+            count := count + 1;
         end loop;
-
         return rta;
     end function shift;
 

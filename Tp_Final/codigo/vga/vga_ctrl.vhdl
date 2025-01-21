@@ -19,7 +19,7 @@ end vga_ctrl;
 architecture vga_ctrl_arch of vga_ctrl is
 
 	signal pixel_x: std_logic_vector(9 downto 0); -- son 1024 posiciones y solo necesito 640
-	signal pixel_y: std_logic_vector(8 downto 0); -- son 512 posiciones y solo necesito 480
+	signal pixel_y: std_logic_vector(9 downto 0); -- son 1024 posiciones y solo necesito 480
 	signal video_on: std_logic;
 
 begin
@@ -37,6 +37,9 @@ begin
 		);
 
 	pixeles: entity work.gen_pixels
+	    generic map(
+	       ADD_W => ADD_W
+	    )
 		port map(
 			clk		=> clk,
 			reset	=> rst,

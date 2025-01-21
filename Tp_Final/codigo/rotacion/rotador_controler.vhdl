@@ -4,9 +4,8 @@ use ieee.numeric_std.all;
 
 entity rotador_controler is
 	generic(
-		SIZE: natural := 10;
-		ADDR_W : natural := 19;   -- Tamaño de la RAM (32K direcciones)
-        COORD_WIDTH : natural := 12   -- Ancho de coordenadas y ángulos
+		SIZE: natural := 10;   -- Ancho de coordenadas y ángulos
+		ADDR_W : natural := 19 -- Tamaño de la RAM (32K direcciones)
 	);
 	port(
 		clock: in std_logic;
@@ -14,7 +13,7 @@ entity rotador_controler is
 		btn_x0, btn_x1: in std_logic; -- el btn_x0 rota un delta de angulo positivo, el btn_x1 rota un delta de angulo negativo
 		btn_y0, btn_y1: in std_logic;
 		btn_z0, btn_z1: in std_logic;
-		ram_read_data: in std_logic_vector(COORD_WIDTH-1 downto 0); -- Datos desde RAM de lectura
+		ram_read_data: in std_logic_vector(SIZE-1 downto 0); -- Datos desde RAM de lectura
         ram_read_addr: out std_logic_vector(ADDR_W-1 downto 0); -- Dirección de lectura
         ram_write_addr: out std_logic_vector(ADDR_W-1 downto 0); -- Dirección de escritura en VRAM
         ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM 
@@ -23,7 +22,7 @@ entity rotador_controler is
 end rotador_controler;
 
 architecture rotador_controler_arch of rotador_controler is
-	constant DELTA : signed(SIZE+1 downto 0) := "000111111111"; -- Desplazamiento de angulo fijo
+	constant DELTA : signed(SIZE+1 downto 0) := "0001111111"; -- Desplazamiento de angulo fijo
 	signal a1, a2, a3 : signed(SIZE+1 downto 0);
 
 begin
@@ -70,8 +69,7 @@ begin
 	rot: entity work.rotador
 	generic map(
 		SIZE => SIZE,
-		ADDR_W => ADDR_W,
-		COORD_WIDTH => COORD_WIDTH
+		ADDR_W => ADDR_W
 	)
 	port map(	
 		clock => clock,
