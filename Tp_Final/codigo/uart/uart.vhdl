@@ -12,8 +12,8 @@ entity uart is
 		clk	: in std_logic;
 		rst	: in std_logic;
 		Rx	: in std_logic; -- Bit entrante
-		Divisor	: in std_logic_vector; -- 
-		Dout	: out std_logic_vector(7 downto 0);
+		Divisor	: in std_logic_vector; 
+		Dout	: out std_logic_vector(num_data_bits-1 downto 0); --Dato recbido
 		RxRdy	: out std_logic; 
 		RxErr	: out std_logic
 	);

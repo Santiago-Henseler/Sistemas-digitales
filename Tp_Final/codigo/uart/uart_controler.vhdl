@@ -6,15 +6,16 @@ entity uart_controler is
 	generic (
 		F : natural := 50000;	-- Device clock frequency [KHz].
 		min_baud : natural := 1200;
-        ADD_W: natural := 8;
-		num_data_bits : natural := 8
+        ADD_W: natural := 8; -- Tamaño de direccionamiento de la RAM
+		num_data_bits : natural := 8 -- Tamaño del dato a recibir
 	);
 	port (
 		clk	: in std_logic;
 		rst	: in std_logic;
         rx : in std_logic;
         data: out std_logic_vector(num_data_bits-1 downto 0);
-		addrW: out std_logic_vector(ADD_W-1 downto 0)
+		addrW: out std_logic_vector(ADD_W-1 downto 0);
+		fin_rx: out std_logic
 	);
 end;
 
@@ -44,11 +45,16 @@ begin
         variable addr_act: unsigned(ADD_W-1 downto 0) := (others => '0');
     begin
 
-        if ready = '1' then
-            addr_act := addr_act+1;
+		-- Cuando el uart indica que termino de recibir el dato lo guardo en la RAM
+        if ready = '1' then 
             addrW <= std_logic_vector(addr_act);
             data <= dout;
+			addr_act := addr_act+1;
         end if;
+
+		if addr_act >= to_unsigned(35841, ADD_W) then -- porque hay 35841 coordenadas a recibir
+			fin_rx <= '1';
+		end if;
 
     end process; 
 

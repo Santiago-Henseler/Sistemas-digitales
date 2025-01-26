@@ -30,6 +30,7 @@ begin
 		if reset = '1' then
 			rgb_reg <= (others => '0');
 		elsif rising_edge(clk) then
+			-- Busco en la RAM en la posicion del pixel actual 
 		    tmp_addres := std_logic_vector(unsigned(pixel_x) + (640 * unsigned(pixel_y)));
 			addrR <= tmp_addres(ADD_W-1 downto 0);
 			if data = "1" then 

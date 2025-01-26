@@ -12,6 +12,7 @@ end toplvl;
 
 architecture Behavioral of toplvl is
 
+    -- Instancio el vio para controlar la rotación del mundito
     component vio_0 
         port(
             clk : in std_logic;

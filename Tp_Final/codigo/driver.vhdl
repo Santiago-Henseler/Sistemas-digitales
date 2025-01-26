@@ -15,13 +15,13 @@ entity driver is
 end driver;
 
 architecture driver_arch of driver is
-	constant ADD_W : natural := 19; -- tamaño de las ram
+	constant ADD_W : natural := 19; --  El tamaño de las ram es de 19 bits porque 640X480 = 307.200 (tamaño de pantalla) < 2**19 = 524.288 
 	constant SIZE : natural := 8; -- tamaño (en bits) de las coordenadas
 	
 	signal addrW_Vram, addrR_Vram, addrW_ram, addrR_ram: std_logic_vector(ADD_W-1 downto 0);
 	signal data_Vram_i, data_Vram_o: std_logic_vector(0 downto 0);
-	signal data_ram_i, data_ram_o: std_logic_vector(7 downto 0);
-
+	signal data_ram_i, data_ram_o: std_logic_vector(SZIE-1 downto 0);
+	signal fin_rx: std_logic;
 	signal dout_uart: std_logic_vector(SIZE-1 downto 0);
 begin
 	
@@ -37,7 +37,8 @@ begin
 		rst	=> reset,
 		rx	=> rx,
 		data => dout_uart,
-		addrW => addrW_ram
+		addrW => addrW_ram,
+		fin_rx => fin_rx
 	);
 
 	ram_instance: entity work.dual_ram
@@ -63,6 +64,7 @@ begin
 	port map(
 		clock => clock,
 		reset => reset,
+		start => fin_rx,
 		ram_read_data => data_ram_o,
 		ram_read_addr => addrR_ram,
 		ram_write_addr => addrW_Vram,
@@ -78,7 +80,7 @@ begin
 
 	vram_instance: entity work.dual_ram
 	generic map(
-		ADD_W => ADD_W, --uso direcciones de 19 bits porque 2^19 es 524.288 > 307.199
+		ADD_W => ADD_W, --uso direcciones de 19 bits porque 2^19 es 524.288 > 307.200
 		DATA_SIZE => 1
     )
     port map(

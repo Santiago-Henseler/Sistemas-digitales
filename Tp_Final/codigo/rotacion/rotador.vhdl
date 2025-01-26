@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity rotador is
     generic (
         SIZE : natural := 10;      -- Tamaño de las coordenadas y ángulos
-        ADDR_W : natural := 19   -- Tamaño de la RAM (32K direcciones)
+        ADDR_W : natural := 19   -- Tamaño de la RAM 
     );
     port (
         clock: in std_logic;
