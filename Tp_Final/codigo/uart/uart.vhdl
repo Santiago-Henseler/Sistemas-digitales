@@ -22,7 +22,6 @@ end;
 architecture arch of uart is
 	signal top16		: std_logic;
 	signal toprx		: std_logic;
-	signal toptx		: std_logic;
 	signal Sig_ClrDiv	: std_logic;
 begin
 	reception_unit: entity work.receive
@@ -46,7 +45,6 @@ begin
 			divisor	=> Divisor,
 			ClrDiv	=> Sig_ClrDiv,
 			Top16	=> top16,
-			TopTx	=> toptx,
 			TopRx	=> toprx
 			);
 	

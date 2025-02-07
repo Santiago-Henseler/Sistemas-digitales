@@ -9,8 +9,6 @@ entity dual_ram is
     );
     port(
         clock: in std_logic;
-        write: in std_logic;
-        read: in std_logic;
         addrW: in std_logic_vector(ADD_W-1 downto 0); 
         addrR: in std_logic_vector(ADD_W-1 downto 0);
         data_i: in std_logic_vector(DATA_SIZE-1 downto 0);
@@ -21,24 +19,24 @@ end dual_ram;
 architecture dual_ram_arch of dual_ram is
     type ram_type is array (0 to 2**(ADD_W)-1) of std_logic_vector(DATA_SIZE-1 downto 0);
     signal RAM : ram_type := (others => (others => '0'));
+    
+    signal data_o_reg, data_i_reg: std_logic_vector(DATA_SIZE-1 downto 0);
 begin
-    process(clock, write, addrW, data_i, RAM)
-    begin
-        if rising_edge(clock) then
-            if write = '1' then
-                RAM(to_integer(unsigned(addrW))) <= data_i;
-            end if;
-        end if;
-    end process;
 
-    process(clock, read, addrR, RAM)
+    process(clock)
     begin
         if rising_edge(clock) then
-            if read = '1' then
-                data_o <= RAM(to_integer(unsigned(addrR)));
-            else
-                data_o <= (others => '0');
-            end if;
+            RAM(to_integer(unsigned(addrW))) <= data_i;
         end if;
     end process;
+    
+    process(clock)
+    begin
+        if rising_edge(clock) then
+            data_o_reg <= RAM(to_integer(unsigned(addrR)));
+        end if;
+    end process;
+    
+    data_o <= data_o_reg;
+    
 end dual_ram_arch;

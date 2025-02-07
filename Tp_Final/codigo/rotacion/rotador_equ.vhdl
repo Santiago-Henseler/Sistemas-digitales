@@ -89,7 +89,6 @@ begin
         ack => ack
     );
 
-
     x_out <= x_out_3;
     y_out <= y_out_3;
     z_out <= x_out_2;

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z010clg400-1" LaunchTime="1738890878">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BG-DRC" Name="toplvl.drc"/>
+  <File Type="BG-BGN" Name="toplvl.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="toplvl.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="toplvl.ltx"/>
+  <File Type="BITSTR-MMI" Name="toplvl.mmi"/>
+  <File Type="BITSTR-BMM" Name="toplvl_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="toplvl.nky"/>
+  <File Type="BITSTR-RBT" Name="toplvl.rbt"/>
+  <File Type="BITSTR-MSK" Name="toplvl.msk"/>
+  <File Type="BG-BIN" Name="toplvl.bin"/>
+  <File Type="BG-BIT" Name="toplvl.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="toplvl_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="toplvl_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="toplvl_bus_skew_postroute_physopted.rpt"/>
+  <File Type="RDI-RDI" Name="toplvl.vdi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="toplvl_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="toplvl_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="toplvl_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="toplvl_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="toplvl_postroute_physopt.dcp"/>
+  <File Type="ROUTE-BUS-SKEW" Name="toplvl_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="toplvl_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="toplvl_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="toplvl_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="toplvl_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="toplvl_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="toplvl_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="toplvl_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="toplvl_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="toplvl_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="toplvl_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="toplvl_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="toplvl_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="toplvl_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="toplvl_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="toplvl_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="toplvl_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="toplvl_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="toplvl_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="toplvl_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="toplvl_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="toplvl_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="toplvl_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="toplvl_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="toplvl_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="toplvl_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="toplvl_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="toplvl_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="toplvl_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="toplvl_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="toplvl_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="toplvl_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="toplvl_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="toplvl_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="toplvl_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="toplvl_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="toplvl_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="toplvl_timing_summary_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="toplvl.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="toplvl_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="toplvl_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="toplvl_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="toplvl_timing_summary_init.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="toplvl_bus_skew_routed.rpx"/>
+  <File Type="REPORTS-TCL" Name="toplvl_reports.tcl"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="toplvl_bus_skew_routed.pb"/>
+  <File Type="PA-TCL" Name="toplvl.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/ip/vio_0_1/vio_0.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/cordic/arctan_rom.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/cordic/cordic.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/cordic/cordic_iter.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/dp_ram/dp_ram.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/uart/receive.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/uart/timing.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/uart/uart.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/uart/uart_controler.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/cordic/pre_cordic.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/rotador_equ.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/rotador.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/rotacion/rotador_controler.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/vga/vga_sync.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/vga/gen_pixels.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/vga/vga_ctrl.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/driver.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../codigo/toplvl.vhdl">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="toplvl"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../constrains.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

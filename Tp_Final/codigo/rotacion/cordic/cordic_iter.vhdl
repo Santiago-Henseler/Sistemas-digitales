@@ -24,8 +24,9 @@ end cordic_iter;
 
 architecture cordic_iter_arch of cordic_iter is
     signal x_i, y_i, z_i: signed(SIZE+1 downto 0);
-    signal n_iter: unsigned(natural(ceil(log2(real(SIZE))))+1 downto 0);
+    signal n_iter: unsigned(natural(ceil(log2(real(SIZE)))) downto 0);
     signal x_i_aux, y_i_aux, z_i_aux: signed(SIZE+1 downto 0);
+    
 begin
 
     cord: entity work.cordic
@@ -41,7 +42,7 @@ begin
         z_out => z_i_aux
     );
 
-    logic: process(clock,reset)
+    logic: process(clock,reset,req)
     begin
         if reset = '1' then
            
@@ -50,17 +51,13 @@ begin
             y_i <= (others => '0');
             z_i <= (others => '0');
 
-            x_out <= (others => '0');
-            y_out <= (others => '0');
-            z_out <= (others => '0');
-
             ack <= '0';
 
         elsif rising_edge(clock) then
 
             if req = '1' then 
                 ack <= '0';
-            elsif n_iter = SIZE then
+            elsif n_iter >= SIZE then
                 ack <= '1';
             else
                 ack <= '0';
@@ -78,17 +75,15 @@ begin
 
             if req = '1' then
                 n_iter <= (others => '0');
-            elsif n_iter <= SIZE then
-                n_iter <= n_iter + 1;
             end if;
-
-            if n_iter = SIZE then
-                x_out <= x_i;
-                y_out <= y_i;
-                z_out <= z_i;                
-            end if;
+            
+            n_iter <= n_iter + 1;
 
         end if;
     end process;
+    
+    x_out <= x_i;
+    y_out <= y_i;
+    z_out <= z_i;
 
 end cordic_iter_arch;

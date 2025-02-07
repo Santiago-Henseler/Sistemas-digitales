@@ -13,7 +13,6 @@ port (
       divisor : in std_logic_vector;
       ClrDiv : in std_logic;
       Top16 : buffer std_logic;
-      TopTx : out std_logic;
       TopRx : out std_logic
 );
 end timing;
@@ -45,14 +44,11 @@ begin
       process (RST, CLK)
          begin
             if RST='1' then
-               TopTx <= '0';
                ClkDiv <= 0;
             elsif rising_edge(CLK) then
-               TopTx <= '0';
                if Top16='1' then
                   ClkDiv <= ClkDiv + 1;
                   if ClkDiv = 15 then
-                     TopTx <= '1';
                      ClkDiv <= 0;
                   end if;
                end if;

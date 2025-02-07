@@ -9,7 +9,7 @@ entity cordic is
     );
     port (
         method: in std_logic; -- 0 para utilizar el modo rotación 1 para el modo vector
-        n_iter: unsigned(natural(ceil(log2(real(SIZE))))+1 downto 0);
+        n_iter: in unsigned(natural(ceil(log2(real(SIZE)))) downto 0);
         x0: in signed(SIZE+1 downto 0);
         y0: in signed(SIZE+1 downto 0);
         z0: in signed(SIZE+1 downto 0);

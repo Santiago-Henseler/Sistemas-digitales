@@ -49,9 +49,9 @@ read_vhdl -library xil_defaultlib {
   /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl
   /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl
 }
-read_ip -quiet /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.srcs/sources_1/ip/vio_0/vio_0.xci
-set_property used_in_implementation false [get_files -all /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.srcs/sources_1/ip/vio_0/vio_0.xdc]
-set_property used_in_implementation false [get_files -all /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.srcs/sources_1/ip/vio_0/vio_0_ooc.xdc]
+read_ip -quiet /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.srcs/sources_1/ip/vio_0_1/vio_0.xci
+set_property used_in_implementation false [get_files -all /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.srcs/sources_1/ip/vio_0_1/vio_0.xdc]
+set_property used_in_implementation false [get_files -all /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.srcs/sources_1/ip/vio_0_1/vio_0_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -64,6 +64,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/constrains.xdc
 set_property used_in_implementation false [get_files /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/constrains.xdc]
 
+read_xdc dont_touch.xdc
+set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 0
 close [open __synthesis_is_running__ w]
 
