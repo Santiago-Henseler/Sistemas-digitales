@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date             : Thu Feb  6 22:16:34 2025
+| Date             : Sat Feb  8 11:22:53 2025
 | Host             : santy22 running 64-bit Linux Mint 21.2
 | Command          : report_power -file toplvl_power_routed.rpt -pb toplvl_power_summary_routed.pb -rpx toplvl_power_routed.rpx
 | Design           : toplvl

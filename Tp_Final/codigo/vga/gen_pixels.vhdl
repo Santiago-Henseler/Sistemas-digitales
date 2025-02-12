@@ -30,7 +30,6 @@ begin
     if reset = '1' then
         rgb_reg <= (others => '0');
     elsif rising_edge(clk) then
-        -- Calcular la dirección de memoria        
         if data = "1" then 
             rgb_reg <= (others => '1');
         else 
@@ -38,9 +37,8 @@ begin
         end if;
     end if;
 end process;
-
-    
-    tmp_addr <= unsigned(pixel_x) + (640 * unsigned(pixel_y));
+    -- Calcular la dirección de memoria     
+    tmp_addr <= unsigned(pixel_x) + (640 * unsigned(pixel_y));   
 	addrR <= std_logic_vector(tmp_addr(ADD_W-1 downto 0));
 	rgb <= rgb_reg when ena = '1' else (others => '0');
 

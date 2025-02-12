@@ -33,7 +33,7 @@ begin
     process(clock)
     begin
         if rising_edge(clock) then
-            data_o_reg <= RAM(to_integer(unsigned(addrR)));
+              data_o_reg <= RAM(to_integer(unsigned(addrR)));
         end if;
     end process;
     
