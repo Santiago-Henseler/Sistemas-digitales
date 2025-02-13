@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Feb 12 22:41:11 2025
-# Process ID: 178240
+# Start of session at: Thu Feb 13 10:29:25 2025
+# Process ID: 5917
 # Current directory: /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.runs/impl_1
 # Command line: vivado -log toplvl.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source toplvl.tcl -notrace
 # Log file: /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/vivado.runs/impl_1/toplvl.vdi

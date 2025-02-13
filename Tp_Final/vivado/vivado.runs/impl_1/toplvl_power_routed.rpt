@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date             : Wed Feb 12 22:43:10 2025
+| Date             : Thu Feb 13 10:31:18 2025
 | Host             : santy22 running 64-bit Linux Mint 21.2
 | Command          : report_power -file toplvl_power_routed.rpt -pb toplvl_power_summary_routed.pb -rpx toplvl_power_routed.rpx
 | Design           : toplvl
@@ -54,13 +54,13 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.006 |        4 |       --- |             --- |
 | Slice Logic              |     0.004 |     2815 |       --- |             --- |
-|   LUT as Logic           |     0.004 |     1089 |     17600 |            6.19 |
+|   LUT as Logic           |     0.004 |     1087 |     17600 |            6.18 |
 |   CARRY4                 |    <0.001 |       77 |      4400 |            1.75 |
 |   Register               |    <0.001 |     1308 |     35200 |            3.72 |
 |   LUT as Distributed RAM |    <0.001 |       24 |      6000 |            0.40 |
 |   F7/F8 Muxes            |    <0.001 |        1 |     17600 |           <0.01 |
 |   Others                 |     0.000 |      134 |       --- |             --- |
-| Signals                  |     0.006 |     2230 |       --- |             --- |
+| Signals                  |     0.006 |     2229 |       --- |             --- |
 | Block RAM                |     0.045 |       32 |        60 |           53.33 |
 | DSPs                     |     0.001 |        2 |        80 |            2.50 |
 | I/O                      |    <0.001 |        9 |       100 |            9.00 |
@@ -249,7 +249,7 @@ Table of Contents
 |           U_SYNC                                                                   |    <0.001 |
 |         SWITCH_N_EXT_BSCAN.bscan_inst                                              |    <0.001 |
 |         SWITCH_N_EXT_BSCAN.bscan_switch                                            |    <0.001 |
-|   driver_inst                                                                      |     0.058 |
+|   driver_inst                                                                      |     0.057 |
 |     ram_instance                                                                   |     0.040 |
 |     rot_controler                                                                  |     0.010 |
 |       rot                                                                          |     0.010 |
