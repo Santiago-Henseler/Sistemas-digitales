@@ -44,41 +44,43 @@ begin
 
     logic: process(clock,reset,req)
     begin
-        if reset = '1' then
+        if rising_edge(clock) then
+            if reset = '1' then
            
-            n_iter <= (others => '0');
-            x_i <= (others => '0');
-            y_i <= (others => '0');
-            z_i <= (others => '0');
-
-            ack <= '0';
-
-        elsif rising_edge(clock) then
-
-            if req = '1' then 
-                ack <= '0';
-            elsif n_iter >= SIZE then
-                ack <= '1';
-            else
-                ack <= '0';
-            end if;
-            
-            if req = '1' then
-                x_i <= x0;
-                y_i <= y0;
-                z_i <= z0;
-            elsif n_iter < SIZE then
-                x_i <= x_i_aux;
-                y_i <= y_i_aux;
-                z_i <= z_i_aux;
-            end if;
-
-            if req = '1' then
                 n_iter <= (others => '0');
-            end if;
-            
-            n_iter <= n_iter + 1;
+                x_i <= (others => '0');
+                y_i <= (others => '0');
+                z_i <= (others => '0');
+    
+                ack <= '0';
+    
+            else
 
+                if req = '1' then 
+                    ack <= '0';
+                elsif n_iter >= SIZE then
+                    ack <= '1';
+                else
+                    ack <= '0';
+                end if;
+                
+                if req = '1' then
+                    x_i <= x0;
+                    y_i <= y0;
+                    z_i <= z0;
+                elsif n_iter < SIZE then
+                    x_i <= x_i_aux;
+                    y_i <= y_i_aux;
+                    z_i <= z_i_aux;
+                end if;
+    
+                if req = '1' then
+                    n_iter <= (others => '0');
+                end if;
+                
+                n_iter <= n_iter + 1;
+    
+            end if;
         end if;
     end process;
     

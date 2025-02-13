@@ -81,7 +81,7 @@ begin
 
 	vram_instance: entity work.dual_ram
 	generic map(
-		ADD_W => ADDR_VRAM_W, --uso direcciones de 19 bits porque 2^19 es 524.288 > 307.200
+		ADD_W => ADDR_VRAM_W,
 		DATA_SIZE => 1
     )
     port map(

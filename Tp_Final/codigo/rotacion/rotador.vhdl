@@ -35,72 +35,71 @@ type state_type is (IDLE, READ_RAM, ROTATE, WRITE_RAM, FIN);
     signal write_addr_reg : std_logic_vector(ADDR_VRAM_W-1 downto 0);
     signal coord_ram: signed(SIZE+1 downto 0);
     signal step : natural;    
-    
-    signal tmp_addres : std_logic_vector(ADDR_VRAM_W downto 0);
 begin
 
     process(clock, state, start, reset, rotation_ack) 
     begin
-        if reset = '1' then
-            step <= 0;
-            state <= IDLE;
-            read_addr_reg <= (others => '0');
-            write_addr_reg <= (others => '0');
-            rotation_req <= '0';
-            done <= '0';
-        elsif rising_edge(clock) then
-            rotation_req <= '0';
-            done <= '0';
-            -- Cambio de estado
-            state <= next_state;
-            case state is
-                when IDLE =>
-                    if start = '1' then
-                        next_state <= READ_RAM;
-                    else
-                        next_state <= IDLE;
-                    end if;
-                when READ_RAM =>
-                    if unsigned(read_addr_reg) = 2**ADDR_RAM_W-1 then
-                        next_state <= FIN;
-                    else
-                    -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram  
-                        if step = 0 then
-                            x <= coord_ram;
-                            step <= step+1;
-                        elsif step = 1 then
-                            y <= coord_ram;
-                            step <= step+1;
+        if rising_edge(clock) then
+            if reset = '1' then
+                step <= 0;
+                state <= IDLE;
+                read_addr_reg <= (others => '0');
+                write_addr_reg <= (others => '0');
+                rotation_req <= '0';
+                done <= '0';
+            else
+                rotation_req <= '0';
+                done <= '0';
+                -- Cambio de estado
+                state <= next_state;
+                case state is
+                    when IDLE =>
+                        if start = '1' then
+                            next_state <= READ_RAM;
                         else
-                            z <= coord_ram;
-                            next_state <= ROTATE;
-                            step <= 0;
+                            next_state <= IDLE;
                         end if;
-                        read_addr_reg <= std_logic_vector(unsigned(read_addr_reg) + 1);
-                    end if;
-                when ROTATE =>
-                    rotation_req <= '1';
-                    if rotation_ack = '1' then
-                        next_state <= WRITE_RAM;
-                    else
-                        next_state <= ROTATE;
-                    end if;
-                when WRITE_RAM =>
-                    write_addr_reg <= tmp_addres(ADDR_VRAM_W-1 downto 0);
-                    next_state <= READ_RAM;
-                when FIN =>
-                    done <= '1';
-                    next_state <= IDLE;
-                when others =>
-                    next_state <= IDLE;
-            end case;
+                    when READ_RAM =>
+                        if unsigned(read_addr_reg) = 2**ADDR_RAM_W-1 then
+                            next_state <= FIN;
+                        else
+                        -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram  
+                            if step = 0 then
+                                x <= coord_ram;
+                                step <= step+1;
+                            elsif step = 1 then
+                                y <= coord_ram;
+                                step <= step+1;
+                            else
+                                z <= coord_ram;
+                                next_state <= ROTATE;
+                                step <= 0;
+                            end if;
+                            read_addr_reg <= std_logic_vector(unsigned(read_addr_reg) + 1);
+                        end if;
+                    when ROTATE =>
+                        rotation_req <= '1';
+                        if rotation_ack = '1' then
+                            next_state <= WRITE_RAM;
+                        else
+                            next_state <= ROTATE;
+                        end if;
+                    when WRITE_RAM =>
+                        write_addr_reg <= std_logic_vector(resize(unsigned(x_rot) + (640 * ('0' & unsigned(y_rot))), ADDR_VRAM_W));
+                        next_state <= READ_RAM;
+                    when FIN =>
+                        done <= '1';
+                        next_state <= IDLE;
+                    when others =>
+                        next_state <= IDLE;
+                end case;
+            end if;
         end if;
     end process;
     
     coord_ram <=  signed(resize(signed(ram_read_data), SIZE+2));-- extiendo el signo para poder utilizar el cordic
     
-                    -- Tomo la ram como una matriz de 640 x 480 posiciones
-    tmp_addres <= std_logic_vector(unsigned(x_rot) + (640 * unsigned(y_rot)));
+    -- Tomo la vram como una matriz de 640 x 480 posiciones
     ram_read_addr <= read_addr_reg;
     -- Datos de salida para la Vram
     ram_write_data <= "1";

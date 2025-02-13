@@ -21,25 +21,28 @@ end gen_pixels;
 architecture gen_pixels_arch of gen_pixels is
 
 	signal rgb_reg: std_logic_vector(2 downto 0);
-	signal tmp_addr: unsigned(ADD_W downto 0); 
+	signal tmp_addr: std_logic_vector(ADD_W-1 downto 0); 
 
 begin
 
 process(clk, reset)    
-begin
-    if reset = '1' then
-        rgb_reg <= (others => '0');
-    elsif rising_edge(clk) then
-        if data = "1" then 
-            rgb_reg <= (others => '1');
-        else 
+begin 
+    if rising_edge(clk) then 
+        if reset = '1' then
             rgb_reg <= (others => '0');
+            tmp_addr <=(others => '0');
+        else 
+            tmp_addr <= std_logic_vector(resize(unsigned(pixel_x) + (640 * ('0' & unsigned(pixel_y))), ADD_W));
+            if data = "1" then 
+                rgb_reg <= (others => '1');
+            else 
+                rgb_reg <= (others => '0');
+            end if;
         end if;
     end if;
-end process;
-    -- Calcular la dirección de memoria     
-    tmp_addr <= unsigned(pixel_x) + (640 * unsigned(pixel_y));   
-	addrR <= std_logic_vector(tmp_addr(ADD_W-1 downto 0));
+end process;  
+     -- Calcular la dirección de memoria     
+	addrR <= tmp_addr;
 	rgb <= rgb_reg when ena = '1' else (others => '0');
 
 end gen_pixels_arch;

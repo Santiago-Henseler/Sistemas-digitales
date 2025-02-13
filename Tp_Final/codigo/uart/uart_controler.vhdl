@@ -45,12 +45,12 @@ begin
 	    
     process(clk, rst , ready, dout)
     begin
-        if rst = '1' then 
-            addr_act <= (others => '0');
-            dout_reg <= (others => '0');
-            fin_rx <= '0';
-        elsif rising_edge(clk) then
-            if addr_act >= to_unsigned(35841, ADD_W) then -- porque hay 35841 coordenadas a recibir
+        if rising_edge(clk) then
+            if rst = '1' then 
+                   addr_act <= (others => '0');
+                   dout_reg <= (others => '0');
+                   fin_rx <= '0';
+            elsif addr_act >= to_unsigned(35841, ADD_W) then -- porque hay 35841 coordenadas a recibir
                 fin_rx <= '1';
             elsif ready = '1' then -- Cuando el uart indica que termino de recibir el dato lo guardo en la RAM
                 dout_reg <= dout;
