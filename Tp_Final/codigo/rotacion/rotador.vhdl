@@ -14,7 +14,7 @@ entity rotador is
         start: in std_logic;
         done: out std_logic;
         ram_read_data: in std_logic_vector(SIZE-1 downto 0); -- Datos desde RAM cargada por el uart
-        ram_read_addr: out std_logic_vector(ADDR_RAM_W-1 downto 0); -- Dirección de lectura
+        ram_read_addr: out std_logic_vector(ADDR_RAM_W-1 downto 0); -- Dirección de lectura en RAM
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
         ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM (siempre va a ser '1')
         angle_x: in signed(SIZE+1 downto 0);
@@ -63,7 +63,7 @@ begin
                         if unsigned(read_addr_reg) = 2**ADDR_RAM_W-1 then
                             next_state <= FIN;
                         else
-                        -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram  
+                        -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram (por eso necesito 3 step por terna)
                             if step = 0 then
                                 x <= coord_ram;
                                 step <= step+1;

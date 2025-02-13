@@ -13,7 +13,7 @@ entity uart is
 		rst	: in std_logic;
 		Rx	: in std_logic; -- Bit entrante
 		Divisor	: in std_logic_vector; 
-		Dout	: out std_logic_vector(num_data_bits-1 downto 0); --Dato recbido
+		Dout	: out std_logic_vector(num_data_bits-1 downto 0); --Dato recibido
 		RxRdy	: out std_logic; 
 		RxErr	: out std_logic
 	);

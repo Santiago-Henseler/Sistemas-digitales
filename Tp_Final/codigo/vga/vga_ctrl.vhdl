@@ -17,9 +17,9 @@ entity vga_ctrl is
 end vga_ctrl;
 
 architecture vga_ctrl_arch of vga_ctrl is
-
+	-- uso pixel_x e pixel_y del mismo tamaño para poder operar en gen_pixels
 	signal pixel_x: std_logic_vector(9 downto 0); -- son 1024 posiciones y solo necesito 640
-	signal pixel_y: std_logic_vector(9 downto 0); -- son 512 posiciones y solo necesito 480
+	signal pixel_y: std_logic_vector(9 downto 0); -- son 1024 posiciones y solo necesito 480
 	signal video_on: std_logic;
 
 begin
