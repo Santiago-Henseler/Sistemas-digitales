@@ -51,6 +51,7 @@ begin
                 x_i <= (others => '0');
                 y_i <= (others => '0');
                 z_i <= (others => '0');
+    
                 ack <= '0';
     
             else
@@ -83,8 +84,8 @@ begin
         end if;
     end process;
     
-    x_out <= x_i_aux;
-    y_out <= y_i_aux;
-    z_out <= z_i_aux;
+    x_out <= x_i;
+    y_out <= y_i;
+    z_out <= z_i;
 
 end cordic_iter_arch;

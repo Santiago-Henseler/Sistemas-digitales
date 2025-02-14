@@ -15,13 +15,13 @@ entity driver is
 end driver;
 
 architecture driver_arch of driver is
-	constant ADDR_VRAM_W : natural := 2; --  El tamaño de la vram es de 19 bits porque 640X480 = 307.200 (tamaño de pantalla) < 2**19 = 524.288 
+	constant ADDR_VRAM_W : natural := 19; --  El tamaño de la vram es de 19 bits porque 640X480 = 307.200 (tamaño de pantalla) < 2**19 = 524.288 
 	constant ADDR_RAM_W: natural := 16; -- Uso direcciones de 16 bits porque tengo 35.841 (3X11947) coordenadas que almacenar
 	constant SIZE : natural := 8; -- tamaño (en bits) de las coordenadas
 	
 	signal addrW_Vram, addrR_Vram: std_logic_vector(ADDR_VRAM_W-1 downto 0);
 	signal addrW_ram, addrR_ram: std_logic_vector(ADDR_RAM_W-1 downto 0);
-	signal data_Vram_i, data_Vram_o: std_logic_vector(9 downto 0);
+	signal data_Vram_i, data_Vram_o: std_logic_vector(0 downto 0);
 	signal data_ram_i, data_ram_o: std_logic_vector(SIZE-1 downto 0);
 	
 	signal fin_rx: std_logic; -- Indica que la uart recibio todas las coordenadas
@@ -83,7 +83,7 @@ begin
 	vram_instance: entity work.dual_ram
 	generic map(
 		ADD_W => ADDR_VRAM_W,
-		DATA_SIZE => SIZE+2
+		DATA_SIZE => 1
     )
     port map(
         clock => clock, 
@@ -93,15 +93,18 @@ begin
         data_o => data_Vram_o
     );
 
-	gett: entity work.gettter
+	vga: entity work.vga_ctrl
 	generic map(
 		ADD_W => ADDR_VRAM_W
     )
 	port map(
 		clk => clock,
-		reset => reset,
+		rst => reset,
 		data => data_Vram_o,
-		addrR => addrR_Vram
+		addrR => addrR_Vram,
+		hsync => hsync,
+		vsync => vsync,
+		rgb => rgb
 	);
 	
 end driver_arch;

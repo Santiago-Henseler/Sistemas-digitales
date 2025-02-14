@@ -50,7 +50,7 @@ begin
                 addr_act <= (others => '0');
                 dout_reg <= (others => '0');
                 fin_rx <= '0';
-            elsif addr_act >= to_unsigned(3, ADD_W) then -- porque hay 35841 coordenadas a recibir
+            elsif addr_act >= to_unsigned(35842, ADD_W) then -- porque hay 35841 coordenadas a recibir
                 fin_rx <= '1';
             elsif ready = '1' then -- Cuando el uart indica que termino de recibir el dato lo guardo en la RAM
                 dout_reg <= dout;
