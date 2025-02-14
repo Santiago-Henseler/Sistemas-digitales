@@ -25,8 +25,8 @@ architecture Behavioral of toplvl is
             );
      end component;
 
-
-   signal x0,x1 ,y0,y1,z0,z1 :std_logic_vector(0 downto 0);
+   signal x0,x1 ,y0,y1,z0,z1 :std_logic_vector(0 downto 0);   
+   
 begin
 
 	driver_inst: entity work.driver

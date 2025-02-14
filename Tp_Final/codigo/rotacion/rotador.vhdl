@@ -104,7 +104,7 @@ begin
     -- Datos de salida para la Vram
     ram_write_data <= "1";
     ram_write_addr <= write_addr_reg;
-
+    
     rot: entity work.rotador_equ
     generic map (
         SIZE => SIZE
@@ -119,9 +119,9 @@ begin
         a1 => angle_x,
         a2 => angle_y,
         a3 => angle_z,
-        x_out => x_rot,
-        y_out => y_rot,
-        z_out => z_rot,
+        x_rot => x_rot,
+        y_rot => y_rot,
+        z_rot => z_rot,
         ack => rotation_ack
         );
 
