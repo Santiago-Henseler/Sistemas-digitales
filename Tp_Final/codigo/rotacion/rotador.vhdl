@@ -16,7 +16,7 @@ entity rotador is
         ram_read_data: in std_logic_vector(SIZE-1 downto 0); -- Datos desde RAM cargada por el uart
         ram_read_addr: out std_logic_vector(ADDR_RAM_W-1 downto 0); -- Dirección de lectura en RAM
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
-        ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM (siempre va a ser '1')
+        ram_write_data: out std_logic_vector(9 downto 0); -- Datos para VRAM (siempre va a ser '1')
         angle_x: in signed(SIZE+1 downto 0);
         angle_y: in signed(SIZE+1 downto 0);
         angle_z: in signed(SIZE+1 downto 0)
@@ -27,14 +27,14 @@ architecture rotador_arq of rotador is
 type state_type is (IDLE, READ_RAM, ROTATE, WRITE_RAM, FIN);
     signal state, next_state: state_type;
 
-    signal x, y, z : signed(SIZE+1 downto 0);
+    signal x, y, z, data_vram : signed(SIZE+1 downto 0);
     signal x_rot, y_rot, z_rot : signed(SIZE+1 downto 0);
     signal rotation_req, rotation_ack : std_logic;
 
     signal read_addr_reg : std_logic_vector(ADDR_RAM_W-1 downto 0);
-    signal write_addr_reg : std_logic_vector(ADDR_VRAM_W-1 downto 0);
+    signal write_addr_reg : unsigned(ADDR_VRAM_W-1 downto 0);
     signal coord_ram: signed(SIZE+1 downto 0);
-    signal step : natural;    
+    signal step, n : natural;    
 begin
 
     process(clock, state, start, reset, rotation_ack) 
@@ -60,7 +60,7 @@ begin
                             next_state <= IDLE;
                         end if;
                     when READ_RAM =>
-                        if unsigned(read_addr_reg) = 2**ADDR_RAM_W-1 then
+                        if unsigned(read_addr_reg) = 4 then
                             next_state <= FIN;
                         else
                         -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram (por eso necesito 3 step por terna)
@@ -85,8 +85,18 @@ begin
                             next_state <= ROTATE;
                         end if;
                     when WRITE_RAM =>
-                        write_addr_reg <= std_logic_vector(resize(unsigned(x_rot) + (640 * ('0' & unsigned(y_rot))), ADDR_VRAM_W));
-                        next_state <= READ_RAM;
+                        if n = 0 then
+                            data_vram <= x_rot;
+                            n <= n+1;
+                        elsif n = 1 then
+                            data_vram <= y_rot;
+                            n <= n+1;
+                        else
+                            data_vram <= z_rot;
+                            next_state <= READ_RAM;
+                            n <= 0;
+                        end if;
+                            write_addr_reg <= write_addr_reg+1;
                     when FIN =>
                         done <= '1';
                         next_state <= IDLE;
@@ -102,8 +112,8 @@ begin
     -- Tomo la vram como una matriz de 640 x 480 posiciones
     ram_read_addr <= read_addr_reg;
     -- Datos de salida para la Vram
-    ram_write_data <= "1";
-    ram_write_addr <= write_addr_reg;
+    ram_write_data <= std_logic_vector(data_vram);
+    ram_write_addr <= std_logic_vector(write_addr_reg);
     
     rot: entity work.rotador_equ
     generic map (
@@ -123,6 +133,6 @@ begin
         y_rot => y_rot,
         z_rot => z_rot,
         ack => rotation_ack
-        );
+    );
 
 end rotador_arq;

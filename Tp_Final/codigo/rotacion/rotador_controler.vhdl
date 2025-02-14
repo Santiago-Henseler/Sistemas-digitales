@@ -18,7 +18,7 @@ entity rotador_controler is
 		ram_read_data: in std_logic_vector(SIZE-1 downto 0); -- Datos desde RAM de lectura
         ram_read_addr: out std_logic_vector(ADDR_RAM_W-1 downto 0); -- Dirección de lectura en RAM
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
-        ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM 
+        ram_write_data: out std_logic_vector(9 downto 0); -- Datos para VRAM 
 		done: out std_logic
 	);
 end rotador_controler;

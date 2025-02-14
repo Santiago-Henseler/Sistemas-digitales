@@ -22,7 +22,7 @@ architecture Behavioral of toplvl is
             probe_out3 : out std_logic_vector(0 downto 0);
             probe_out4 : out std_logic_vector(0 downto 0);
             probe_out5 : out std_logic_vector(0 downto 0)
-            );
+        );
      end component;
 
    signal x0,x1 ,y0,y1,z0,z1 :std_logic_vector(0 downto 0);   
