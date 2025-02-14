@@ -21,7 +21,6 @@ Architecture timing of timing is
 	constant max_div : natural := ((F*1000)/(16*min_baud));
 	subtype div16_type is natural range 0 to max_div-1;
 	signal Div16	: div16_type;
-	signal ClkDiv	: integer;
 	signal RxDiv	: integer;
 begin
 
@@ -37,20 +36,6 @@ begin
                   Top16 <= '1';
                else
                   Div16 <= Div16 + 1;
-               end if;
-            end if;
-      end process;
-
-      process (RST, CLK)
-         begin
-            if RST='1' then
-               ClkDiv <= 0;
-            elsif rising_edge(CLK) then
-               if Top16='1' then
-                  ClkDiv <= ClkDiv + 1;
-                  if ClkDiv = 15 then
-                     ClkDiv <= 0;
-                  end if;
                end if;
             end if;
       end process;

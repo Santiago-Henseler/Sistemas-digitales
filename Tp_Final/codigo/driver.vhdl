@@ -10,7 +10,8 @@ entity driver is
 		btn_z0, btn_z1: in std_logic;
 		hsync , vsync : out std_logic;
 		rgb : out std_logic_vector(2 downto 0);
-		done: out std_logic
+		done: out std_logic;
+		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0)
 	);
 end driver;
 
@@ -77,7 +78,10 @@ begin
 		btn_y1 => btn_y1,
 		btn_z0 => btn_z0,
 		btn_z1 => btn_z1,		
-		done => done
+		done => done,
+		x_vio => x_vio,
+		y_vio => y_vio,
+		z_vio => z_vio
 	);
 
 	vram_instance: entity work.dual_ram

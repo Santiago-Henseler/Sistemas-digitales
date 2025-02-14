@@ -17,9 +17,8 @@ entity rotador is
         ram_read_addr: out std_logic_vector(ADDR_RAM_W-1 downto 0); -- Dirección de lectura en RAM
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
         ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM (siempre va a ser '1')
-        angle_x: in signed(SIZE+1 downto 0);
-        angle_y: in signed(SIZE+1 downto 0);
-        angle_z: in signed(SIZE+1 downto 0)
+        angle_x, angle_y,angle_z: in signed(SIZE+1 downto 0);
+        x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0)
     );
 end rotador;
 
@@ -104,6 +103,10 @@ begin
     -- Datos de salida para la Vram
     ram_write_data <= "1";
     ram_write_addr <= write_addr_reg;
+
+    x_vio <= std_logic_vector(x_rot);
+    y_vio <= std_logic_vector(y_rot);
+    z_vio <= std_logic_vector(z_rot);
 
     rot: entity work.rotador_equ
     generic map (

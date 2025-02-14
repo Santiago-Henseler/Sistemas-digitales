@@ -21,12 +21,16 @@ architecture Behavioral of toplvl is
             probe_out2 : out std_logic_vector(0 downto 0);
             probe_out3 : out std_logic_vector(0 downto 0);
             probe_out4 : out std_logic_vector(0 downto 0);
-            probe_out5 : out std_logic_vector(0 downto 0)
+            probe_out5 : out std_logic_vector(0 downto 0);
+            probe_in0 : in std_logic_vector(9 downto 0);
+            probe_in1 : in std_logic_vector(9 downto 0);
+            probe_in2 : in std_logic_vector(9 downto 0)
             );
      end component;
 
-
    signal x0,x1 ,y0,y1,z0,z1 :std_logic_vector(0 downto 0);
+   
+   signal x_o, y_o, z_o: std_logic_vector(9 downto 0);
 begin
 
 	driver_inst: entity work.driver
@@ -43,7 +47,10 @@ begin
             hsync => hsync ,
             vsync => vsync,
             rgb => rgb,
-            done => done
+            done => done,
+            x_vio => x_o,
+            y_vio => y_o,
+            z_vio => z_o
 	);
 
 
@@ -55,7 +62,10 @@ begin
         probe_out2 => y0,
         probe_out3 => y1,
         probe_out4 => z0,
-        probe_out5 => z1
+        probe_out5 => z1,
+        probe_in0 => x_o,
+        probe_in1 => y_o,
+        probe_in2 => z_o
     );
 
 end Behavioral;
