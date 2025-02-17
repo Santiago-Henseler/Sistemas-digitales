@@ -25,7 +25,7 @@ end rotador_equ;
 
 architecture rotador_equ_arq of rotador_equ is
 
-    constant GANANCIA: signed := to_signed(3, SIZE+1);  --por cada cordic hay una ganancia de ≈ 1,65 => 1,65**3 ≈ 4.45
+    constant GANANCIA: signed := to_signed(4, SIZE+1);  --por cada cordic hay una ganancia de ≈ 1,65 => 1,65**3 ≈ 4.45
 
     signal req_y, req_z: std_logic;
     signal z_out_reg, x_out_1, y_out_1, x_out_2, y_out_2, x_out_3, y_out_3: signed(SIZE+1 downto 0);
