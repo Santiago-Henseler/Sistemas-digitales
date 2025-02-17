@@ -25,7 +25,8 @@ entity rotador_controler is
 end rotador_controler;
 
 architecture rotador_controler_arch of rotador_controler is
-    constant DELTA : signed(SIZE+1 downto 0) := "0001111111"; -- Desplazamiento de angulo fijo
+                                                  
+    constant DELTA : signed(SIZE+1 downto 0) := "0000010100"; -- Desplazamiento de angulo fijo
     signal ang_x, ang_y, ang_z : signed(SIZE+1 downto 0);
 
 begin

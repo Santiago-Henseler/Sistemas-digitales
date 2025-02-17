@@ -13,7 +13,7 @@ all: clean cordic
 cordic:
 	@$(GHDL_CMD) -a arctan_rom.vhdl
 	@$(GHDL_CMD) -a cordic.vhdl
-	@$(GHDL_CMD) -a cordic_des.vhdl
+	@$(GHDL_CMD) -a cordic_iter.vhdl
 	@$(GHDL_CMD) -a pre_cordic.vhdl
 	@$(GHDL_CMD) -a tb_cordic.vhdl
 	echo --Codigo compilado--

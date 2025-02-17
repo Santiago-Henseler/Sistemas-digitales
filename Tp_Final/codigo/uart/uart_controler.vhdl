@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity uart_controler is
 	generic (
-		F : natural := 50000;	-- Device clock frequency [KHz].
-		min_baud : natural := 1200;
+		BAUD_RATE: integer := 115200;
+		CLOCK_RATE: integer := 50E6;
         ADD_W: natural := 8; -- Tamaño de direccionamiento de la RAM
 		num_data_bits : natural := 8 -- Tamaño del dato a recibir
 	);
@@ -15,32 +15,42 @@ entity uart_controler is
         rx : in std_logic;
         data: out std_logic_vector(num_data_bits-1 downto 0);
 		addrW: out std_logic_vector(ADD_W-1 downto 0);
-		fin_rx: out std_logic
+		fin_rx: out std_logic;
+		recibidos: out std_logic_vector(7 downto 0);
+		err: out std_logic
 	);
 end;
 
 architecture arch of uart_controler is
-    constant Divisor: std_logic_vector := "000000011011"; -- Divisor=27 para 115200 baudios
 
     signal ready: std_logic;
     signal dout, dout_reg: std_logic_vector(num_data_bits-1 downto 0);
+    signal rst_clk_rx: std_logic;
     
     signal addr_act:  unsigned(ADD_W-1 downto 0);
 begin
-    uart_inst: entity work.uart
+
+	meta_harden_rst_i0: entity work.meta_harden
+		port map(
+			clk_dst 	=> clk,
+			rst_dst 	=> '0',    		-- No reset on the hardener for reset!
+			signal_src 	=> rst,
+			signal_dst 	=> rst_clk_rx
+		);
+
+    uart_inst: entity work.uart_rx
 	generic map (
-		F 	=> 50000, -- clock frequency
-		min_baud => 1200,
-		num_data_bits => 8
+		BAUD_RATE	=> BAUD_RATE,
+		CLOCK_RATE => CLOCK_RATE
 	)
 	port map (
-        clk	=> clk,
-		rst	=> rst,
-		Rx	=> rx,
-        Divisor	=> Divisor,
-		Dout	=> dout,
-		RxRdy	=> ready,
-		RxErr	=> open
+        clk_rx	=> clk,
+		rst_clk_rx	=> rst_clk_rx,
+		rxd_i	=> rx,
+		rx_data	=> dout,
+        rxd_clk_rx 	=> open,
+		rx_data_rdy	=> ready,
+		frm_err	=> err
 	);
 	    
     process(clk, rst , ready, dout)
@@ -50,9 +60,10 @@ begin
                 addr_act <= (others => '0');
                 dout_reg <= (others => '0');
                 fin_rx <= '0';
-            elsif addr_act >= to_unsigned(35842, ADD_W) then -- porque hay 35841 coordenadas a recibir
+            elsif addr_act = to_unsigned(3, ADD_W) then -- porque hay 35841 coordenadas a recibir
                 fin_rx <= '1';
             elsif ready = '1' then -- Cuando el uart indica que termino de recibir el dato lo guardo en la RAM
+                recibidos <= dout;
                 dout_reg <= dout;
                 addr_act <= addr_act+1;
             end if;

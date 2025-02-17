@@ -30,6 +30,9 @@ type state_type is (IDLE, READ_RAM, ROTATE, WRITE_RAM, FIN);
     signal x_rot, y_rot, z_rot : signed(SIZE+1 downto 0);
     signal rotation_req, rotation_ack : std_logic;
 
+    signal x_v, y_v, z_v : signed(SIZE+1 downto 0);
+
+
     signal read_addr_reg : std_logic_vector(ADDR_RAM_W-1 downto 0);
     signal write_addr_reg : std_logic_vector(ADDR_VRAM_W-1 downto 0);
     signal coord_ram: signed(SIZE+1 downto 0);
@@ -48,7 +51,6 @@ begin
                 done <= '0';
             else
                 rotation_req <= '0';
-                done <= '0';
                 -- Cambio de estado
                 state <= next_state;
                 case state is
@@ -59,7 +61,7 @@ begin
                             next_state <= IDLE;
                         end if;
                     when READ_RAM =>
-                        if unsigned(read_addr_reg) = 2**ADDR_RAM_W-1 then
+                        if unsigned(read_addr_reg) = 3 then --2**ADDR_RAM_W-1
                             next_state <= FIN;
                         else
                         -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram (por eso necesito 3 step por terna)
@@ -80,15 +82,17 @@ begin
                         rotation_req <= '1';
                         if rotation_ack = '1' then
                             next_state <= WRITE_RAM;
+                            x_v <= x_rot;
+                            y_v <= y_rot;
+                            z_v <= z_rot;
                         else
                             next_state <= ROTATE;
                         end if;
                     when WRITE_RAM =>
-                        write_addr_reg <= std_logic_vector(resize(unsigned(x_rot) + (640 * ('0' & unsigned(y_rot))), ADDR_VRAM_W));
+                        write_addr_reg <= std_logic_vector(resize(unsigned(y_rot) + (640 * ('0' & unsigned(z_rot))), ADDR_VRAM_W));
                         next_state <= READ_RAM;
                     when FIN =>
                         done <= '1';
-                        next_state <= IDLE;
                     when others =>
                         next_state <= IDLE;
                 end case;
@@ -104,9 +108,9 @@ begin
     ram_write_data <= "1";
     ram_write_addr <= write_addr_reg;
 
-    x_vio <= std_logic_vector(x_rot);
-    y_vio <= std_logic_vector(y_rot);
-    z_vio <= std_logic_vector(z_rot);
+    x_vio <= std_logic_vector(x_v);
+    y_vio <= std_logic_vector(y_v);
+    z_vio <= std_logic_vector(z_v);
 
     rot: entity work.rotador_equ
     generic map (

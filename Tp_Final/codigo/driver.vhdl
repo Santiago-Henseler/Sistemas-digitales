@@ -10,8 +10,9 @@ entity driver is
 		btn_z0, btn_z1: in std_logic;
 		hsync , vsync : out std_logic;
 		rgb : out std_logic_vector(2 downto 0);
-		done: out std_logic;
-		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0)
+		done, err: out std_logic;
+		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0);
+		recibidos: out std_logic_vector(7 downto 0)
 	);
 end driver;
 
@@ -31,8 +32,8 @@ begin
 	
 	uart_inst: entity work.uart_controler
 	generic map (
-		F 	=> 50000, 
-		min_baud => 1200,
+		BAUD_RATE 	=> 115200, 
+		CLOCK_RATE => 125E6,
 		ADD_W => ADDR_RAM_W,
 		num_data_bits => SIZE
 	)
@@ -42,7 +43,9 @@ begin
 		rx	=> rx,
 		data => dout_uart,
 		addrW => addrW_ram,
-		fin_rx => fin_rx
+		fin_rx => fin_rx,
+		recibidos => recibidos,
+		err => err
 	);
 
 	ram_instance: entity work.dual_ram

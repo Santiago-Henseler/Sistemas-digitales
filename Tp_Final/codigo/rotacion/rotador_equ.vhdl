@@ -25,12 +25,38 @@ end rotador_equ;
 
 architecture rotador_equ_arq of rotador_equ is
 
+    constant GANANCIA: signed := to_signed(3, SIZE+1);  --por cada cordic hay una ganancia de ≈ 1,65 => 1,65**3 ≈ 4.45
+
     signal req_y, req_z: std_logic;
-    signal x_out_1, y_out_1, z_out_1, x_out_2, y_out_2, z_out_2, x_out_3, y_out_3, z_out_3: signed(SIZE+1 downto 0);
+    signal z_out_reg, x_out_1, y_out_1, x_out_2, y_out_2, x_out_3, y_out_3: signed(SIZE+1 downto 0);
     signal ack_x, ack_y: std_logic;
 
 begin
-  
+
+    process(clock)
+    begin
+        if rising_edge(clock) then
+            if reset = '1' then
+                req_y <= '0';
+                req_z <= '0';
+                z_out_reg <= (others => '0');
+            else
+                if ack_x = '1' then
+                    req_y <= '1';
+                else 
+                    req_y <= '0';
+                end if;
+
+                if ack_y = '1' then
+                    req_z <= '1';
+                    z_out_reg <= x_out_2;
+                else 
+                    req_z <= '0';
+                end if;
+            end if;
+        end if;
+    end process;
+
     rot_x: entity work.pre_cordic 
     generic map(
         SIZE => SIZE
@@ -45,11 +71,9 @@ begin
         z0 => a1,
         x_out => x_out_1,
         y_out => y_out_1,
-        z_out => z_out_1,
+        z_out => open,
         ack => ack_x
     );
-
-    req_y <= '1' when ack_x = '1' else '0';
 
     rot_y: entity work.pre_cordic 
     generic map(
@@ -65,11 +89,9 @@ begin
         z0 => a2,
         x_out => x_out_2,
         y_out => y_out_2,
-        z_out => z_out_2,
+        z_out => open,
         ack => ack_y
     );
-
-    req_z <= '1' when ack_y = '1' else '0';
 
     rot_z: entity work.pre_cordic 
     generic map(
@@ -85,12 +107,12 @@ begin
         z0 => a3,
         x_out => x_out_3,
         y_out => y_out_3,
-        z_out => z_out_3,
+        z_out => open,
         ack => ack
     );
 
-    x_out <= x_out_3;
-    y_out <= y_out_3;
-    z_out <= x_out_2;
+    x_out <= resize(x_out_3 / GANANCIA, x_out'length);
+    y_out <= resize(y_out_3 / GANANCIA, y_out'length);
+    z_out <= resize(z_out_reg / GANANCIA, z_out'length);
 
 end rotador_equ_arq;
