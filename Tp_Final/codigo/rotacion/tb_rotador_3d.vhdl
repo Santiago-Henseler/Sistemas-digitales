@@ -31,13 +31,29 @@ begin
                 req <= '0';
             elsif req = '0' then
                 if step = 0 then
-                    -- Vector original (120, 0 , 0)
+                    -- Vector original (120, 0 , 0) y deberia devolver el mismo
+                    -- Pero por los errores de aproximación del coordic se transfomra en (110,0,0)
                     x0 <= to_signed(120,SIZE+2);
-                    a2 <= to_signed(40, SIZE+2); -- Angulo de aproximadamente 14 grados en eje y 
                     step <= step+1;
                     req <= '1';
                 elsif ack = '1' and step = 1 then 
-                     
+                    -- Vector original (120, 0 , 0) y deberia devolver (116,0,-29)
+                    -- Pero por los errores de aproximación del coordic se transfomra en (107,0,-4)
+                    a2 <= to_signed(40, SIZE+2); -- Angulo de aproximadamente 14 grados en eje y 
+                    step <= step+1;
+                    req <= '1';
+                elsif ack = '1' and step = 2 then 
+                    -- Vector original (120, 0 , 80) y deberia devolver (135,0,50)
+                    -- Pero por los errores de aproximación del coordic se transfomra en (117,0,69)
+                    z0 <= to_signed(80, SIZE+2);
+                    step <= step+1;
+                    req <= '1';
+                elsif ack = '1' and step = 3 then 
+                    -- Vector original (120, 70 , 80) y deberia devolver (135,70,50)
+                    -- Pero por los errores de aproximación del coordic se transfomra en (116,63,68)
+                    y0 <= to_signed(70, SIZE+2);
+                    step <= step+1;
+                    req <= '1';
                 end if;
             end if;
         end if;

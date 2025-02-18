@@ -31,7 +31,7 @@ architecture Behavioral of toplvl is
             );
      end component;
 
-   signal x0,x1 ,y0,y1,z0,z1, rst, err :std_logic_vector(0 downto 0);
+   signal x0,x1 ,y0,y1,z0,z1, rst, fin_uart :std_logic_vector(0 downto 0);
    
    signal x_o, y_o, z_o: std_logic_vector(9 downto 0);
    
@@ -57,9 +57,8 @@ begin
             y_vio => y_o,
             z_vio => z_o,
             recibidos => recibidos,
-            err => err(0)
+            fin_uart => fin_uart(0)
 	);
-
 
     U_vio : vio_0
     port map (
@@ -75,7 +74,7 @@ begin
         probe_in1 => y_o,
         probe_in2 => z_o,
         probe_in3 => recibidos,
-        probe_in4 => err
+        probe_in4 => fin_uart
     );
 
 end Behavioral;

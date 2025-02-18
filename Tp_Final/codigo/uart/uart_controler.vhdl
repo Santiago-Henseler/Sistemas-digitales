@@ -16,8 +16,7 @@ entity uart_controler is
         data: out std_logic_vector(num_data_bits-1 downto 0);
 		addrW: out std_logic_vector(ADD_W-1 downto 0);
 		fin_rx: out std_logic;
-		recibidos: out std_logic_vector(7 downto 0);
-		err: out std_logic
+		recibidos: out std_logic_vector(7 downto 0)
 	);
 end;
 
@@ -50,7 +49,7 @@ begin
 		rx_data	=> dout,
         rxd_clk_rx 	=> open,
 		rx_data_rdy	=> ready,
-		frm_err	=> err
+		frm_err	=> open
 	);
 	    
     process(clk, rst , ready, dout)

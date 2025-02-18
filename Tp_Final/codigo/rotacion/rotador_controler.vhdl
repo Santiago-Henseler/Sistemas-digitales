@@ -20,7 +20,8 @@ entity rotador_controler is
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
         ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM 
 		done: out std_logic;
-		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0)
+		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0);
+        rot_req: out std_logic
 	);
 end rotador_controler;
 
@@ -91,7 +92,8 @@ begin
             angle_z => ang_z,
             x_vio => x_vio,
             y_vio => y_vio,
-            z_vio => z_vio
+            z_vio => z_vio,
+            rot_req => rot_req
         );
 
 end rotador_controler_arch;

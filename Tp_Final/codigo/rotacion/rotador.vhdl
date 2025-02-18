@@ -18,12 +18,13 @@ entity rotador is
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
         ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM (siempre va a ser '1')
         angle_x, angle_y,angle_z: in signed(SIZE+1 downto 0);
-        x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0)
+        x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0);
+        rot_req: out std_logic
     );
 end rotador;
 
 architecture rotador_arq of rotador is
-type state_type is (IDLE, READ_RAM, ROTATE, WRITE_RAM, FIN);
+type state_type is (IDLE, READ_RAM,ROTATE_REQ, ROTATE, WRITE_RAM, FIN);
     signal state, next_state: state_type;
 
     signal x, y, z : signed(SIZE+1 downto 0);
@@ -48,6 +49,7 @@ begin
                 read_addr_reg <= (others => '0');
                 write_addr_reg <= (others => '0');
                 rotation_req <= '0';
+                rot_req <= '0';
                 done <= '0';
             else
                 rotation_req <= '0';
@@ -61,7 +63,7 @@ begin
                             next_state <= IDLE;
                         end if;
                     when READ_RAM =>
-                        if unsigned(read_addr_reg) = 3 then --2**ADDR_RAM_W-1
+                        if unsigned(read_addr_reg) = to_unsigned(3, ADDR_RAM_W) then --2**ADDR_RAM_W-1
                             next_state <= FIN;
                         else
                         -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram (por eso necesito 3 step por terna)
@@ -73,13 +75,18 @@ begin
                                 step <= step+1;
                             else
                                 z <= coord_ram;
-                                next_state <= ROTATE;
+                                next_state <= ROTATE_REQ;
                                 step <= 0;
                             end if;
                             read_addr_reg <= std_logic_vector(unsigned(read_addr_reg) + 1);
                         end if;
-                    when ROTATE =>
+                    when ROTATE_REQ =>
                         rotation_req <= '1';
+                        rot_req <= '1';
+                        next_state <= ROTATE;
+                    when ROTATE => 
+                        rotation_req <= '0';
+                        rot_req <= '0';
                         if rotation_ack = '1' then
                             next_state <= WRITE_RAM;
                             x_v <= x_rot;
