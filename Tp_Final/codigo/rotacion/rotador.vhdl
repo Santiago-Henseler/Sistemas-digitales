@@ -63,7 +63,7 @@ begin
                             next_state <= IDLE;
                         end if;
                     when READ_RAM =>
-                        if unsigned(read_addr_reg) = to_unsigned(3, ADDR_RAM_W) then --2**ADDR_RAM_W-1
+                        if unsigned(read_addr_reg) = to_unsigned(2**ADDR_RAM_W-1, ADDR_RAM_W) then --2**ADDR_RAM_W-1
                             next_state <= FIN;
                         else
                         -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram (por eso necesito 3 step por terna)

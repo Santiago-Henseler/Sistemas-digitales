@@ -18,7 +18,7 @@ end driver;
 
 architecture driver_arch of driver is
 	constant ADDR_VRAM_W : natural := 19; --  El tamaño de la vram es de 19 bits porque 640X480 = 307.200 (tamaño de pantalla) < 2**19 = 524.288 
-	constant ADDR_RAM_W: natural := 16; -- Uso direcciones de 16 bits porque tengo 35.841 (3X11947) coordenadas que almacenar
+	constant ADDR_RAM_W: natural := 16; -- Uso direcciones de 16 bits porque tengo 35.838 (3X11946) coordenadas que almacenar
 	constant SIZE : natural := 8; -- tamaño (en bits) de las coordenadas
 	
 	signal addrW_Vram, addrR_Vram: std_logic_vector(ADDR_VRAM_W-1 downto 0);

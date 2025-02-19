@@ -1,0 +1,23 @@
+0.6
+2018.2
+Jun 14 2018
+20:07:38
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/dp_ram/dp_ram.vhdl,1739451477,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl,,,dual_ram,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl,1739801184,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl,,,driver,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/arctan_rom.vhdl,1735248914,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/cordic.vhdl,,,arctan_rom,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/cordic.vhdl,1738860231,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/cordic_iter.vhdl,,,cordic,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/cordic_iter.vhdl,1739817493,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/pre_cordic.vhdl,,,cordic_iter,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/cordic/pre_cordic.vhdl,1735242862,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador_equ.vhdl,,,pre_cordic,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador.vhdl,1739814396,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador_controler.vhdl,,,rotador,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador_controler.vhdl,1739805830,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl,,,rotador_controler,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador_equ.vhdl,1739817507,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador.vhdl,,,rotador_equ,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl,1739796474,vhdl,,,,toplvl,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/meta_harden.vhdl,1739760894,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_controler.vhdl,,,meta_harden,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_baud_gen.vhdl,1739801253,vhdl,,,,uart_baud_gen,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_controler.vhdl,1739810076,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl,,,uart_controler,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_rx.vhdl,1739796980,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_controler.vhdl,,,uart_rx,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_rx_ctl.vhdl,1739810042,vhdl,,,,uart_rx_ctl,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/gen_pixels.vhdl,1739469961,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_ctrl.vhdl,,,gen_pixels,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_ctrl.vhdl,1739470354,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl,,,vga_ctrl,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_sync.vhdl,1739401064,vhdl,/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_ctrl.vhdl,,,vga_sync,,,,,,,,
+/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.srcs/sources_1/ip/vio_0/sim/vio_0.vhd,1739817804,vhdl,,,,vio_0,,,,,,,,

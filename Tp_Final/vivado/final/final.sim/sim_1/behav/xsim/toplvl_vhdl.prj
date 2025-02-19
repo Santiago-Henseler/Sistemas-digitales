@@ -1,0 +1,24 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../final.srcs/sources_1/ip/vio_0/sim/vio_0.vhd" \
+"../../../../../../codigo/rotacion/cordic/arctan_rom.vhdl" \
+"../../../../../../codigo/rotacion/cordic/cordic.vhdl" \
+"../../../../../../codigo/rotacion/cordic/cordic_iter.vhdl" \
+"../../../../../../codigo/dp_ram/dp_ram.vhdl" \
+"../../../../../../codigo/uart/meta_harden.vhdl" \
+"../../../../../../codigo/uart/uart_rx.vhdl" \
+"../../../../../../codigo/uart/uart_controler.vhdl" \
+"../../../../../../codigo/rotacion/cordic/pre_cordic.vhdl" \
+"../../../../../../codigo/rotacion/rotador_equ.vhdl" \
+"../../../../../../codigo/rotacion/rotador.vhdl" \
+"../../../../../../codigo/rotacion/rotador_controler.vhdl" \
+"../../../../../../codigo/vga/vga_sync.vhdl" \
+"../../../../../../codigo/vga/gen_pixels.vhdl" \
+"../../../../../../codigo/vga/vga_ctrl.vhdl" \
+"../../../../../../codigo/driver.vhdl" \
+"../../../../../../codigo/uart/uart_baud_gen.vhdl" \
+"../../../../../../codigo/uart/uart_rx_ctl.vhdl" \
+"../../../../../../codigo/toplvl.vhdl" \
+
+# Do not sort compile order
+nosort

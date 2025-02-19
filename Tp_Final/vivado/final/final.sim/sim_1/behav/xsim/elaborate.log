@@ -1,0 +1,35 @@
+Vivado Simulator 2018.2
+Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
+Running: /opt/xilling/Vivado/2018.2/bin/unwrapped/lnx64.o/xelab -wto 2d294f2f73a94056afaef3d97e223d14 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip -L xpm --snapshot toplvl_behav xil_defaultlib.toplvl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.math_real
+Compiling architecture meta_harden_arq of entity xil_defaultlib.meta_harden [meta_harden_default]
+Compiling architecture uart_baud_gen_arq of entity xil_defaultlib.uart_baud_gen [\uart_baud_gen(baud_rate=115200,...]
+Compiling architecture uart_rx_ctl_arq of entity xil_defaultlib.uart_rx_ctl [uart_rx_ctl_default]
+Compiling architecture uart_rx_arq of entity xil_defaultlib.uart_rx [\uart_rx(clock_rate=125000000)\]
+Compiling architecture arch of entity xil_defaultlib.uart_controler [\uart_controler(clock_rate=12500...]
+Compiling architecture dual_ram_arch of entity xil_defaultlib.dual_ram [\dual_ram(add_w=16,data_size=8)\]
+Compiling architecture arctan_rom_arq of entity xil_defaultlib.arctan_rom [\arctan_rom(add_w=3,data_w=10)\]
+Compiling architecture cordic_arch of entity xil_defaultlib.cordic [cordic_default]
+Compiling architecture cordic_iter_arch of entity xil_defaultlib.cordic_iter [cordic_iter_default]
+Compiling architecture pre_cordic_arch of entity xil_defaultlib.pre_cordic [pre_cordic_default]
+Compiling architecture rotador_equ_arq of entity xil_defaultlib.rotador_equ [\rotador_equ(size=8)\]
+Compiling architecture rotador_arq of entity xil_defaultlib.rotador [\rotador(size=8)\]
+Compiling architecture rotador_controler_arch of entity xil_defaultlib.rotador_controler [\rotador_controler(size=8)\]
+Compiling architecture dual_ram_arch of entity xil_defaultlib.dual_ram [\dual_ram(add_w=19)\]
+Compiling architecture vga_sync_arq of entity xil_defaultlib.vga_sync [vga_sync_default]
+Compiling architecture gen_pixels_arch of entity xil_defaultlib.gen_pixels [\gen_pixels(add_w=19)\]
+Compiling architecture vga_ctrl_arch of entity xil_defaultlib.vga_ctrl [\vga_ctrl(add_w=19)\]
+Compiling architecture driver_arch of entity xil_defaultlib.driver [driver_default]
+Compiling architecture vio_0_arch of entity xil_defaultlib.vio_0 [vio_0_default]
+Compiling architecture behavioral of entity xil_defaultlib.toplvl
+Built simulation snapshot toplvl_behav
