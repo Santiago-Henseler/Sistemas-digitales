@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date                      : Tue Feb 18 20:07:11 2025
+| Date                      : Wed Feb 19 16:20:03 2025
 | Host                      : santy22 running 64-bit Linux Mint 21.2
 | Command                   : report_io -file toplvl_io_placed.rpt
 | Design                    : toplvl
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|             8 |
+|             7 |
 +---------------+
 
 
@@ -328,7 +328,7 @@ Table of Contents
 | R11        |             | Dedicated  | DONE_0                  | Config        |             |       0 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | R12        |             |            | GND                     | GND           |             |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |
 | R13        |             |            | VCCINT                  | VCCINT        |             |         |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| R14        | done        | High Range | IO_L6N_T0_VREF_34       | OUTPUT        | LVCMOS33    |      34 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
+| R14        |             | High Range | IO_L6N_T0_VREF_34       | User IO       |             |      34 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | R15        |             | High Range | VCCO_34                 | VCCO          |             |      34 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | R16        |             | High Range | IO_L19P_T3_34           | User IO       |             |      34 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | R17        |             | High Range | IO_L19N_T3_VREF_34      | User IO       |             |      34 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |

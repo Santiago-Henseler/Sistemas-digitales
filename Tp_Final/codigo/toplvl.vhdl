@@ -5,8 +5,7 @@ entity toplvl is
 port(
 		clock, rx: in std_logic;
 		hsync , vsync : out std_logic;
-		rgb : out std_logic_vector(2 downto 0);
-		done: out std_logic
+		rgb : out std_logic_vector(2 downto 0)
 	);
 end toplvl;
 
@@ -27,7 +26,7 @@ architecture Behavioral of toplvl is
             probe_in1 : in std_logic_vector(9 downto 0);
             probe_in2 : in std_logic_vector(9 downto 0);
             probe_in3 : in std_logic_vector(7 downto 0);
-            probe_in4 : in std_logic_vector(0 downto 0)
+            probe_in4: in std_logic_vector(15 downto 0)
             );
      end component;
 
@@ -36,6 +35,7 @@ architecture Behavioral of toplvl is
    signal x_o, y_o, z_o: std_logic_vector(9 downto 0);
    
    signal recibidos: std_logic_vector(7 downto 0);
+    signal pos: std_logic_vector(15 downto 0);
 begin
 
 	driver_inst: entity work.driver
@@ -52,12 +52,11 @@ begin
             hsync => hsync ,
             vsync => vsync,
             rgb => rgb,
-            done => done,
             x_vio => x_o,
             y_vio => y_o,
             z_vio => z_o,
             recibidos => recibidos,
-            fin_uart => fin_uart(0)
+            pos => pos
 	);
 
     U_vio : vio_0
@@ -74,7 +73,7 @@ begin
         probe_in1 => y_o,
         probe_in2 => z_o,
         probe_in3 => recibidos,
-        probe_in4 => fin_uart
+        probe_in4 => pos
     );
 
 end Behavioral;

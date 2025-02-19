@@ -10,9 +10,9 @@ entity driver is
 		btn_z0, btn_z1: in std_logic;
 		hsync , vsync : out std_logic;
 		rgb : out std_logic_vector(2 downto 0);
-		done, fin_uart: out std_logic;
 		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0);
-		recibidos: out std_logic_vector(7 downto 0)
+		recibidos: out std_logic_vector(7 downto 0);
+		pos: out std_logic_vector(15 downto 0)
 	);
 end driver;
 
@@ -21,6 +21,7 @@ architecture driver_arch of driver is
 	constant ADDR_RAM_W: natural := 16; -- Uso direcciones de 16 bits porque tengo 35.838 (3X11946) coordenadas que almacenar
 	constant SIZE : natural := 8; -- tamaño (en bits) de las coordenadas
 	
+	-- Señales para transpaso de datos
 	signal addrW_Vram, addrR_Vram: std_logic_vector(ADDR_VRAM_W-1 downto 0);
 	signal addrW_ram, addrR_ram: std_logic_vector(ADDR_RAM_W-1 downto 0);
 	signal data_Vram_i, data_Vram_o: std_logic_vector(0 downto 0);
@@ -28,7 +29,63 @@ architecture driver_arch of driver is
 	
 	signal fin_rx: std_logic; -- Indica que la uart recibio todas las coordenadas
 	signal dout_uart: std_logic_vector(SIZE-1 downto 0);
+
+	-- Flujo del programa
+	type state_type is (UART, ROTATE_REQ, ROTATE, VGA, REFRESH_VGA);
+    signal state, next_state: state_type;
+	signal start_rot, done, vsync_ready: std_logic;
+
 begin
+	process(clock, reset, state)
+	begin
+		if rising_edge(clock) then
+            if reset = '1' then
+                state <= UART;
+				start_rot <= '0';
+            else
+                -- Cambio de estado
+                state <= next_state;
+                case state is
+                    when UART =>
+                        recibidos <= std_logic_vector(to_unsigned(1, SIZE));
+						-- espero a que termine de recibir los datos por UART
+                        if fin_rx = '1' then
+                            next_state <= ROTATE_REQ;
+                        else
+                            next_state <= UART;
+                        end if;
+                    when ROTATE_REQ =>
+                        recibidos <= std_logic_vector(to_unsigned(2, SIZE));
+						start_rot <= '1';
+						next_state <= ROTATE;
+                    when ROTATE =>
+                        recibidos <= std_logic_vector(to_unsigned(3, SIZE));
+						-- espero a que termine de hacer la rotación
+						start_rot <= '0';
+                        if done = '1' then
+							next_state <= VGA;
+						else
+							next_state <= ROTATE;
+						end if;
+                    when VGA =>
+                        recibidos <= std_logic_vector(to_unsigned(4, SIZE));
+                        --espero que se recorra toda la pantalla
+						if vsync_ready = '1' then
+							next_state <= REFRESH_VGA;
+						else
+							next_state <= VGA;
+						end if;
+                    when REFRESH_VGA =>
+                       recibidos <= std_logic_vector(to_unsigned(5, SIZE));
+                        --limpio la ram
+						--next_state <= ROTATE_REQ;
+                    when others =>
+                        next_state <= ROTATE_REQ;
+                end case;
+            end if;
+        end if;
+		
+	end process;
 	
 	uart_inst: entity work.uart_controler
 	generic map (
@@ -43,11 +100,12 @@ begin
 		rx	=> rx,
 		data => dout_uart,
 		addrW => addrW_ram,
-		fin_rx => fin_rx,
-		recibidos => recibidos
+		fin_rx => fin_rx, 
+		recibidos => open -- Dato al vio para confirmar recepcion
 	);
 
-    
+    pos <= addrR_ram;
+
 	ram_instance: entity work.dual_ram
 	generic map(
 		ADD_W => ADDR_RAM_W, 
@@ -70,7 +128,7 @@ begin
 	port map(
 		clock => clock,
 		reset => reset,
-		start => fin_rx,
+		start => start_rot,
 		ram_read_data => data_ram_o,
 		ram_read_addr => addrR_ram,
 		ram_write_addr => addrW_Vram,
@@ -84,8 +142,7 @@ begin
 		done => done,
 		x_vio => x_vio,
 		y_vio => y_vio,
-		z_vio => z_vio,
-		rot_req => fin_uart
+		z_vio => z_vio
 	);
 
 	vram_instance: entity work.dual_ram
@@ -101,7 +158,7 @@ begin
         data_o => data_Vram_o
     );
 
-	vga: entity work.vga_ctrl
+	vga_instance: entity work.vga_ctrl
 	generic map(
 		ADD_W => ADDR_VRAM_W
     )
@@ -111,8 +168,10 @@ begin
 		data => data_Vram_o,
 		addrR => addrR_Vram,
 		hsync => hsync,
-		vsync => vsync,
+		vsync => vsync_ready,
 		rgb => rgb
 	);
+	
+	vsync <= vsync_ready;
 	
 end driver_arch;

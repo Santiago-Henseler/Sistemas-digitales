@@ -10,4 +10,8 @@ USB.write((120).to_bytes(1, "big", signed=False))
 USB.write((0).to_bytes(1, "big", signed=False))
 USB.write((0).to_bytes(1, "big", signed=False))
 
+USB.write((60).to_bytes(1, "big", signed=False))
+USB.write((10).to_bytes(1, "big", signed=False))
+USB.write((0).to_bytes(1, "big", signed=False))
+
 USB.close()

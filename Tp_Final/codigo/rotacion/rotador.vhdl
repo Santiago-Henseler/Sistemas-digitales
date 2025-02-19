@@ -18,13 +18,12 @@ entity rotador is
         ram_write_addr: out std_logic_vector(ADDR_VRAM_W-1 downto 0); -- Dirección de escritura en VRAM
         ram_write_data: out std_logic_vector(0 downto 0); -- Datos para VRAM (siempre va a ser '1')
         angle_x, angle_y,angle_z: in signed(SIZE+1 downto 0);
-        x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0);
-        rot_req: out std_logic
+        x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0)
     );
 end rotador;
 
 architecture rotador_arq of rotador is
-type state_type is (IDLE, READ_RAM,ROTATE_REQ, ROTATE, WRITE_RAM, FIN);
+    type state_type is (IDLE, READ_RAM,ROTATE_REQ, ROTATE, WRITE_RAM, FIN);
     signal state, next_state: state_type;
 
     signal x, y, z : signed(SIZE+1 downto 0);
@@ -32,7 +31,6 @@ type state_type is (IDLE, READ_RAM,ROTATE_REQ, ROTATE, WRITE_RAM, FIN);
     signal rotation_req, rotation_ack : std_logic;
 
     signal x_v, y_v, z_v : signed(SIZE+1 downto 0);
-
 
     signal read_addr_reg : std_logic_vector(ADDR_RAM_W-1 downto 0);
     signal write_addr_reg : std_logic_vector(ADDR_VRAM_W-1 downto 0);
@@ -49,7 +47,6 @@ begin
                 read_addr_reg <= (others => '0');
                 write_addr_reg <= (others => '0');
                 rotation_req <= '0';
-                rot_req <= '0';
                 done <= '0';
             else
                 rotation_req <= '0';
@@ -57,58 +54,57 @@ begin
                 state <= next_state;
                 case state is
                     when IDLE =>
+                        done <= '0';
                         if start = '1' then
                             next_state <= READ_RAM;
                         else
                             next_state <= IDLE;
                         end if;
                     when READ_RAM =>
-                        if unsigned(read_addr_reg) = to_unsigned(2**ADDR_RAM_W-1, ADDR_RAM_W) then --2**ADDR_RAM_W-1
-                            next_state <= FIN;
-                        else
                         -- agarro las coordenadas (x,y,z) guardadas en 3 direcciones de la ram (por eso necesito 3 step por terna)
-                            if step = 0 then
-                                x <= coord_ram;
-                                step <= step+1;
-                            elsif step = 1 then
-                                y <= coord_ram;
-                                step <= step+1;
-                            else
-                                z <= coord_ram;
-                                next_state <= ROTATE_REQ;
-                                step <= 0;
-                            end if;
-                            read_addr_reg <= std_logic_vector(unsigned(read_addr_reg) + 1);
+                        if step = 0 then
+                            x <= coord_ram;
+                            step <= step+1;
+                        elsif step = 1 then
+                             y <= coord_ram;
+                             step <= step+1;
+                        else
+                             z <= coord_ram;
+                             next_state <= ROTATE_REQ;
+                             step <= 0;
                         end if;
+                        read_addr_reg <= std_logic_vector(unsigned(read_addr_reg) + 1);
                     when ROTATE_REQ =>
                         rotation_req <= '1';
-                        rot_req <= '1';
                         next_state <= ROTATE;
                     when ROTATE => 
-                        rotation_req <= '0';
-                        rot_req <= '0';
                         if rotation_ack = '1' then
                             next_state <= WRITE_RAM;
                             x_v <= x_rot;
                             y_v <= y_rot;
                             z_v <= z_rot;
+                            rotation_req <= '0';
                         else
                             next_state <= ROTATE;
                         end if;
                     when WRITE_RAM =>
                         write_addr_reg <= std_logic_vector(resize(unsigned(y_rot) + (640 * ('0' & unsigned(z_rot))), ADDR_VRAM_W));
-                        next_state <= READ_RAM;
+                        if unsigned(read_addr_reg) = to_unsigned(35838, ADDR_RAM_W) then -- Recorro solo la cantidad de coordenadas recibidas 
+                            next_state <= FIN;
+                        else
+                            next_state <= READ_RAM;
+                        end if;
                     when FIN =>
                         done <= '1';
-                    when others =>
                         next_state <= IDLE;
+                    when others =>
+                        next_state <= FIN;
                 end case;
             end if;
         end if;
     end process;
     
     coord_ram <=  signed(resize(signed(ram_read_data), SIZE+2));-- extiendo el signo para poder utilizar el cordic
-    
     -- Tomo la vram como una matriz de 640 x 480 posiciones
     ram_read_addr <= read_addr_reg;
     -- Datos de salida para la Vram

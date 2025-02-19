@@ -51,6 +51,7 @@ begin
                 else 
                     req_z <= '0';
                 end if;
+
             end if;
         end if;
     end process;

@@ -42,7 +42,7 @@ begin
                     a2 <= to_signed(40, SIZE+2); -- Angulo de aproximadamente 14 grados en eje y 
                     step <= step+1;
                     req <= '1';
-                elsif ack = '1' and step = 2 then 
+                elsif ack = '1' and step = 2 then
                     -- Vector original (120, 0 , 80) y deberia devolver (135,0,50)
                     -- Pero por los errores de aproximación del coordic se transfomra en (117,0,69)
                     z0 <= to_signed(80, SIZE+2);
@@ -58,8 +58,6 @@ begin
             end if;
         end if;
     end process;
-
-
 
     d_rot: entity work.rotador_equ 
     generic map(

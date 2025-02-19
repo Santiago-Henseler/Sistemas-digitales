@@ -1,8 +1,6 @@
 set_property SRC_FILE_INFO {cfile:/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/constrains.xdc rfile:../../../../../constrains.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN H16    IOSTANDARD LVCMOS33 } [get_ports { clock }]; #IO_L13P_T2_MRCC_35 Sch=SYSCLK
-set_property src_info {type:XDC file:1 line:23 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict { PACKAGE_PIN R14    IOSTANDARD LVCMOS33 } [get_ports { done }]; #IO_L6N_T0_VREF_34 Sch=LED0
 set_property src_info {type:XDC file:1 line:35 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN Y18   IOSTANDARD LVCMOS33 } [get_ports { rx }]; #IO_L17P_T2_34 Sch=JA1_P (Pin 1)
 set_property src_info {type:XDC file:1 line:45 export:INPUT save:INPUT read:READ} [current_design]
