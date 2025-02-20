@@ -2,8 +2,8 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Wed Feb 19 16:17:26 2025
-# Process ID: 399844
+# Start of session at: Wed Feb 19 23:12:25 2025
+# Process ID: 9266
 # Current directory: /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1
 # Command line: vivado -log toplvl.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source toplvl.tcl
 # Log file: /home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/toplvl.vds
@@ -15,12 +15,12 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 399850 
+INFO: Helper process launched with PID 9272 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1258.312 ; gain = 79.906 ; free physical = 1174 ; free virtual = 5418
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1259.316 ; gain = 80.906 ; free physical = 1332 ; free virtual = 6596
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'toplvl' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:12]
-INFO: [Synth 8-638] synthesizing module 'driver' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl:19]
+INFO: [Synth 8-638] synthesizing module 'driver' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl:18]
 INFO: [Synth 8-638] synthesizing module 'uart_controler' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_controler.vhdl:23]
 	Parameter BAUD_RATE bound to: 115200 - type: integer 
 	Parameter CLOCK_RATE bound to: 125000000 - type: integer 
@@ -75,25 +75,28 @@ INFO: [Synth 8-256] done synthesizing module 'pre_cordic' (10#1) [/home/santy/Do
 INFO: [Synth 8-256] done synthesizing module 'rotador_equ' (11#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador_equ.vhdl:26]
 INFO: [Synth 8-256] done synthesizing module 'rotador' (12#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador.vhdl:25]
 INFO: [Synth 8-256] done synthesizing module 'rotador_controler' (13#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/rotacion/rotador_controler.vhdl:27]
+INFO: [Synth 8-638] synthesizing module 'clear_video' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/clear_video.vhdl:17]
+	Parameter ADD_W bound to: 19 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clear_video' (14#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/clear_video.vhdl:17]
 INFO: [Synth 8-638] synthesizing module 'dual_ram__parameterized0' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/dp_ram/dp_ram.vhdl:19]
 	Parameter ADD_W bound to: 19 - type: integer 
 	Parameter DATA_SIZE bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'dual_ram__parameterized0' (13#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/dp_ram/dp_ram.vhdl:19]
+INFO: [Synth 8-256] done synthesizing module 'dual_ram__parameterized0' (14#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/dp_ram/dp_ram.vhdl:19]
 INFO: [Synth 8-638] synthesizing module 'vga_ctrl' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_ctrl.vhdl:19]
 	Parameter ADD_W bound to: 19 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'vga_sync' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_sync.vhdl:18]
-INFO: [Synth 8-256] done synthesizing module 'vga_sync' (14#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_sync.vhdl:18]
+INFO: [Synth 8-256] done synthesizing module 'vga_sync' (15#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_sync.vhdl:18]
 INFO: [Synth 8-638] synthesizing module 'gen_pixels' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/gen_pixels.vhdl:21]
 	Parameter ADD_W bound to: 19 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'gen_pixels' (15#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/gen_pixels.vhdl:21]
-INFO: [Synth 8-256] done synthesizing module 'vga_ctrl' (16#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_ctrl.vhdl:19]
-INFO: [Synth 8-256] done synthesizing module 'driver' (17#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl:19]
-INFO: [Synth 8-3491] module 'vio_0' declared at '/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/.Xil/Vivado-399844-santy22/realtime/vio_0_stub.vhdl:5' bound to instance 'U_vio' of component 'vio_0' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:62]
-INFO: [Synth 8-638] synthesizing module 'vio_0' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/.Xil/Vivado-399844-santy22/realtime/vio_0_stub.vhdl:24]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'driver_inst'. This will prevent further optimization [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:41]
-INFO: [Synth 8-256] done synthesizing module 'toplvl' (18#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:12]
+INFO: [Synth 8-256] done synthesizing module 'gen_pixels' (16#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/gen_pixels.vhdl:21]
+INFO: [Synth 8-256] done synthesizing module 'vga_ctrl' (17#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/vga/vga_ctrl.vhdl:19]
+INFO: [Synth 8-256] done synthesizing module 'driver' (18#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/driver.vhdl:18]
+INFO: [Synth 8-3491] module 'vio_0' declared at '/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/.Xil/Vivado-9266-santy22/realtime/vio_0_stub.vhdl:5' bound to instance 'U_vio' of component 'vio_0' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:59]
+INFO: [Synth 8-638] synthesizing module 'vio_0' [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/.Xil/Vivado-9266-santy22/realtime/vio_0_stub.vhdl:23]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'driver_inst'. This will prevent further optimization [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:39]
+INFO: [Synth 8-256] done synthesizing module 'toplvl' (19#1) [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/toplvl.vhdl:12]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1496.930 ; gain = 318.523 ; free physical = 1066 ; free virtual = 5312
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1496.934 ; gain = 318.523 ; free physical = 1242 ; free virtual = 6509
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -106,10 +109,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1496.930 ; gain = 318.523 ; free physical = 1068 ; free virtual = 5315
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1496.934 ; gain = 318.523 ; free physical = 1248 ; free virtual = 6515
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1496.930 ; gain = 318.523 ; free physical = 1068 ; free virtual = 5315
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1496.934 ; gain = 318.523 ; free physical = 1248 ; free virtual = 6515
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z010clg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -122,29 +125,31 @@ Parsing XDC File [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/co
 Finished Parsing XDC File [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/constrains.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/constrains.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/toplvl_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/toplvl_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1763.914 ; gain = 0.000 ; free physical = 836 ; free virtual = 5081
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1763.918 ; gain = 0.000 ; free physical = 1004 ; free virtual = 6259
 WARNING: [Timing 38-316] Clock period '10.000' specified during out-of-context synthesis of instance 'U_vio' at clock pin 'clk' is different from the actual clock period '8.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:30 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 918 ; free virtual = 5163
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 1087 ; free virtual = 6342
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z010clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:30 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 918 ; free virtual = 5163
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 1087 ; free virtual = 6342
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for U_vio. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:30 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 919 ; free virtual = 5164
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:30 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 1091 ; free virtual = 6346
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5546] ROM "baud_x16_en_reg" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_rx_ctl'
@@ -160,6 +165,9 @@ INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To p
 INFO: [Synth 8-5544] ROM "n_iter" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5545] ROM "x" won't be mapped to RAM because address size (31) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "ack" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "i" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "addrW_Vram" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "h_end" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "v_end" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------------------------
@@ -172,7 +180,7 @@ INFO: [Synth 8-5546] ROM "v_end" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'uart_rx_ctl'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:32 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 952 ; free virtual = 5200
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:32 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 1122 ; free virtual = 6378
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -185,6 +193,7 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
+	   2 Input     32 Bit       Adders := 1     
 	   2 Input     31 Bit       Adders := 1     
 	   3 Input     10 Bit       Adders := 9     
 	   2 Input     10 Bit       Adders := 14    
@@ -194,35 +203,37 @@ Detailed RTL Component Info :
 +---XORs : 
 	   2 Input      1 Bit         XORs := 6     
 +---Registers : 
+	               32 Bit    Registers := 1     
 	               31 Bit    Registers := 1     
+	               19 Bit    Registers := 1     
 	               10 Bit    Registers := 17    
-	                8 Bit    Registers := 5     
+	                8 Bit    Registers := 4     
 	                7 Bit    Registers := 1     
 	                4 Bit    Registers := 4     
 	                3 Bit    Registers := 6     
 	                2 Bit    Registers := 1     
-	                1 Bit    Registers := 23    
+	                1 Bit    Registers := 25    
 +---RAMs : 
 	             512K Bit         RAMs := 2     
 +---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
 	   2 Input     31 Bit        Muxes := 2     
+	   2 Input     19 Bit        Muxes := 1     
 	   2 Input     10 Bit        Muxes := 131   
 	   2 Input      8 Bit        Muxes := 2     
 	   8 Input      8 Bit        Muxes := 3     
-	   6 Input      8 Bit        Muxes := 1     
 	   2 Input      4 Bit        Muxes := 5     
 	   9 Input      3 Bit        Muxes := 1     
-	   2 Input      3 Bit        Muxes := 1     
-	   7 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
 	   4 Input      2 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 3     
+	   2 Input      2 Bit        Muxes := 2     
 	   6 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 34    
+	   2 Input      1 Bit        Muxes := 36    
 	   4 Input      1 Bit        Muxes := 1     
 	   7 Input      1 Bit        Muxes := 7     
 	   8 Input      1 Bit        Muxes := 1     
 	   9 Input      1 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 4     
+	   6 Input      1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -335,6 +346,17 @@ Detailed RTL Component Info :
 	   2 Input      1 Bit         XORs := 3     
 +---Muxes : 
 	   2 Input     10 Bit        Muxes := 6     
+Module clear_video 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               19 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
 Module dual_ram__parameterized0 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -360,14 +382,12 @@ Detailed RTL Component Info :
 Module driver 
 Detailed RTL Component Info : 
 +---Registers : 
-	                8 Bit    Registers := 1     
 	                3 Bit    Registers := 2     
-	                1 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
 +---Muxes : 
-	   6 Input      8 Bit        Muxes := 1     
-	   7 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 4     
+	   2 Input     19 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   6 Input      1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -385,32 +405,34 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
 WARNING: [Synth 8-6014] Unused sequential element uart_inst/uart_inst/uart_rx_ctl_i0/frm_err_reg was removed.  [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_rx_ctl.vhdl:223]
-WARNING: [Synth 8-6014] Unused sequential element uart_inst/recibidos_reg was removed.  [/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/codigo/uart/uart_controler.vhdl:65]
 INFO: [Synth 8-5546] ROM "uart_inst/uart_inst/uart_baud_gen_rx_i0/baud_x16_en_reg" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "uart_inst/fin_rx" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "clear_vram/i" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "clear_vram/addrW_Vram" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "clear_vram/ack" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "vga_instance/vga_sync_unit/h_end" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "vga_instance/vga_sync_unit/v_end" won't be mapped to RAM because it is too sparse
-DSP Report: Generating DSP rot_controler/rot/write_addr_reg_reg, operation Mode is: (C+(A:0x280)*B)'.
-DSP Report: register rot_controler/rot/write_addr_reg_reg is absorbed into DSP rot_controler/rot/write_addr_reg_reg.
-DSP Report: operator rot_controler/rot/write_addr_reg0 is absorbed into DSP rot_controler/rot/write_addr_reg_reg.
-DSP Report: operator rot_controler/rot/multOp is absorbed into DSP rot_controler/rot/write_addr_reg_reg.
 DSP Report: Generating DSP vga_instance/pixeles/tmp_addr_reg, operation Mode is: (C'+(A:0x280)*B2)'.
 DSP Report: register vga_instance/vga_sync_unit/v_count_reg is absorbed into DSP vga_instance/pixeles/tmp_addr_reg.
 DSP Report: register vga_instance/vga_sync_unit/h_count_reg is absorbed into DSP vga_instance/pixeles/tmp_addr_reg.
 DSP Report: register vga_instance/pixeles/tmp_addr_reg is absorbed into DSP vga_instance/pixeles/tmp_addr_reg.
 DSP Report: operator vga_instance/pixeles/tmp_addr0 is absorbed into DSP vga_instance/pixeles/tmp_addr_reg.
 DSP Report: operator vga_instance/pixeles/multOp is absorbed into DSP vga_instance/pixeles/tmp_addr_reg.
+DSP Report: Generating DSP rot_controler/rot/write_addr_reg_reg, operation Mode is: (C+(A:0x280)*B)'.
+DSP Report: register rot_controler/rot/write_addr_reg_reg is absorbed into DSP rot_controler/rot/write_addr_reg_reg.
+DSP Report: operator rot_controler/rot/write_addr_reg0 is absorbed into DSP rot_controler/rot/write_addr_reg_reg.
+DSP Report: operator rot_controler/rot/multOp is absorbed into DSP rot_controler/rot/write_addr_reg_reg.
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/z_reg[7]' (FDE) to 'driver_inst/rot_controler/rot/z_reg[8]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/z_reg[8]' (FDE) to 'driver_inst/rot_controler/rot/z_reg[9]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/y_reg[7]' (FDE) to 'driver_inst/rot_controler/rot/y_reg[8]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/y_reg[8]' (FDE) to 'driver_inst/rot_controler/rot/y_reg[9]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/x_reg[7]' (FDE) to 'driver_inst/rot_controler/rot/x_reg[8]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/x_reg[8]' (FDE) to 'driver_inst/rot_controler/rot/x_reg[9]'
-INFO: [Synth 8-3886] merging instance 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__11' (FD) to 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__9'
-INFO: [Synth 8-3886] merging instance 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__9' (FD) to 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__5'
-INFO: [Synth 8-3886] merging instance 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__7' (FD) to 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__1'
-INFO: [Synth 8-3886] merging instance 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__5' (FD) to 'driver_inst/i_15/vram_instance/RAM_reg_mux_sel__3'
-INFO: [Synth 8-3886] merging instance 'driver_inst/vga_instance/pixeles/rgb_reg_reg[0]' (FDR) to 'driver_inst/vga_instance/pixeles/rgb_reg_reg[2]'
+INFO: [Synth 8-3886] merging instance 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__11' (FD) to 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__9'
+INFO: [Synth 8-3886] merging instance 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__9' (FD) to 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__5'
+INFO: [Synth 8-3886] merging instance 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__7' (FD) to 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__1'
+INFO: [Synth 8-3886] merging instance 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__5' (FD) to 'driver_inst/i_12/vram_instance/RAM_reg_mux_sel__3'
+INFO: [Synth 8-3886] merging instance 'driver_inst/vga_instance/pixeles/rgb_reg_reg[0]' (FDR) to 'driver_inst/vga_instance/pixeles/rgb_reg_reg[1]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/vga_instance/pixeles/rgb_reg_reg[1]' (FDR) to 'driver_inst/vga_instance/pixeles/rgb_reg_reg[2]'
 WARNING: [Synth 8-3332] Sequential element (vram_instance/RAM_reg_mux_sel__0) is unused and will be removed from module driver.
 WARNING: [Synth 8-3332] Sequential element (vram_instance/RAM_reg_mux_sel__2) is unused and will be removed from module driver.
@@ -419,7 +441,7 @@ WARNING: [Synth 8-3332] Sequential element (vram_instance/RAM_reg_mux_sel__6) is
 WARNING: [Synth 8-3332] Sequential element (vram_instance/RAM_reg_mux_sel__8) is unused and will be removed from module driver.
 WARNING: [Synth 8-3332] Sequential element (vram_instance/RAM_reg_mux_sel__10) is unused and will be removed from module driver.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:36 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 912 ; free virtual = 5175
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:37 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 1078 ; free virtual = 6353
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -439,8 +461,8 @@ DSP: Preliminary Mapping  Report (see note below)
 +------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name | DSP Mapping        | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|rotador     | (C+(A:0x280)*B)'   | 10     | 10     | 10     | -      | 19     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
 |driver      | (C'+(A:0x280)*B2)' | 10     | 10     | 10     | -      | 19     | 1    | 0    | 1    | -    | -     | 0    | 1    | 
+|rotador     | (C+(A:0x280)*B)'   | 10     | 10     | 10     | -      | 19     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
 +------------+--------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
@@ -455,14 +477,14 @@ INFO: [Synth 8-4480] The timing for the instance driver_inst/i_0/ram_instance/RA
 INFO: [Synth 8-4480] The timing for the instance driver_inst/i_0/ram_instance/RAM_reg_1_5 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance driver_inst/i_0/ram_instance/RAM_reg_1_6 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance driver_inst/i_0/ram_instance/RAM_reg_1_7 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_3 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_5 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_7 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_9 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_11 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_13 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance driver_inst/i_15/vram_instance/RAM_reg_15 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_3 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_5 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_7 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_9 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_11 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_13 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance driver_inst/i_12/vram_instance/RAM_reg_15 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -473,7 +495,7 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:47 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 749 ; free virtual = 5012
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:48 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 920 ; free virtual = 6194
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
@@ -482,7 +504,7 @@ INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/z_v_reg[8]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/y_v_reg[8]' (FDE) to 'driver_inst/rot_controler/rot/y_v_reg[9]'
 INFO: [Synth 8-3886] merging instance 'driver_inst/rot_controler/rot/x_v_reg[8]' (FDE) to 'driver_inst/rot_controler/rot/x_v_reg[9]'
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:49 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 728 ; free virtual = 4991
+Finished Timing Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:50 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 898 ; free virtual = 6172
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -525,7 +547,7 @@ INFO: [Synth 8-4480] The timing for the instance driver_inst/vram_instance/RAM_r
 INFO: [Synth 8-4480] The timing for the instance driver_inst/vram_instance/RAM_reg_13 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance driver_inst/vram_instance/RAM_reg_15 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:50 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 764 ; free virtual = 5028
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:50 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 941 ; free virtual = 6216
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -549,7 +571,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:50 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 942 ; free virtual = 6217
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -562,7 +584,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:50 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 942 ; free virtual = 6217
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -574,25 +596,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 943 ; free virtual = 6217
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 943 ; free virtual = 6217
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 943 ; free virtual = 6217
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 943 ; free virtual = 6217
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -611,20 +633,20 @@ Report Cell Usage:
 +------+-------------+------+
 |1     |vio_0_bbox_0 |     1|
 |2     |BUFG         |     1|
-|3     |CARRY4       |    43|
+|3     |CARRY4       |    51|
 |4     |DSP48E1      |     1|
 |5     |DSP48E1_1    |     1|
-|6     |LUT1         |     8|
-|7     |LUT2         |    35|
-|8     |LUT3         |   131|
-|9     |LUT4         |    99|
-|10    |LUT5         |   152|
-|11    |LUT6         |   145|
+|6     |LUT1         |     9|
+|7     |LUT2         |    67|
+|8     |LUT3         |   141|
+|9     |LUT4         |    60|
+|10    |LUT5         |   182|
+|11    |LUT6         |   159|
 |12    |MUXF7        |     1|
 |13    |RAMB36E1     |    16|
 |14    |RAMB36E1_1   |    16|
 |15    |FDCE         |     2|
-|16    |FDRE         |   305|
+|16    |FDRE         |   363|
 |17    |FDSE         |     3|
 |18    |IBUF         |     2|
 |19    |OBUF         |     5|
@@ -634,37 +656,38 @@ Report Instance Areas:
 +------+----------------------------+-------------------------+------+
 |      |Instance                    |Module                   |Cells |
 +------+----------------------------+-------------------------+------+
-|1     |top                         |                         |   973|
-|2     |  driver_inst               |driver                   |   958|
-|3     |    ram_instance            |dual_ram                 |    16|
-|4     |    rot_controler           |rotador_controler        |   725|
-|5     |      rot                   |rotador                  |   725|
-|6     |        rot                 |rotador_equ              |   540|
-|7     |          rot_x             |pre_cordic               |   169|
-|8     |            cor_type        |cordic_iter_4            |   169|
-|9     |          rot_y             |pre_cordic_1             |   175|
-|10    |            cor_type        |cordic_iter_3            |   175|
-|11    |          rot_z             |pre_cordic_2             |   194|
-|12    |            cor_type        |cordic_iter              |   194|
-|13    |    uart_inst               |uart_controler           |   110|
-|14    |      meta_harden_rst_i0    |meta_harden              |     2|
-|15    |      uart_inst             |uart_rx                  |    73|
-|16    |        meta_harden_rxd_i0  |meta_harden_0            |     2|
-|17    |        uart_baud_gen_rx_i0 |uart_baud_gen            |    19|
-|18    |        uart_rx_ctl_i0      |uart_rx_ctl              |    52|
-|19    |    vga_instance            |vga_ctrl                 |    71|
-|20    |      pixeles               |gen_pixels               |    10|
-|21    |      vga_sync_unit         |vga_sync                 |    61|
-|22    |    vram_instance           |dual_ram__parameterized0 |    22|
+|1     |top                         |                         |  1087|
+|2     |  driver_inst               |driver                   |  1072|
+|3     |    clear_vram              |clear_video              |   129|
+|4     |    ram_instance            |dual_ram                 |    16|
+|5     |    rot_controler           |rotador_controler        |   701|
+|6     |      rot                   |rotador                  |   701|
+|7     |        rot                 |rotador_equ              |   528|
+|8     |          rot_x             |pre_cordic               |   168|
+|9     |            cor_type        |cordic_iter_4            |   168|
+|10    |          rot_y             |pre_cordic_1             |   174|
+|11    |            cor_type        |cordic_iter_3            |   174|
+|12    |          rot_z             |pre_cordic_2             |   184|
+|13    |            cor_type        |cordic_iter              |   184|
+|14    |    uart_inst               |uart_controler           |   121|
+|15    |      meta_harden_rst_i0    |meta_harden              |     2|
+|16    |      uart_inst             |uart_rx                  |    74|
+|17    |        meta_harden_rxd_i0  |meta_harden_0            |     2|
+|18    |        uart_baud_gen_rx_i0 |uart_baud_gen            |    19|
+|19    |        uart_rx_ctl_i0      |uart_rx_ctl              |    53|
+|20    |    vga_instance            |vga_ctrl                 |    74|
+|21    |      pixeles               |gen_pixels               |    10|
+|22    |      vga_sync_unit         |vga_sync                 |    64|
+|23    |    vram_instance           |dual_ram__parameterized0 |    22|
 +------+----------------------------+-------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 765 ; free virtual = 5028
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 943 ; free virtual = 6217
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 1763.914 ; gain = 318.523 ; free physical = 840 ; free virtual = 5104
-Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1763.914 ; gain = 585.508 ; free physical = 840 ; free virtual = 5104
+Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 1764.918 ; gain = 318.523 ; free physical = 1019 ; free virtual = 6293
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:51 . Memory (MB): peak = 1764.918 ; gain = 586.508 ; free physical = 1019 ; free virtual = 6293
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 80 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 88 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -672,11 +695,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-125 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
+133 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:52 . Memory (MB): peak = 1780.781 ; gain = 613.922 ; free physical = 855 ; free virtual = 5119
+synth_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:53 . Memory (MB): peak = 1783.926 ; gain = 617.062 ; free physical = 1018 ; free virtual = 6293
 WARNING: [Constraints 18-5210] No constraint will be written out.
 INFO: [Common 17-1381] The checkpoint '/home/santy/Documentos/facultad/Sistemas-digitales/Tp_Final/vivado/final/final.runs/synth_1/toplvl.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file toplvl_utilization_synth.rpt -pb toplvl_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1804.793 ; gain = 0.000 ; free physical = 860 ; free virtual = 5124
-INFO: [Common 17-206] Exiting Vivado at Wed Feb 19 16:18:26 2025...
+report_utilization: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1807.938 ; gain = 0.000 ; free physical = 1020 ; free virtual = 6295
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 19 23:13:26 2025...

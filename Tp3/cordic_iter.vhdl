@@ -26,6 +26,8 @@ architecture cordic_iter_arch of cordic_iter is
     signal x_i, y_i, z_i: signed(SIZE+1 downto 0);
     signal n_iter: unsigned(natural(ceil(log2(real(SIZE))))+1 downto 0);
     signal x_i_aux, y_i_aux, z_i_aux: signed(SIZE+1 downto 0);
+
+    signal start: std_logic;
 begin
 
     cord: entity work.cordic
@@ -43,51 +45,61 @@ begin
 
     logic: process(clock,reset)
     begin
-        if reset = '1' then
+        if rising_edge(clock) then
+            if reset = '1' then
            
-            n_iter <= (others => '0');
-            x_i <= (others => '0');
-            y_i <= (others => '0');
-            z_i <= (others => '0');
-
-            x_out <= (others => '0');
-            y_out <= (others => '0');
-            z_out <= (others => '0');
-
-            ack <= '0';
-
-        elsif rising_edge(clock) then
-
-            if req = '1' then 
-                ack <= '0';
-            elsif n_iter = SIZE then
-                ack <= '1';
-            else
-                ack <= '0';
-            end if;
-            
-            if req = '1' then
-                x_i <= x0;
-                y_i <= y0;
-                z_i <= z0;
-            elsif n_iter < SIZE then
-                x_i <= x_i_aux;
-                y_i <= y_i_aux;
-                z_i <= z_i_aux;
-            end if;
-
-            if req = '1' then
                 n_iter <= (others => '0');
-            elsif n_iter <= SIZE then
-                n_iter <= n_iter + 1;
-            end if;
+                x_i <= (others => '0');
+                y_i <= (others => '0');
+                z_i <= (others => '0');
+    
+                x_out <= (others => '0');
+                y_out <= (others => '0');
+                z_out <= (others => '0');
+    
+                ack <= '0';
+    
+            else
+                if req = '1' then 
+                    ack <= '0';
+                    start <= '1';
+                elsif n_iter = SIZE then
+                    ack <= '1';
+                    start <= '0';
+                else
+                    ack <= '0';
+                end if;
+                
+                if req = '1' then
+                    x_i <= x0;
+                    y_i <= y0;
+                    z_i <= z0;
+                elsif n_iter < SIZE then
+                    x_i <= x_i_aux;
+                    y_i <= y_i_aux;
+                    z_i <= z_i_aux;
+                end if;
 
-            if n_iter = SIZE then
-                x_out <= x_i;
-                y_out <= y_i;
-                z_out <= z_i;                
-            end if;
+                if req = '1' then
+                    n_iter <= (others => '0');
+                elsif n_iter <= SIZE then
+                    n_iter <= n_iter + 1;
+                end if;
 
+                if n_iter = SIZE then
+                    x_out <= x_i;
+                    y_out <= y_i;
+                    z_out <= z_i;                
+                end if;
+
+                if req = '1' then
+                    n_iter <= (others => '0');
+                elsif start = '1' then
+                    n_iter <= n_iter + 1;
+                elsif n_iter = SIZE then
+                    n_iter <= (others => '0');
+                end if;
+            end if;
         end if;
     end process;
 

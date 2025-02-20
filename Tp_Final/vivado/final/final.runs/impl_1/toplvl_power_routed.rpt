@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date             : Wed Feb 19 16:20:24 2025
+| Date             : Wed Feb 19 23:15:39 2025
 | Host             : santy22 running 64-bit Linux Mint 21.2
 | Command          : report_power -file toplvl_power_routed.rpt -pb toplvl_power_summary_routed.pb -rpx toplvl_power_routed.rpx
 | Design           : toplvl
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.009 |        4 |       --- |             --- |
-| Slice Logic              |     0.007 |     3278 |       --- |             --- |
-|   LUT as Logic           |     0.006 |     1257 |     17600 |            7.14 |
-|   CARRY4                 |    <0.001 |       55 |      4400 |            1.25 |
-|   Register               |    <0.001 |     1597 |     35200 |            4.54 |
+| Slice Logic              |     0.007 |     3256 |       --- |             --- |
+|   LUT as Logic           |     0.006 |     1243 |     17600 |            7.06 |
+|   CARRY4                 |    <0.001 |       63 |      4400 |            1.43 |
+|   Register               |    <0.001 |     1571 |     35200 |            4.46 |
 |   LUT as Distributed RAM |    <0.001 |       24 |      6000 |            0.40 |
-|   F7/F8 Muxes            |    <0.001 |        1 |     17600 |           <0.01 |
-|   Others                 |     0.000 |      144 |       --- |             --- |
-| Signals                  |     0.009 |     2524 |       --- |             --- |
+|   F7/F8 Muxes            |    <0.001 |       17 |     17600 |            0.10 |
+|   Others                 |     0.000 |      146 |       --- |             --- |
+| Signals                  |     0.009 |     2497 |       --- |             --- |
 | Block RAM                |     0.056 |       32 |        60 |           53.33 |
 | DSPs                     |     0.002 |        2 |        80 |            2.50 |
-| I/O                      |     0.001 |        7 |       100 |            7.00 |
+| I/O                      |     0.002 |        7 |       100 |            7.00 |
 | Static Power             |     0.096 |          |           |                 |
 | Total                    |     0.180 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
@@ -75,9 +75,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.083 |       0.078 |      0.004 |
+| Vccint    |       1.000 |     0.082 |       0.078 |      0.004 |
 | Vccaux    |       1.800 |     0.005 |       0.000 |      0.005 |
-| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -153,10 +153,10 @@ Table of Contents
 | Name                                                                               | Power (W) |
 +------------------------------------------------------------------------------------+-----------+
 | toplvl                                                                             |     0.084 |
-|   U_vio                                                                            |     0.005 |
-|     inst                                                                           |     0.005 |
+|   U_vio                                                                            |     0.004 |
+|     inst                                                                           |     0.004 |
 |       DECODER_INST                                                                 |    <0.001 |
-|       PROBE_IN_INST                                                                |     0.002 |
+|       PROBE_IN_INST                                                                |     0.001 |
 |       PROBE_IN_WIDTH_INST                                                          |    <0.001 |
 |       PROBE_OUT_ALL_INST                                                           |    <0.001 |
 |         G_PROBE_OUT[0].PROBE_OUT0_INST                                             |    <0.001 |
@@ -252,11 +252,12 @@ Table of Contents
 |           U_SYNC                                                                   |    <0.001 |
 |         SWITCH_N_EXT_BSCAN.bscan_inst                                              |    <0.001 |
 |         SWITCH_N_EXT_BSCAN.bscan_switch                                            |    <0.001 |
-|   driver_inst                                                                      |     0.074 |
+|   driver_inst                                                                      |     0.075 |
+|     clear_vram                                                                     |     0.002 |
 |     ram_instance                                                                   |     0.050 |
-|     rot_controler                                                                  |     0.016 |
-|       rot                                                                          |     0.016 |
-|         rot                                                                        |     0.012 |
+|     rot_controler                                                                  |     0.014 |
+|       rot                                                                          |     0.014 |
+|         rot                                                                        |     0.011 |
 |           rot_x                                                                    |     0.003 |
 |             cor_type                                                               |     0.003 |
 |           rot_y                                                                    |     0.004 |

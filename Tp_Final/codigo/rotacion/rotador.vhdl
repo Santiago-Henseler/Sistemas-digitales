@@ -78,6 +78,7 @@ begin
                         rotation_req <= '1';
                         next_state <= ROTATE;
                     when ROTATE => 
+                        -- con mas de un vector llega hasta aca y no recibe el rotation_ack
                         if rotation_ack = '1' then
                             next_state <= WRITE_RAM;
                             x_v <= x_rot;

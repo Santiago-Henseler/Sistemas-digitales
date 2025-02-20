@@ -11,8 +11,7 @@ entity driver is
 		hsync , vsync : out std_logic;
 		rgb : out std_logic_vector(2 downto 0);
 		x_vio, y_vio, z_vio: out std_logic_vector(9 downto 0);
-		recibidos: out std_logic_vector(7 downto 0);
-		pos: out std_logic_vector(15 downto 0)
+		recibidos: out std_logic_vector(7 downto 0)
 	);
 end driver;
 
@@ -33,7 +32,9 @@ architecture driver_arch of driver is
 	-- Flujo del programa
 	type state_type is (UART, ROTATE_REQ, ROTATE, VGA, REFRESH_VGA);
     signal state, next_state: state_type;
-	signal start_rot, done, vsync_ready: std_logic;
+	signal start_rot, done, vsync_ready, clear_ram_ack, clear_ram_req: std_logic;
+
+	signal clear_ram_addr, rot_ram_addr: std_logic_vector(ADDR_VRAM_W-1 downto 0);
 
 begin
 	process(clock, reset, state)
@@ -42,12 +43,12 @@ begin
             if reset = '1' then
                 state <= UART;
 				start_rot <= '0';
+				clear_ram_req <= '0';
             else
                 -- Cambio de estado
                 state <= next_state;
                 case state is
                     when UART =>
-                        recibidos <= std_logic_vector(to_unsigned(1, SIZE));
 						-- espero a que termine de recibir los datos por UART
                         if fin_rx = '1' then
                             next_state <= ROTATE_REQ;
@@ -55,11 +56,9 @@ begin
                             next_state <= UART;
                         end if;
                     when ROTATE_REQ =>
-                        recibidos <= std_logic_vector(to_unsigned(2, SIZE));
-						start_rot <= '1';
+   						start_rot <= '1';
 						next_state <= ROTATE;
                     when ROTATE =>
-                        recibidos <= std_logic_vector(to_unsigned(3, SIZE));
 						-- espero a que termine de hacer la rotación
 						start_rot <= '0';
                         if done = '1' then
@@ -68,17 +67,21 @@ begin
 							next_state <= ROTATE;
 						end if;
                     when VGA =>
-                        recibidos <= std_logic_vector(to_unsigned(4, SIZE));
                         --espero que se recorra toda la pantalla
 						if vsync_ready = '1' then
 							next_state <= REFRESH_VGA;
 						else
 							next_state <= VGA;
 						end if;
-                    when REFRESH_VGA =>
-                       recibidos <= std_logic_vector(to_unsigned(5, SIZE));
-                        --limpio la ram
-						--next_state <= ROTATE_REQ;
+					when REFRESH_VGA => 
+					   -- limpio Vram
+						clear_ram_req <= '1';
+						if clear_ram_ack = '1' then
+							clear_ram_req <= '0';
+							next_state <= ROTATE_REQ;
+						else
+							next_state <= REFRESH_VGA;
+						end if;
                     when others =>
                         next_state <= ROTATE_REQ;
                 end case;
@@ -101,10 +104,8 @@ begin
 		data => dout_uart,
 		addrW => addrW_ram,
 		fin_rx => fin_rx, 
-		recibidos => open -- Dato al vio para confirmar recepcion
+		recibidos => recibidos -- Dato al vio para confirmar recepcion
 	);
-
-    pos <= addrR_ram;
 
 	ram_instance: entity work.dual_ram
 	generic map(
@@ -131,7 +132,7 @@ begin
 		start => start_rot,
 		ram_read_data => data_ram_o,
 		ram_read_addr => addrR_ram,
-		ram_write_addr => addrW_Vram,
+		ram_write_addr => rot_ram_addr,
 		ram_write_data => data_Vram_i,
 		btn_x0 => btn_x0,
 		btn_x1 => btn_x1,
@@ -145,13 +146,27 @@ begin
 		z_vio => z_vio
 	);
 
+	clear_vram: entity work.clear_video
+	generic map(
+		ADD_W => ADDR_VRAM_W
+	)
+	port map(
+		clock => clock,
+		reset => reset,
+		req => clear_ram_req,
+		addrW_Vram => clear_ram_addr,
+		ack => clear_ram_ack
+	);
+
+	addrW_Vram <= clear_ram_addr when clear_ram_req = '1' else rot_ram_addr;
+	
 	vram_instance: entity work.dual_ram
 	generic map(
 		ADD_W => ADDR_VRAM_W,
 		DATA_SIZE => 1
     )
     port map(
-        clock => clock, 
+        clock => clock,
         addrW => addrW_Vram,
         addrR => addrR_Vram,
         data_i => data_Vram_i,

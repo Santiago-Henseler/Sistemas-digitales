@@ -18,16 +18,16 @@
     <Object name="fin_uart" gui_info="hw_vios/hw_vio_1=2"/>
     <Object name="pos[15:0]" gui_info="hw_vios/hw_vio_1=1"/>
     <Object name="recibidos[7:0]" gui_info="hw_vios/hw_vio_1=0"/>
-    <Object name="rst" gui_info="hw_vios/hw_vio_1=2"/>
-    <Object name="x0" gui_info="hw_vios/hw_vio_1=9"/>
-    <Object name="x1" gui_info="hw_vios/hw_vio_1=6"/>
-    <Object name="x_o[9:0]" gui_info="hw_vios/hw_vio_1=3"/>
-    <Object name="y0" gui_info="hw_vios/hw_vio_1=10"/>
-    <Object name="y1" gui_info="hw_vios/hw_vio_1=7"/>
-    <Object name="y_o[9:0]" gui_info="hw_vios/hw_vio_1=4"/>
-    <Object name="z0" gui_info="hw_vios/hw_vio_1=11"/>
-    <Object name="z1" gui_info="hw_vios/hw_vio_1=8"/>
-    <Object name="z_o[9:0]" gui_info="hw_vios/hw_vio_1=5"/>
+    <Object name="rst" gui_info="hw_vios/hw_vio_1=1"/>
+    <Object name="x0" gui_info="hw_vios/hw_vio_1=8"/>
+    <Object name="x1" gui_info="hw_vios/hw_vio_1=5"/>
+    <Object name="x_o[9:0]" gui_info="hw_vios/hw_vio_1=2"/>
+    <Object name="y0" gui_info="hw_vios/hw_vio_1=9"/>
+    <Object name="y1" gui_info="hw_vios/hw_vio_1=6"/>
+    <Object name="y_o[9:0]" gui_info="hw_vios/hw_vio_1=3"/>
+    <Object name="z0" gui_info="hw_vios/hw_vio_1=10"/>
+    <Object name="z1" gui_info="hw_vios/hw_vio_1=7"/>
+    <Object name="z_o[9:0]" gui_info="hw_vios/hw_vio_1=4"/>
   </ObjectList>
   <probeset name="hw project" active="false">
     <probe type="vio_input" busType="net" source="netlist" spec="VIO_INPUT_V2_RT">
@@ -60,7 +60,7 @@
         <net name="fin_uart"/>
       </nets>
     </probe>
-    <probe type="vio_input" busType="bus" source="netlist" spec="VIO_INPUT_V2_RT">
+    <probe type="vio_input" busType="net" source="netlist" spec="VIO_INPUT_V2_RT">
       <probeOptions Id="DebugProbeParams">
         <Option Id="ACTIVITY_PERSISTENCE" value="SHORT"/>
         <Option Id="DISPLAY_HINT" value=""/>
